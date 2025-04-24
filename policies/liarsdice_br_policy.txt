@@ -1,0 +1,1 @@
+Best‐response policy (liarsdice_br_policy.json) is tuned specifically against an opponent who calls 80% and accepts 20%, so it should exploit them and win much more often.ç

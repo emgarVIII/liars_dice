@@ -1,0 +1,59 @@
+{
+  "decision_problem_pl1": [
+    {
+      "id": "obs_roll_pl1",
+      "type": "observation",
+      "signals": ["1", "2", "3", "4", "5", "6"],
+      "parent_edge": null
+    },
+    {
+      "id": "d1_pl1",
+      "type": "decision",
+      "actions": ["bid1", "bid2", "bid3", "bid4", "bid5", "bid6"],
+      "parent_edge": ["obs_roll_pl1", "<signal>"],
+      "parent_sequence": null
+    }
+  ],
+
+  "decision_problem_pl2": [
+    {
+      "id": "obs_roll_pl2",
+      "type": "observation",
+      "signals": ["1", "2", "3", "4", "5", "6"],
+      "parent_edge": null
+    },
+    {
+      "id": "obs_bid_pl2",
+      "type": "observation",
+      "signals": ["bid1", "bid2", "bid3", "bid4", "bid5", "bid6"],
+      "parent_edge": ["obs_roll_pl2", "<signal>"]
+    },
+    {
+      "id": "d1_pl2",
+      "type": "decision",
+      "actions": ["call", "accept"],
+      "parent_edge": ["obs_bid_pl2", "<signal>"],
+      "parent_sequence": null
+    }
+  ],
+
+  "utility_pl1": [
+    { "sequence_pl1": ["d1_pl1","bid1"], "sequence_pl2": ["d1_pl2","call"],   "value": -1.0 },
+    { "sequence_pl1": ["d1_pl1","bid1"], "sequence_pl2": ["d1_pl2","accept"], "value":  1.0 },
+
+    { "sequence_pl1": ["d1_pl1","bid2"], "sequence_pl2": ["d1_pl2","call"],   "value": -0.6666666666666666 },
+    { "sequence_pl1": ["d1_pl1","bid2"], "sequence_pl2": ["d1_pl2","accept"], "value":  0.6666666666666666 },
+
+    { "sequence_pl1": ["d1_pl1","bid3"], "sequence_pl2": ["d1_pl2","call"],   "value": -0.3333333333333333 },
+    { "sequence_pl1": ["d1_pl1","bid3"], "sequence_pl2": ["d1_pl2","accept"], "value":  0.3333333333333333 },
+
+    { "sequence_pl1": ["d1_pl1","bid4"], "sequence_pl2": ["d1_pl2","call"],   "value":  0.0 },
+    { "sequence_pl1": ["d1_pl1","bid4"], "sequence_pl2": ["d1_pl2","accept"], "value":  0.0 },
+
+    { "sequence_pl1": ["d1_pl1","bid5"], "sequence_pl2": ["d1_pl2","call"],   "value":  0.3333333333333333 },
+    { "sequence_pl1": ["d1_pl1","bid5"], "sequence_pl2": ["d1_pl2","accept"], "value": -0.3333333333333333 },
+
+    { "sequence_pl1": ["d1_pl1","bid6"], "sequence_pl2": ["d1_pl2","call"],   "value":  0.6666666666666666 },
+    { "sequence_pl1": ["d1_pl1","bid6"], "sequence_pl2": ["d1_pl2","accept"], "value": -0.6666666666666666 }
+  ]
+}

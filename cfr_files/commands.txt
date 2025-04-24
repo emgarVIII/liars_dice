@@ -1,0 +1,46 @@
+3.1:
+python stub.py --game rock_paper_superscissors.json --problem 3.1
+
+python stub.py --game kuhn_poker.json --problem 3.1
+
+python stub.py --game leduc_poker.json --problem 3.1
+
+1.5 factor??
+
+3.1:
+rock_paper_superscissors:
+0.33329999999999993
+
+Final expected utility after 10000 iterations: 0.33329999999999993
+
+kuhn_poker.json:
+Final expected utility after 10000 iterations: 0.3333125
+* 1.5 = ~.5 (expected is 1/2)
+
+leduc_poker.json:
+Final expected utility after 10000 iterations: 1.310972187499999
+* 1.59 = ~2.08444577812 (expected is 2.0875)
+
+Final expected utility should be converging to 0
+
+
+3.2:
+python stub.py --game rock_paper_superscissors.json --problem 3.2
+
+python stub.py --game kuhn_poker.json --problem 3.2
+
+python stub.py --game leduc_poker.json --problem 3.2
+
+Hint: the saddle point gap shuold be going to zero. The expected utility of the 
+average strategies in rock-papersuperscissor should approach the value 0. 
+In Kuhn poker it should approach −0.055. In Leduc poker it should approach
+−0.085.
+
+
+3.3:
+python stub.py --game rock_paper_superscissors.json --problem 3.3
+
+python stub.py --game kuhn_poker.json --problem 3.3
+
+python stub.py --game leduc_poker.json --problem 3.3
+
