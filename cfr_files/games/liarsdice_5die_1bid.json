@@ -1,0 +1,207 @@
+{
+  "decision_problem_pl1": [
+    {
+      "id": "obs_roll1_pl1",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": null
+    },
+    {
+      "id": "obs_roll2_pl1",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll1_pl1",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_roll3_pl1",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll2_pl1",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_roll4_pl1",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll3_pl1",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_roll5_pl1",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll4_pl1",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "d1_pl1",
+      "type": "decision",
+      "actions": [
+        "bid1",
+        "bid2",
+        "bid3",
+        "bid4",
+        "bid5",
+        "bid6"
+      ],
+      "parent_edge": [
+        "obs_roll5_pl1",
+        "<signal>"
+      ],
+      "parent_sequence": null
+    }
+  ],
+  "decision_problem_pl2": [
+    {
+      "id": "obs_roll1_pl2",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": null
+    },
+    {
+      "id": "obs_roll2_pl2",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll1_pl2",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_roll3_pl2",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll2_pl2",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_roll4_pl2",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll3_pl2",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_roll5_pl2",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll4_pl2",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_bid_pl2",
+      "type": "observation",
+      "signals": [
+        "bid1",
+        "bid2",
+        "bid3",
+        "bid4",
+        "bid5",
+        "bid6"
+      ],
+      "parent_edge": [
+        "obs_roll5_pl2",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "d1_pl2",
+      "type": "decision",
+      "actions": [
+        "call",
+        "accept"
+      ],
+      "parent_edge": [
+        "obs_bid_pl2",
+        "<signal>"
+      ],
+      "parent_sequence": null
+    }
+  ],
+  "utility_pl1": []
+}
