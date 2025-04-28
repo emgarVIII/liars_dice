@@ -78,7 +78,92 @@
       ]
     },
     {
-      "id": "d1_pl1",
+      "id": "d1_pl1_1",
+      "type": "decision",
+      "actions": [
+        "bid1",
+        "bid2",
+        "bid3",
+        "bid4",
+        "bid5",
+        "bid6"
+      ],
+      "parent_edge": [
+        "obs_roll5_pl1",
+        "<signal>"
+      ],
+      "parent_sequence": null
+    },
+    {
+      "id": "d1_pl1_2",
+      "type": "decision",
+      "actions": [
+        "bid1",
+        "bid2",
+        "bid3",
+        "bid4",
+        "bid5",
+        "bid6"
+      ],
+      "parent_edge": [
+        "obs_roll5_pl1",
+        "<signal>"
+      ],
+      "parent_sequence": null
+    },
+    {
+      "id": "d1_pl1_3",
+      "type": "decision",
+      "actions": [
+        "bid1",
+        "bid2",
+        "bid3",
+        "bid4",
+        "bid5",
+        "bid6"
+      ],
+      "parent_edge": [
+        "obs_roll5_pl1",
+        "<signal>"
+      ],
+      "parent_sequence": null
+    },
+    {
+      "id": "d1_pl1_4",
+      "type": "decision",
+      "actions": [
+        "bid1",
+        "bid2",
+        "bid3",
+        "bid4",
+        "bid5",
+        "bid6"
+      ],
+      "parent_edge": [
+        "obs_roll5_pl1",
+        "<signal>"
+      ],
+      "parent_sequence": null
+    },
+    {
+      "id": "d1_pl1_5",
+      "type": "decision",
+      "actions": [
+        "bid1",
+        "bid2",
+        "bid3",
+        "bid4",
+        "bid5",
+        "bid6"
+      ],
+      "parent_edge": [
+        "obs_roll5_pl1",
+        "<signal>"
+      ],
+      "parent_sequence": null
+    },
+    {
+      "id": "d1_pl1_6",
       "type": "decision",
       "actions": [
         "bid1",
@@ -203,5 +288,4758 @@
       "parent_sequence": null
     }
   ],
-  "utility_pl1": []
+  "utility_pl1": [
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 1.653817168792019e-08
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -1.653817168792019e-08
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.653817168792019e-08
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.653817168792019e-08
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.653817168792019e-08
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.653817168792019e-08
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.653817168792019e-08
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.653817168792019e-08
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.653817168792019e-08
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.653817168792019e-08
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.653817168792019e-08
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.653817168792019e-08
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_1",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 5.126833223255259e-07
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 1.58931829920913e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -1.58931829920913e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 1.58931829920913e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -1.58931829920913e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.58931829920913e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.58931829920913e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.58931829920913e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.58931829920913e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.58931829920913e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.58931829920913e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.58931829920913e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.58931829920913e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_2",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.4895542261511617e-06
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.000108176181010686
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0007362959417178954
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0007362959417178954
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0007362959417178954
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0007362959417178954
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0007362959417178954
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0007362959417178954
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0007362959417178954
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0007362959417178954
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0007362959417178954
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0007362959417178954
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0007362959417178954
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0007362959417178954
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_3",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 1.2916312088265668e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0004004056747362357
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.002725341850624057
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.010087639740935486
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.010087639740935486
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.010087639740935486
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.010087639740935486
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.010087639740935486
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.010087639740935486
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.010087639740935486
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.010087639740935486
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.010087639740935486
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.010087639740935486
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.010087639740935486
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.010087639740935486
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_4",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 3.474669871632035e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.0010771476602059308
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.007331553429143598
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.027137171697446193
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.07300281400298912
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.07300281400298912
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.07300281400298912
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.07300281400298912
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.07300281400298912
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.07300281400298912
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.07300281400298912
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.07300281400298912
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.07300281400298912
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.07300281400298912
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.07300281400298912
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.07300281400298912
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_5",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -7.691903652051682e-05
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.0023844901321360213
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.016229916705829055
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.06007376752252363
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.161606895729606
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.35775043885692376
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.35775043885692376
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.35775043885692376
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.35775043885692376
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.35775043885692376
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.35775043885692376
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.35775043885692376
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.35775043885692376
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.35775043885692376
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.35775043885692376
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.35775043885692376
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1_6",
+        "bid6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.35775043885692376
+    }
+  ]
 }

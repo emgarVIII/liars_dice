@@ -1,10 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liar’s Dice AI vs You</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; }
+    .dice { font-size: 1.2rem; margin: 0.5rem 0; }
+    button { font-size: 1rem; padding: 0.5rem 1rem; margin: 0.5rem; }
+    #result { font-weight: bold; margin-top: 1rem; }
+  </style>
 </head>
 <body>
+  <h1>AI (Player 1) vs You (Player 2)</h1>
+  <p><em>Single-bid variant:</em> AI makes exactly one claim about its highest die.</p>
 
+  <div id="p2-roll" class="dice">Your dice:</div>
+  <div id="ai-bid" class="dice">AI is thinking…</div>
+
+  <button id="accept" disabled>Accept AI’s claim</button>
+  <button id="call" disabled>Doubt AI’s claim</button>
+
+  <div id="ai-dice" class="dice"></div>
+  <div id="result"></div>
+
+  <script>
+    async function startGame() {
+      // Roll 5 dice for each player
+      const rollDice = () => Array.from({length:5}, () => Math.floor(Math.random()*6)+1);
+      const p2Dice = rollDice(), aiDice = rollDice();
+      const p2Roll = Math.max(...p2Dice), aiRoll = Math.max(...aiDice);
+
+      // Display Player 2's dice
+      document.getElementById('p2-roll').textContent =
+        'Your dice: ' + p2Dice.join(', ');
+
+      // Ask AI (Player 1) for its single bid
+      const resp = await fetch('/action', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ player: 'pl1', roll: aiRoll, history: [] })
+      });
+      const { action: bid } = await resp.json();
+      const bidNum = parseInt(bid.replace('bid',''), 10);
+      document.getElementById('ai-bid').innerHTML =
+        `AI bids: <strong>${bidNum}</strong> (claims highest ≥ ${bidNum})`;
+
+      // Enable response buttons
+      const btnAccept = document.getElementById('accept');
+      const btnCall   = document.getElementById('call');
+      btnAccept.disabled = false;
+      btnCall.disabled   = false;
+
+      // Resolve the outcome
+      function resolve(response) {
+        const lvl = bidNum;
+        const aiWins = (response === 'accept')
+          ? (aiRoll >= lvl)
+          : (aiRoll < lvl);
+
+        document.getElementById('ai-dice').textContent =
+          'AI dice: ' + aiDice.join(', ');
+        document.getElementById('result').textContent =
+          aiWins ? 'AI wins! 😎' : 'You win! 🎉';
+
+        btnAccept.disabled = true;
+        btnCall.disabled   = true;
+      }
+
+      btnAccept.onclick = () => resolve('accept');
+      btnCall.onclick   = () => resolve('call');
+    }
+
+    window.onload = startGame;
+  </script>
 </body>
 </html>

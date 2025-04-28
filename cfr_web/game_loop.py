@@ -15,8 +15,14 @@ def query(player, roll, history):
 
 def play_one():
     # each player rolls a die
-    r1 = random.randint(1,6)
-    r2 = random.randint(1,6)
+    # r1 = random.randint(1,6)
+    # r2 = random.randint(1,6)
+    # multiple die
+    r1s = [random.randint(1, 6) for _ in range(5)]
+    r2s = [random.randint(1, 6) for _ in range(5)]
+    r1, r2 = max(r1s), max(r2s) # if i wanted JSOn to branch on all five private rolls, the tree would be insanely big
+    #6^6 infosets
+
     hist = []
     # 1) P1 bids
     a1 = query("pl1", r1, hist)
