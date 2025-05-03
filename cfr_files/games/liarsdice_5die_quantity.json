@@ -1,0 +1,1636 @@
+{
+  "decision_problem_pl1": [
+    {
+      "id": "obs_roll1_pl1",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": null
+    },
+    {
+      "id": "obs_roll2_pl1",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll1_pl1",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_roll3_pl1",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll2_pl1",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_roll4_pl1",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll3_pl1",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_roll5_pl1",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll4_pl1",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "d1_pl1",
+      "type": "decision",
+      "actions": [
+        "claim_1_1",
+        "claim_1_2",
+        "claim_1_3",
+        "claim_1_4",
+        "claim_1_5",
+        "claim_1_6",
+        "claim_2_1",
+        "claim_2_2",
+        "claim_2_3",
+        "claim_2_4",
+        "claim_2_5",
+        "claim_2_6",
+        "claim_3_1",
+        "claim_3_2",
+        "claim_3_3",
+        "claim_3_4",
+        "claim_3_5",
+        "claim_3_6",
+        "claim_4_1",
+        "claim_4_2",
+        "claim_4_3",
+        "claim_4_4",
+        "claim_4_5",
+        "claim_4_6",
+        "claim_5_1",
+        "claim_5_2",
+        "claim_5_3",
+        "claim_5_4",
+        "claim_5_5",
+        "claim_5_6",
+        "claim_6_1",
+        "claim_6_2",
+        "claim_6_3",
+        "claim_6_4",
+        "claim_6_5",
+        "claim_6_6",
+        "claim_7_1",
+        "claim_7_2",
+        "claim_7_3",
+        "claim_7_4",
+        "claim_7_5",
+        "claim_7_6",
+        "claim_8_1",
+        "claim_8_2",
+        "claim_8_3",
+        "claim_8_4",
+        "claim_8_5",
+        "claim_8_6",
+        "claim_9_1",
+        "claim_9_2",
+        "claim_9_3",
+        "claim_9_4",
+        "claim_9_5",
+        "claim_9_6",
+        "claim_10_1",
+        "claim_10_2",
+        "claim_10_3",
+        "claim_10_4",
+        "claim_10_5",
+        "claim_10_6"
+      ],
+      "parent_edge": [
+        "obs_roll5_pl1",
+        "<signal>"
+      ],
+      "parent_sequence": null
+    }
+  ],
+  "decision_problem_pl2": [
+    {
+      "id": "obs_roll1_pl2",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": null
+    },
+    {
+      "id": "obs_roll2_pl2",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll1_pl2",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_roll3_pl2",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll2_pl2",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_roll4_pl2",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll3_pl2",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_roll5_pl2",
+      "type": "observation",
+      "signals": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "parent_edge": [
+        "obs_roll4_pl2",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "obs_claim_pl2",
+      "type": "observation",
+      "signals": [
+        "claim_1_1",
+        "claim_1_2",
+        "claim_1_3",
+        "claim_1_4",
+        "claim_1_5",
+        "claim_1_6",
+        "claim_2_1",
+        "claim_2_2",
+        "claim_2_3",
+        "claim_2_4",
+        "claim_2_5",
+        "claim_2_6",
+        "claim_3_1",
+        "claim_3_2",
+        "claim_3_3",
+        "claim_3_4",
+        "claim_3_5",
+        "claim_3_6",
+        "claim_4_1",
+        "claim_4_2",
+        "claim_4_3",
+        "claim_4_4",
+        "claim_4_5",
+        "claim_4_6",
+        "claim_5_1",
+        "claim_5_2",
+        "claim_5_3",
+        "claim_5_4",
+        "claim_5_5",
+        "claim_5_6",
+        "claim_6_1",
+        "claim_6_2",
+        "claim_6_3",
+        "claim_6_4",
+        "claim_6_5",
+        "claim_6_6",
+        "claim_7_1",
+        "claim_7_2",
+        "claim_7_3",
+        "claim_7_4",
+        "claim_7_5",
+        "claim_7_6",
+        "claim_8_1",
+        "claim_8_2",
+        "claim_8_3",
+        "claim_8_4",
+        "claim_8_5",
+        "claim_8_6",
+        "claim_9_1",
+        "claim_9_2",
+        "claim_9_3",
+        "claim_9_4",
+        "claim_9_5",
+        "claim_9_6",
+        "claim_10_1",
+        "claim_10_2",
+        "claim_10_3",
+        "claim_10_4",
+        "claim_10_5",
+        "claim_10_6"
+      ],
+      "parent_edge": [
+        "obs_roll5_pl2",
+        "<signal>"
+      ]
+    },
+    {
+      "id": "d1_pl2",
+      "type": "decision",
+      "actions": [
+        "accept",
+        "call"
+      ],
+      "parent_edge": [
+        "obs_claim_pl2",
+        "<signal>"
+      ],
+      "parent_sequence": null
+    }
+  ],
+  "utility_pl1": [
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_1_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.6769888342203092
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_1_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.6769888342203092
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_1_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.6769888342203092
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_1_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.6769888342203092
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_1_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.6769888342203092
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_1_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.6769888342203092
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_1_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.6769888342203092
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_1_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.6769888342203092
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_1_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.6769888342203092
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_1_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.6769888342203092
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_1_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.6769888342203092
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_1_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.6769888342203092
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_2_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.030966502660926043
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_2_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.030966502660926043
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_2_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.030966502660926043
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_2_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.030966502660926043
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_2_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.030966502660926043
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_2_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.030966502660926043
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_2_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.030966502660926043
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_2_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.030966502660926043
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_2_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.030966502660926043
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_2_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.030966502660926043
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_2_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": 0.030966502660926043
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_2_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": -0.030966502660926043
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_3_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.5504535957425187
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_3_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.5504535957425187
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_3_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.5504535957425187
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_3_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.5504535957425187
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_3_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.5504535957425187
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_3_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.5504535957425187
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_3_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.5504535957425187
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_3_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.5504535957425187
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_3_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.5504535957425187
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_3_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.5504535957425187
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_3_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.5504535957425187
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_3_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.5504535957425187
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_4_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.8605443148910226
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_4_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.8605443148910226
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_4_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.8605443148910226
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_4_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.8605443148910226
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_4_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.8605443148910226
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_4_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.8605443148910226
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_4_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.8605443148910226
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_4_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.8605443148910226
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_4_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.8605443148910226
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_4_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.8605443148910226
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_4_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.8605443148910226
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_4_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.8605443148910226
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_5_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9690760665929989
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_5_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9690760665929989
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_5_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9690760665929989
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_5_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9690760665929989
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_5_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9690760665929989
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_5_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9690760665929989
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_5_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9690760665929989
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_5_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9690760665929989
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_5_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9690760665929989
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_5_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9690760665929989
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_5_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9690760665929989
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_5_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9690760665929989
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_6_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9951236870014732
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_6_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9951236870014732
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_6_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9951236870014732
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_6_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9951236870014732
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_6_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9951236870014732
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_6_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9951236870014732
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_6_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9951236870014732
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_6_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9951236870014732
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_6_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9951236870014732
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_6_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9951236870014732
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_6_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9951236870014732
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_6_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9951236870014732
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_7_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9994649570695524
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_7_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9994649570695524
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_7_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9994649570695524
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_7_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9994649570695524
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_7_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9994649570695524
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_7_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9994649570695524
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_7_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9994649570695524
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_7_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9994649570695524
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_7_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9994649570695524
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_7_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9994649570695524
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_7_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9994649570695524
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_7_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9994649570695524
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_8_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.99996110222019
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_8_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.99996110222019
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_8_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.99996110222019
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_8_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.99996110222019
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_8_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.99996110222019
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_8_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.99996110222019
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_8_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.99996110222019
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_8_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.99996110222019
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_8_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.99996110222019
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_8_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.99996110222019
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_8_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.99996110222019
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_8_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.99996110222019
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_9_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9999983131064878
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_9_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9999983131064878
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_9_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9999983131064878
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_9_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9999983131064878
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_9_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9999983131064878
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_9_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9999983131064878
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_9_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9999983131064878
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_9_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9999983131064878
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_9_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9999983131064878
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_9_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9999983131064878
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_9_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9999983131064878
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_9_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9999983131064878
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_10_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9999999669236566
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_10_1"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9999999669236566
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_10_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9999999669236566
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_10_2"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9999999669236566
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_10_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9999999669236566
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_10_3"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9999999669236566
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_10_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9999999669236566
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_10_4"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9999999669236566
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_10_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9999999669236566
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_10_5"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9999999669236566
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_10_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "accept"
+      ],
+      "value": -0.9999999669236566
+    },
+    {
+      "sequence_pl1": [
+        "d1_pl1",
+        "claim_10_6"
+      ],
+      "sequence_pl2": [
+        "d1_pl2",
+        "call"
+      ],
+      "value": 0.9999999669236566
+    }
+  ]
+}

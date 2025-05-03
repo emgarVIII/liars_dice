@@ -1,16 +1,24 @@
-# app.py
+#!/usr/bin/env python3
 from flask import Flask, request, jsonify, render_template
 import json, random, os
 
 app = Flask(__name__)
 
-# load _only_ your P1 policy:
+# Load your MCCFR+ policy file (must contain both P1 and P2 infosets)
 POLICY_PATH = os.path.join(
     os.path.dirname(__file__),
-    "../policies/liarsdice_5die_policy.json"
+    "../policies/liarsdice_5die_mccfr_policy.json"
 )
 with open(POLICY_PATH) as f:
-    policy_pl1 = json.load(f)
+    policy = json.load(f)
+
+def normalize(dist):
+    total = sum(dist.values())
+    if total <= 0:
+        # uniform fallback
+        n = len(dist)
+        return {k: 1/n for k in dist}
+    return {k: v/total for k, v in dist.items()}
 
 @app.route("/")
 def home():
@@ -18,26 +26,44 @@ def home():
 
 @app.route("/action", methods=["POST"])
 def action():
-    data = request.get_json()
-    player  = data["player"]  # "pl1" or "pl2"
-    roll    = data["roll"]
-    history = data["history"]
+    data   = request.get_json()
+    player = data.get("player")
 
-    # build the infoset key (for this tiny game it's always "d1_pl1" or "d1_pl2")
     if player == "pl1":
-        infoset = f"d1_pl1_{roll}"
-        dist    = policy_pl1[infoset]
+        # AI is making a claim: filter bids by total dice
+        hand    = data.get("hand", [])
+        p1c     = int(data.get("p1Count", len(hand)))
+        p2c     = int(data.get("p2Count", 0))
+        total_dice = p1c + p2c
+
+        key     = str(tuple(sorted(hand)))
+        base    = policy.get(key, {})
+        filtered = {}
+        # Only keep claims with Q <= total_dice
+        for action, prob in base.items():
+            parts = action.split("_")
+            if len(parts) == 3:
+                Q = int(parts[1])
+                if Q <= total_dice:
+                    filtered[action] = prob
+
+        dist = normalize(filtered) if filtered else normalize(base)
         actions, weights = zip(*dist.items())
         choice = random.choices(actions, weights)[0]
+
     else:
-        # pl2 is random
-        # in an extended version pl2 may have bids + call/accept;
-        # if you only have call/accept:
-        #choice = random.choice(["call","accept"])
-        choice =  choice = random.choice(["call","accept"])
+        # AI is responding to your claim
+        hand   = data.get("hand", [])
+        claim  = data.get("claim", "")
+        key2   = str((tuple(sorted(hand)), claim))
+        base2  = policy.get(key2, {})
+        if not base2:
+            base2 = {"accept":0.5, "call":0.5}
+        dist = normalize(base2)
+        actions, weights = zip(*dist.items())
+        choice = random.choices(actions, weights)[0]
 
     return jsonify({"action": choice})
-
 
 if __name__ == "__main__":
     app.run(debug=True)

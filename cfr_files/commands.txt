@@ -1,9 +1,9 @@
 3.1:
 python stub.py --game rock_paper_superscissors.json --problem 3.1
 
-python stub.py --game kuhn_poker.json --problem 3.1
+python stub.py --game games/kuhn_poker.json --problem 3.1
 
-python stub.py --game leduc_poker.json --problem 3.1
+python stub.py --game games/leduc_poker.json --problem 3.1
 
 1.5 factor??
 

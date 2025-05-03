@@ -2,77 +2,220 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Liar’s Dice AI vs You</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Liar’s Dice Match</title>
   <style>
-    body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; }
-    .dice { font-size: 1.2rem; margin: 0.5rem 0; }
-    button { font-size: 1rem; padding: 0.5rem 1rem; margin: 0.5rem; }
-    #result { font-weight: bold; margin-top: 1rem; }
+    body { font-family: sans-serif; max-width:600px; margin:2rem auto; }
+    .dice, #round-info { font-size:1.2rem; margin:0.5rem 0; }
+    button, select { font-size:1rem; padding:0.5rem 1rem; margin:0.5rem; }
+    #count,#ai-dice,#result,#ai-response { margin-top:1rem; }
+    .dice-image {
+      display: block;
+      margin: 1rem auto;
+      max-width: 100px;
+      height: auto;
+    }
   </style>
 </head>
 <body>
-  <h1>AI (Player 1) vs You (Player 2)</h1>
-  <p><em>Single-bid variant:</em> AI makes exactly one claim about its highest die.</p>
+  <h1>Liar’s Dice Match</h1>
+  <img src="{{ url_for('static', filename='dice_man.jpg') }}" alt="Dice Man" class="dice-image" />
+  <ul>
+  <li>On your turn, claim “There are at least <strong>Q</strong> dice showing face <strong>F</strong> in total.”</li>
+  <li>Your opponent can <strong>Accept</strong> or <strong>Call BS</strong>.</li>
+  <li>If you call BS and the claim is <em>true</em>, the caller loses a die.</li>
+  <li>If you accept and the claim is <em>false</em>, you lose a die.</li>
+  <li>The first player to lose all their dice loses the match.</li>
+</ul>
+  <div id="round-info"></div>
+  <div id="p2-roll" class="dice"></div>
+  <div id="ai-claim" class="dice"></div>
+  <div id="ai-response" class="dice"></div>
 
-  <div id="p2-roll" class="dice">Your dice:</div>
-  <div id="ai-bid" class="dice">AI is thinking…</div>
+  <!-- Accept/Call buttons -->
+  <button id="accept" type="button" disabled>Accept</button>
+  <button id="call-bs" type="button" disabled>Call BS</button>
 
-  <button id="accept" disabled>Accept AI’s claim</button>
-  <button id="call" disabled>Doubt AI’s claim</button>
+  <!-- Human claim inputs -->
+  <div id="human-claim" style="display:none;">
+    <label>Quantity Q:
+      <select id="claim-q"></select>
+    </label>
+    <label>Face F:
+      <select id="claim-f"></select>
+    </label>
+    <button id="submit-claim" type="button">Submit Claim</button>
+  </div>
+
+  <button id="next-round" type="button" style="display:none;">Next Round</button>
 
   <div id="ai-dice" class="dice"></div>
-  <div id="result"></div>
+  <div id="count" class="dice"></div>
+  <div id="result" class="dice"></div>
 
   <script>
-    async function startGame() {
-      // Roll 5 dice for each player
-      const rollDice = () => Array.from({length:5}, () => Math.floor(Math.random()*6)+1);
-      const p2Dice = rollDice(), aiDice = rollDice();
-      const p2Roll = Math.max(...p2Dice), aiRoll = Math.max(...aiDice);
+    const NUM_DICE = 5, MAX_FACE = 6;
+    let p1Count = 5, p2Count = 5, roundNum = 1;
+    let isP1Turn = true;  // true: AI claims; false: Human claims
+    let aiDice = [], p2Dice = [];
 
-      // Display Player 2's dice
-      document.getElementById('p2-roll').textContent =
-        'Your dice: ' + p2Dice.join(', ');
+    window.onload = () => {
+      // populate Q/F dropdowns
+      const qSel = document.getElementById('claim-q');
+      for (let Q = 1; Q <= 2*NUM_DICE; Q++) qSel.add(new Option(Q,Q));
+      const fSel = document.getElementById('claim-f');
+      for (let F = 1; F <= MAX_FACE; F++) fSel.add(new Option(F,F));
 
-      // Ask AI (Player 1) for its single bid
-      const resp = await fetch('/action', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ player: 'pl1', roll: aiRoll, history: [] })
-      });
-      const { action: bid } = await resp.json();
-      const bidNum = parseInt(bid.replace('bid',''), 10);
-      document.getElementById('ai-bid').innerHTML =
-        `AI bids: <strong>${bidNum}</strong> (claims highest ≥ ${bidNum})`;
+      // bind buttons
+      document.getElementById('accept').onclick  = () => handleResponse('accept');
+      document.getElementById('call-bs').onclick = () => handleResponse('call');
+      document.getElementById('submit-claim').onclick = humanSubmitClaim;
+      document.getElementById('next-round').onclick = playRound;
 
-      // Enable response buttons
-      const btnAccept = document.getElementById('accept');
-      const btnCall   = document.getElementById('call');
-      btnAccept.disabled = false;
-      btnCall.disabled   = false;
+      playRound();
+    };
 
-      // Resolve the outcome
-      function resolve(response) {
-        const lvl = bidNum;
-        const aiWins = (response === 'accept')
-          ? (aiRoll >= lvl)
-          : (aiRoll < lvl);
+    function roll(n) { return Array.from({length:n}, ()=>Math.ceil(Math.random()*6)); }
 
-        document.getElementById('ai-dice').textContent =
-          'AI dice: ' + aiDice.join(', ');
-        document.getElementById('result').textContent =
-          aiWins ? 'AI wins! 😎' : 'You win! 🎉';
+    async function playRound() {
+      // clear previous messages
+      ['ai-dice','count','result','ai-response'].forEach(id=>
+        document.getElementById(id).textContent = ''
+      );
+      document.getElementById('next-round').style.display = 'none';
 
-        btnAccept.disabled = true;
-        btnCall.disabled   = true;
+      // end match?
+      if (p1Count===0 || p2Count===0) {
+        const winner = p1Count>0 ? 'AI' : 'You';
+        document.getElementById('round-info').textContent = `Match over: ${winner} wins!`;
+        return;
       }
 
-      btnAccept.onclick = () => resolve('accept');
-      btnCall.onclick   = () => resolve('call');
+      // round header
+      document.getElementById('round-info').textContent =
+        `Round ${roundNum}: AI has ${p1Count} dice; You have ${p2Count} dice.`;
+
+      // roll both hands
+      p2Dice = roll(p2Count);
+      aiDice = roll(p1Count);
+      document.getElementById('p2-roll').textContent = `Your dice: ${p2Dice.join(', ')}`;
+
+      if (isP1Turn) {
+        // AI claims
+        showButtons(true);
+        const resp = await fetch('/action',{
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ player:'pl1', hand:aiDice, p1Count, p2Count, history:[] })
+        });
+        const {action:claim} = await resp.json();
+        const [_,Qs,Fs] = claim.split('_');
+        document.getElementById('ai-claim').innerHTML =
+          `AI claims ≥ <strong>${Qs}</strong> of face <strong>${Fs}</strong>.`;
+      } else {
+        // Human claims
+        document.getElementById('ai-claim').textContent = 'Your turn to claim:';
+        hideButtons();
+        document.getElementById('human-claim').style.display = 'block';
+      }
     }
 
-    window.onload = startGame;
+    function showButtons(enable) {
+      document.getElementById('human-claim').style.display = 'none';
+      ['accept','call-bs'].forEach(id=>{
+        const b = document.getElementById(id);
+        b.style.display = 'inline-block';
+        b.disabled = !enable;
+      });
+    }
+    function hideButtons() {
+      ['accept','call-bs'].forEach(id=>{
+        const b = document.getElementById(id);
+        b.style.display = 'none';
+      });
+    }
+
+    function handleResponse(response) {
+      // response to the last claim
+      document.getElementById('ai-response').textContent =
+        response==='accept'
+          ? 'Claim accepted.'
+          : 'Call BS.';
+      document._lastResponse = response;
+      resolveClaim();
+    }
+
+    function humanSubmitClaim() {
+  // 1) Hide the buttons as soon as the user submits their claim
+  hideButtons();
+
+  const Q = +document.getElementById('claim-q').value;
+  const F = +document.getElementById('claim-f').value;
+  document.getElementById('ai-claim').innerHTML =
+    `You claim ≥ <strong>${Q}</strong> of face <strong>${F}</strong>.`;
+
+  // 2) Ask AI to respond
+  fetch('/action',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      player: 'pl2',
+      hand: aiDice,
+      claim: `claim_${Q}_${F}`,
+      history: []
+    })
+  })
+  .then(r => r.json())
+  .then(json => {
+    // 3) Now that we have AI's answer, show the response text...
+    document.getElementById('ai-response').textContent =
+      `AI ${json.action === 'accept' ? 'accepts' : 'calls BS'} your claim.`;
+
+    // 4) Stash the choice and only *then* show & enable the buttons
+    document._lastResponse = json.action;
+    showButtons(true);
+    resolveClaim();
+  });
+}
+
+
+    function resolveClaim() {
+      // parse Q/F
+      const html = document.getElementById('ai-claim').innerHTML;
+      const [,Qs,Fs] = html.match(/>(\d+)<.*>(\d+)</);
+      const Q = +Qs, F = +Fs;
+      // count
+      const totalF = p2Dice.filter(x=>x===F).length + aiDice.filter(x=>x===F).length;
+      document.getElementById('ai-dice').textContent = `AI dice: ${aiDice.join(', ')}`;
+      document.getElementById('count').textContent  = `Total # of ${F}'s: ${totalF}`;
+
+      // 4-case
+      const resp = document._lastResponse;
+      const truth = totalF >= Q;
+      let loser = null;
+      if (resp==='accept') {
+        if (!truth) loser = 'You';      // you accepted a lie
+      } else {
+        if (truth)  loser = 'AI';       // you called BS on truth
+        else        loser = isP1Turn?'AI':'You'; // claimant loses on false
+      }
+
+      // apply
+      let msg;
+      if (loser==='AI') {
+        p1Count--; msg = 'AI loses a die! 🎉';
+      } else if (loser==='You') {
+        p2Count--; msg = 'You lose a die. 😢';
+      } else {
+        msg = 'No one loses a die this round.';
+      }
+      document.getElementById('result').textContent = msg;
+
+      // next round
+      hideButtons();
+      document.getElementById('next-round').style.display = 'inline-block';
+      roundNum++;
+      isP1Turn = !isP1Turn;
+    }
   </script>
 </body>
 </html>
