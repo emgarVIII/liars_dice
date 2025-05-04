@@ -98,5 +98,3 @@ An end-to-end pipeline for building, training, and deploying a one-turn Liar’s
 
 ---
 
-Feel free to point your professor at this README for a quick overview of how each piece works together!
-
