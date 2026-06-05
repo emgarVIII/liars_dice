@@ -61,6 +61,23 @@ Routes supported by the static app:
 - `/results` benchmark table and limitations.
 - `/papers` curated document archive links.
 
+## Paper Archive
+
+The three DOCX course documents are exported as displayable PDFs and standalone LaTeX sources:
+
+```bash
+python3 scripts/build_paper_archive.py
+```
+
+Outputs:
+
+- `docs/archive/final-report/`
+- `docs/archive/applied-focus/`
+- `docs/archive/research-notebook/`
+- `site/public/papers/`
+
+Pandoc generates the LaTeX sources. PDFs are rendered from DOCX with the bundled LibreOffice binary because no local TeX engine is currently installed.
+
 ## Current Benchmark Snapshot
 
 The checked-in `metrics.json` was generated with seed `370`, 2,000 matches per scenario, and five dice per player.

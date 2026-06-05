@@ -338,11 +338,23 @@ function papersMarkup(): string {
       <h1>Curated research archive</h1>
       <p>The document archive will present the final report as the primary paper, the applied-focus deliverable as supporting context, and the planning document as a research notebook.</p>
       <div class="paper-list">
-        <a href="${baseUrl}papers/final-report.pdf">Final report PDF</a>
-        <a href="${baseUrl}papers/applied-focus.pdf">Applied focus PDF</a>
-        <a href="${baseUrl}papers/research-notebook.pdf">Research notebook PDF</a>
+        <div>
+          <strong>Final report</strong>
+          <a href="${baseUrl}papers/final-report.pdf">PDF</a>
+          <a href="${baseUrl}papers/final-report/final-report.tex">LaTeX</a>
+        </div>
+        <div>
+          <strong>Applied focus deliverable</strong>
+          <a href="${baseUrl}papers/applied-focus.pdf">PDF</a>
+          <a href="${baseUrl}papers/applied-focus/applied-focus.tex">LaTeX</a>
+        </div>
+        <div>
+          <strong>Research notebook</strong>
+          <a href="${baseUrl}papers/research-notebook.pdf">PDF</a>
+          <a href="${baseUrl}papers/research-notebook/research-notebook.tex">LaTeX</a>
+        </div>
       </div>
-      <p class="note">These files are added in the document archive checkpoint.</p>
+      <p class="note">The first pass preserves the original text and focuses on displayable exports. Text revisions are intentionally deferred.</p>
     </section>
   `;
 }

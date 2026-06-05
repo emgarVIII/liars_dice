@@ -345,11 +345,19 @@ select {
   margin-top: 28px;
 }
 
-.paper-list a {
+.paper-list div {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 10px;
   color: var(--ink);
   border: 1px solid var(--line);
   background: var(--surface);
   padding: 16px;
+}
+
+.paper-list a {
+  color: var(--ink);
   text-decoration: none;
   font-weight: 800;
 }

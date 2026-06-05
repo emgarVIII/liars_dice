@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "final-report",
+    "title": "Multi-Agent Learning and Imperfect Information Games: Final Report",
+    "role": "Primary final report",
+    "pdf": "final-report.pdf",
+    "latex": "final-report/final-report.tex"
+  },
+  {
+    "slug": "applied-focus",
+    "title": "Applied Multi-Agent Learning and Imperfect Information Games",
+    "role": "Supporting applied-focus deliverable",
+    "pdf": "applied-focus.pdf",
+    "latex": "applied-focus/applied-focus.tex"
+  },
+  {
+    "slug": "research-notebook",
+    "title": "CS370 Multiagent Learning and Computational Game Solving Notes and Planning",
+    "role": "Research notebook and planning archive",
+    "pdf": "research-notebook.pdf",
+    "latex": "research-notebook/research-notebook.tex"
+  }
+]

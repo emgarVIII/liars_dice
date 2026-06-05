@@ -1,0 +1,771 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\ifLuaTeX
+  \usepackage{luacolor}
+  \usepackage[soul]{lua-ul}
+\else
+  \usepackage{soul}
+\fi
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Multi-Agent Learning and Imperfect Information Games: Final Report},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Multi-Agent Learning and Imperfect Information Games: Final
+Report}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\textbf{Multi-Agent Learning \& Imperfect Information Games:}
+
+\textbf{Final Report Encompassing \emph{Spring 2025} Semester}
+
+Mauricio Garcia
+
+Supervised by Dr. Tian
+
+University of Texas - Austin
+
+April 2025
+
+\section{}\label{section}
+
+\subsection{}\label{section-1}
+
+\subsection{\texorpdfstring{\textbf{Introduction}}{Introduction}}\label{introduction}
+
+Imperfect‑information games, in which each participant holds private
+information and must infer or bluff about hidden details, pose unique
+challenges for AI. Traditional methods from perfect‑information domains
+(for example, brute‑force search in chess) cannot directly handle hidden
+information or deception. Instead, I adopted Counterfactual Regret
+Minimization (CFR), an iterative self‑play algorithm that converges to
+Nash equilibrium strategies for extensive‑form games. CFR has become
+fundamental in solving poker and other bluffing games, automatically
+revealing sophisticated tactics without explicit programming.
+
+This report opens with a walkthrough of CFR on the classic Kuhn Poker
+toy game. After experimenting with everything from Rock Paper Scissors
+to Leduc and Kuhn Poker---and \emph{\ul{many}} of Liar's Dice
+versions---I decided to focus this report on one custom three-stage
+Liar's Dice game (bid → response → truth/lie reveal) as my
+imperfect-information testbed. I describe the design of that game,
+detail my CFR implementation (including state abstraction, action
+pruning, opponent‑modeling tweaks, and a ``blueprint\,+\,subgame
+resolving'' approach inspired by Sandholm's Libratus \& Pluribus
+system), and evaluate the resulting strategies through both self‑play
+and matchups against fixed‑strategy opponents.
+
+Finally, I discovered that while CFR excels at finding unexploitable
+equilibrium strategies, it does not natively deviate from equilibrium to
+exploit human play patterns without extensive fine-tuning---a challenge
+I wasn't able to overcome in my custom Liar's Dice variant, given the
+difficulty and project's time constraints.
+
+\subsection{\texorpdfstring{\textbf{Background: CFR and Kuhn
+Poker}}{Background: CFR and Kuhn Poker}}\label{background-cfr-and-kuhn-poker}
+
+\textbf{Counterfactual Regret Minimization (CFR)} is an iterative
+algorithm for finding approximate Nash equilibria in extensive-form
+games with imperfect information. The key idea is to have the players
+self-play the game repeatedly, adjusting their strategies based on
+regret for suboptimal choices in hindsight. After each iteration, if a
+player realizes that an alternative action would have yielded a better
+outcome given the opponents' play, the algorithm increases the
+propensity of that action (this is regret matching). An engine was made
+for this, which I'll go into more detail about later.
+
+Over many iterations, the strategy frequencies converge such that no
+player has significant regret for any single deviation, meaning the
+strategy profile approximates a Nash equilibrium. A crucial result in
+CFR is that the average strategy converges to a Nash equilibrium as
+cumulative regret diminishes. This allows strong, unexploitable
+strategies to be learned even in games where explicit calculation of
+equilibrium is intractable. For instance, heads-up no-limit Texas
+Hold'em, the benchmark imperfect-information poker game, has on the
+order of 10¹⁶⁵ distinct game states once you account for all possible
+private cards and betting sequences. There's no hope of writing down and
+solving the exact Nash equilibrium for a game that size by traditional
+methods. Yet in 2017, Libratus---built on a CFR-based blueprint plus
+subgame resolving approach---computed an approximate equilibrium
+strategy for that same massive game and went on to defeat top human pros
+by a statistically overwhelming margin. That result shows that CFR can
+learn extremely strong, effectively unexploitable strategies, even when
+explicit equilibrium computation is mathematically and computationally
+intractable.
+
+A toy example for CFR is \textbf{Kuhn Poker}, a simple two-player poker
+game introduced by Harold Kuhn. Kuhn poker uses a deck of just 3 cards
+(typically the Jack, Queen, King) where each player antes (small forced
+bet to enter a Poker game) 1 chip and receives one private card. There
+is a single round of betting: players can either pass (fold/check) or
+bet (wager an extra chip). If one player bets and the other passes, the
+bettor wins the pot immediately; if both players pass or both bet, they
+proceed to a showdown where the higher card wins the pot.
+
+Despite its small size (only 3 cards leading to 12 information sets in
+total), Kuhn poker exhibits the essential features of poker: players
+must bluff with weak hands and sometimes slow-play (i.e. check) strong
+hands to maximize value. In fact, Kuhn poker was among the first games
+analyzed in game theory and was solved analytically by hand in 1950. Its
+equilibrium strategy is intuitive yet instructive; in equilibrium, when
+you hold the worst card, you'll bluff (i.e. bet) only with a small
+probability, and when you hold the best card, you'll bet almost every
+time. Those exact bluff-and-bet probabilities are chosen so that
+whenever your opponent faces a bet, their expected payoff from calling
+equals their payoff from folding. CFR can be applied to Kuhn poker as a
+didactic example (credit to Sandholm's Computational Game Solving course
+at CMU), iteratively converging to this equilibrium strategy.
+
+Implementing CFR on Kuhn poker demonstrates how the algorithm
+automatically learns to bluff and call optimally: classic behaviors like
+bluffing arise naturally from the regret minimization dynamics. This
+small-scale success illustrates CFR's relevance to solving larger
+imperfect-information games: if it can solve Kuhn's mini-poker, then
+with enhancements it can tackle far more complex games like Texas
+Hold'em. Indeed, modern poker AIs use CFR at their core -- the best
+poker programs are now generated via self-play algorithms based on
+game-theoretic principles, a leap from the early days when even large
+poker games were approached with rule-based systems. CFR provides a
+systematic way to approach optimal play, making it a natural choice for
+designing an AI for any game of hidden information and strategic
+bluffing.
+
+\subsection{\texorpdfstring{\textbf{Game Design: A Custom 3-Stage Liar's
+Dice
+Variant}}{Game Design: A Custom 3-Stage Liar's Dice Variant}}\label{game-design-a-custom-3-stage-liars-dice-variant}
+
+To explore CFR in a richer \& personalized setting, we designed a custom
+game inspired by \textbf{Liar's Dice}, a classic dice bluffing game. In
+Liar's Dice, multiple players roll dice in secret and take turns
+claiming how many dice of a certain value appear under all cups, often
+exaggerating (bluffing) their claims. Others can either accept the claim
+or challenge it by calling the bluff (``liar!''), at which point, dice
+are revealed to determine the truth. We created a simplified two-player,
+single-round variant of Liar's Dice with three distinct stages:
+\textbf{Bid}, \textbf{Response}, and \textbf{Truth/Lie Reveal}. This
+3-stage structure captures the essence of one cycle of bluffing and
+calling, while being self-contained enough for CFR analysis. The rules
+and structure of the game are as follows:
+
+\begin{itemize}
+\item
+  \textbf{Private Dice Roll (Setup):}
+
+  \begin{itemize}
+  \item
+    At the start, each player rolls a set of dice in secret. In our
+    implementation, both Player 1 (P1) and Player 2 (P2) receive a
+    private hand of dice (5 dice each with 6 faces). The results are
+    known only to the respective player, modeling private information.
+    This secret roll by ``chance'' sets up an information asymmetry:
+    each player knows their own dice but not the opponent's.
+  \end{itemize}
+\item
+  \textbf{Stage 1 -- Bid (P1's Claim):}
+
+  \begin{itemize}
+  \item
+    In the classic Liar's Dice variant, each bid specifies both a
+    quantity Q and a face value F, as in ``There are at least 3 dice
+    showing face 5.'' This means ``across all hidden dice, I claim
+    you'll find three 5's.'' In our simplified version, we drop the
+    face‐value detail and only care about the maximum frequency---that
+    is, the count of whichever face appears most often. A bid now reads:
+
+    \begin{itemize}
+    \item
+      ``Max-frequency ≥ Q''
+    \end{itemize}
+  \item
+    When making a bid, P1 sees their own dice and chooses Q by weighing:
+
+    \begin{itemize}
+    \item
+      Plausibility: A higher Q is less likely to be true (more of a
+      bluff).
+    \item
+      Reward: If P2 doesn't call, an unchallenged higher Q wins
+      outright.
+    \end{itemize}
+  \item
+    We also prune any impossible bids, like a Q greater than the total
+    number of dice or Q that P1's hand plus the maximum the opponent
+    could hold can't reach. This keeps the decision set both small and
+    logically consistent.
+  \end{itemize}
+\item
+  \textbf{Stage 2 -- Response (P2's Challenge or Accept):}
+
+  \begin{itemize}
+  \item
+    Once P1 announces ``Max-frequency ≥ Q,'' P2 has two choices:
+
+    \begin{itemize}
+    \item
+      \textbf{Raise:} Increase the bid to \textbf{Q′ \textgreater{} Q},
+      forcing P1 back on the defensive.
+    \item
+      \textbf{Call BS:} Challenge P1's claim immediately.
+    \end{itemize}
+  \item
+    If P2's hand already contains close to Q of some face, then
+    ``Max-frequency ≥ Q'' is quite plausible, and P2 is likelier to
+    raise (or even pass by raising minimally). If P2's hand makes Q seem
+    out of reach, you can call a bluff. It can be summarized as follows:
+    ``Given my dice, how likely is it that some face reaches Q across
+    both hands?''
+  \end{itemize}
+\item
+  \textbf{Stage 3 -- Truth/Lie Reveal (Resolution):}
+
+  \begin{itemize}
+  \item
+    \textbf{If P2 called BS in Stage 2}, all dice are checked, and you
+    check the actual maximum frequency vs. the last bid \textbf{Q}:
+
+    \begin{itemize}
+    \item
+      \textbf{Actual ≥ Q} → P2 was wrong to call, so P2 loses a die.
+    \item
+      \textbf{Actual \textless{} Q} → P1 was caught bluffing, so P1
+      loses a die.
+    \end{itemize}
+  \item
+    \textbf{If P2 raised in Stage 2}, P1 now must \textbf{declare}
+    ``truth'' or ``lie'' about their own claim, then everyone reveals
+    their dice, and you compare actual vs. Q:
+
+    \begin{itemize}
+    \item
+      P1 says ``truth''
+
+      \begin{itemize}
+      \item
+        If actual ≥ Q, P2 loses a die.
+      \item
+        If actual \textless{} Q, P1 loses a die.
+      \end{itemize}
+    \item
+      P1 says ``lie''
+
+      \begin{itemize}
+      \item
+        If actual \textless{} Q, P2 loses a die.
+      \item
+        If actual ≥ Q, P1 loses a die.
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+This final stage ties together the bluff and the call/raise, rewarding
+correct calls and catches, and penalizing mistaken challenges or failed
+bluffs. This version keeps the game tree tractable for CFR analysis. I
+was not particularly content with the third stage, as it does not feel
+like a particularly `fair' or `balanced' ending. It is also not
+particularly intuitive or easy to understand. In future work, I'd like
+to build on a more intuitive game (like normal Liar's dice, etc.).
+
+\subsection{\texorpdfstring{\textbf{CFR Training with a Unified
+Engine}}{CFR Training with a Unified Engine}}\label{cfr-training-with-a-unified-engine}
+
+\subsection{\texorpdfstring{ The CFR logic is implemented once in
+cfr\_train.py using a generic CFR class (from stub.py, obtained and
+developed from Sandholm) parameterized by RegretMatchingPlus. Both
+Player 1 and Player 2 policies are computed in the same loop. Here's the
+high-level
+workflow:}{ The CFR logic is implemented once in cfr\_train.py using a generic CFR class (from stub.py, obtained and developed from Sandholm) parameterized by RegretMatchingPlus. Both Player 1 and Player 2 policies are computed in the same loop. Here's the high-level workflow:}}\label{the-cfr-logic-is-implemented-once-in-cfr_train.py-using-a-generic-cfr-class-from-stub.py-obtained-and-developed-from-sandholm-parameterized-by-regretmatchingplus.-both-player-1-and-player-2-policies-are-computed-in-the-same-loop.-heres-the-high-level-workflow}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Game Setup and Tuplification}
+
+  \begin{itemize}
+  \item
+    Load the JSON‑encoded extensive-form game (decision nodes,
+    observation mappings, and utility entries).
+  \item
+    Convert list-based edges and sequences into tuples for dictionary
+    keys.
+  \end{itemize}
+\item
+  \textbf{CFR+ Iterations}
+
+  \begin{itemize}
+  \item
+    Instantiate two CFR solvers:
+
+    \begin{enumerate}
+    \def\labelenumii{\arabic{enumii}.}
+    \item
+      cfr1 = Cfr(dp1, rm\_class=RegretMatchingPlus)
+    \item
+      cfr2 = Cfr(dp2, rm\_class=RegretMatchingPlus)
+
+      \begin{enumerate}
+      \def\labelenumiii{\arabic{enumiii}.}
+      \item
+        where dp1 and dp2 are the decision-problem lists for P1
+        (bid/truth) and P2 (respond).
+      \end{enumerate}
+    \end{enumerate}
+  \item
+    Maintain cumulative sequence-form strategy sums (cum1, cum2) to
+    build the average strategy over iterations.
+  \item
+    \textbf{Loop} for t in 1..N iterations (for example, 50k which I
+    used):
+
+    \begin{enumerate}
+    \def\labelenumii{\arabic{enumii}.}
+    \item
+      \textbf{Next Strategy}: Call cfr1.next\_strategy() and
+      cfr2.next\_strategy(), yielding realization-probability vectors.
+      These are mappings from each decision sequence to the probability
+      of reaching that sequence under the current mixed strategy.
+    \item
+      \textbf{Accumulate}: Add these (weighted by t) to cum1/cum2 to
+      form the running average.
+    \item
+      \textbf{Utility Computation}: Compute counterfactual utility
+      vectors u1 and u2 with the opponent's current strategy.
+    \item
+      \textbf{Regret Update}: Call cfr1.observe\_utility(u1) and
+      cfr2.observe\_utility(u2) to update cumulative regrets at each
+      node.
+    \end{enumerate}
+  \end{itemize}
+\item
+  \textbf{Policy Extraction\\
+  }After convergence, normalize the cumulative weights at each decision
+  node to extract corresponding JSON policies.
+\item
+  \textbf{Unified Engine}
+\end{enumerate}
+
+\begin{quote}
+A single CFR implementation serves both players: the same Cfr +
+RegretMatchingPlus machinery handles P1's bid and truth/lie stages and
+P2's response stage. This consistency avoids code duplication and
+ensures identical update logic.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  \textbf{Abstractions \& Pruning}
+
+  \begin{itemize}
+  \item
+    \textbf{Action Pruning}
+  \item
+    \textbf{State Abstraction}:
+
+    \begin{enumerate}
+    \def\labelenumii{\arabic{enumii}.}
+    \item
+      Treat dice hands as multisets to collapse permutations into single
+      info-sets.
+    \end{enumerate}
+  \item
+    \textbf{Scaling Experiments}:
+
+    \begin{enumerate}
+    \def\labelenumii{\arabic{enumii}.}
+    \item
+      I trained on different factors, such as different starting dice
+      amounts.
+    \end{enumerate}
+  \end{itemize}
+\item
+  \textbf{Extensions \& Live Resolving}
+
+  \begin{itemize}
+  \item
+    \textbf{Blueprint + Resolve}:
+
+    \begin{enumerate}
+    \def\labelenumii{\arabic{enumii}.}
+    \item
+      Maintain the offline equilibrium (via ``blueprint'') and, in live
+      play, analytically compute P(max ≥ Q \textbar{} P2's dice) for
+      off-path bids.
+    \end{enumerate}
+  \item
+    \textbf{Opponent Modeling}:
+
+    \begin{enumerate}
+    \def\labelenumii{\arabic{enumii}.}
+    \item
+      Freeze P2's strategy as ``always-call'' or ``always-accept''
+      (amongst others) to derive the best exploitative responses.
+    \end{enumerate}
+  \end{itemize}
+\end{enumerate}
+
+The end result is three JSON policies mapping each info-set to an
+equilibrium mixed strategy, ready for both large-scale self‑play
+evaluation and interactive human-facing play.
+
+stub.py provides a more general CFR engine (with both RegretMatching and
+RegretMatchingPlus) used in coursework to explore theoretical
+properties. It was from a homework assignment in Sandholm's
+\href{https://www.cs.cmu.edu/~sandholm/cs15-888F23/}{\ul{course}} to
+solve multiple problems given. cfr\_train.py was fully developed outside
+of a course, and it uses RegretMatchingPlus CFR+ to compute full
+equilibrium policies offline, focusing on convergence speed and
+blueprint generation. It's more tailored for production, and not
+necessarily classroom problems. For context, RegretMatching accumulates
+all regrets (positive and negative), whereas RegretMatchingPlus (CFR+)
+clamps any negative regret to zero each update, focusing only on
+beneficial actions and speeding up convergence.
+
+\subsection{\texorpdfstring{\textbf{Evaluating Performance and
+Scalability}}{Evaluating Performance and Scalability}}\label{evaluating-performance-and-scalability}
+
+\subsubsection{\texorpdfstring{\textbf{Convergence to
+Equilibrium}}{Convergence to Equilibrium}}\label{convergence-to-equilibrium}
+
+In the 3-stage version described, I managed to reach Nash equilibrium:
+
+\begin{itemize}
+\item
+  Self-play win Rate ≈ 50 \%
+\end{itemize}
+
+After 50,000 CFR+ iterations on the full three-stage, 5-dice-per-player
+variant, two independent AI instances split wins at 49--51 \% regardless
+of who opened the bid. This symmetry shows neither side holds an
+exploitable edge, i.e., the average policy approximates a Nash
+equilibrium.
+
+\subsubsection{\texorpdfstring{\textbf{Exploiting an Always-Call
+Opponent}}{Exploiting an Always-Call Opponent}}\label{exploiting-an-always-call-opponent}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+=== 2-Stage Liar\textquotesingle s Dice Exploit Demo (3 dice each) ===\\
+\strut \\
+-\/-\/- Round 1 (AI: 3 dice, You: 3 dice) -\/-\/-\\
+Your roll: {[}6, 4, 1{]}\\
+AI opens ≥ 1\\
+You: call\\
+AI\textquotesingle s hand: {[}3, 2, 3{]} (true max-freq = 2)\\
+→ You lose a die!\\
+\strut \\
+-\/-\/- Round 2 (AI: 3 dice, You: 2 dice) -\/-\/-\\
+Your roll: {[}2, 5{]}\\
+You open ≥ 2\\
+AI: calls BS!\\
+AI\textquotesingle s hand: {[}6, 4, 1{]} (true max-freq = 1)\\
+→ You lose a die!\\
+\strut \\
+-\/-\/- Round 3 (AI: 3 dice, You: 1 die) -\/-\/-\\
+Your roll: {[}4{]}\\
+AI opens ≥ 1\\
+You: call\\
+AI\textquotesingle s hand: {[}6, 1, 5{]} (true max-freq = 1)\\
+→ You lose a die!\\
+\strut \\
+*** AI wins the match! ***\strut
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\emph{This max-frequency style game follows the traditional two-round
+until the highest bid approach. All bids ≥ 1 are doomed against a
+caller; the AI finishes at a full 3-die advantage, playing a flawless
+game.}
+
+\subsubsection{\texorpdfstring{\textbf{Vulnerability to Deviations\\
+}Here we see that a seemingly innocuous deviation from the equilibrium
+``always‐call'' benchmark---namely, always raising from Q=1 to
+Q=2---causes the AI's blueprint to fail. In the five‐round ``deviation
+demo,'' the AI loses every die in succession, wiping out its 3-die
+starting advantage in a single
+match:}{Vulnerability to Deviations Here we see that a seemingly innocuous deviation from the equilibrium ``always‐call'' benchmark---namely, always raising from Q=1 to Q=2---causes the AI's blueprint to fail. In the five‐round ``deviation demo,'' the AI loses every die in succession, wiping out its 3-die starting advantage in a single match:}}\label{vulnerability-to-deviations-here-we-see-that-a-seemingly-innocuous-deviation-from-the-equilibrium-alwayscall-benchmarknamely-always-raising-from-q1-to-q2causes-the-ais-blueprint-to-fail.-in-the-fiveround-deviation-demo-the-ai-loses-every-die-in-succession-wiping-out-its-3-die-starting-advantage-in-a-single-match}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+=== Deviation Demo: opponent always raises 1→2 instead of call ===
+
+R1: AI={[}4, 1, 3{]} You={[}5, 5, 4{]} bid≥2 → You lose 1 die
+
+R2: AI={[}3, 1, 1{]} You={[}4, 3{]} bid≥2 → You lose 1 die
+
+R3: AI={[}1, 5, 3{]} You={[}4{]} bid≥2 → AI loses 1 die
+
+R4: AI={[}6, 5{]} You={[}3{]} bid≥2 → AI loses 1 die
+
+R5: AI={[}4{]} You={[}1{]} bid≥2 → AI loses 1 die
+
+After deviation: AI has 0 dice, You have 1 dice.
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\emph{This reversal highlights a key tension in imperfect-information
+AI: equilibrium strategies can be catastrophically fragile when the
+opponent strays from the assumed distribution. In practice, then, pure
+CFR must be augmented with opponent‐modeling or live subgame solving to
+remain robust in the wild.}
+
+\subsubsection{\texorpdfstring{\textbf{Computational
+Performance}}{Computational Performance}}\label{computational-performance}
+
+Using max-frequency (i.e. collapsing each hand to the single number
+representing the highest count of any face) dramatically simplifies the
+game's state space:
+
+\begin{itemize}
+\item
+  Traditional face-specific Liar's Dice:
+
+  \begin{itemize}
+  \item
+    Each player's 5-die hand is a histogram over faces 1--6 (e.g. 0
+    ones, 2 twos, 1 three, 0 fours, 1 five, 1 six). There are
+  \item
+    \href{https://www.codecogs.com/eqnedit.php?latex=\%5Cdisplaystyle\%20\%5Cbinom\%7B5\%20\%2B\%206\%20-\%201\%7D\%7B6\%20-\%201\%7D\%20\%3D\%20\%5Cbinom\%7B10\%7D\%7B5\%7D\%20\%3D\%20252\#0}{\includegraphics[width=1.83333in,height=0.375in]{media/media/image1.png}}
+    possible frequency profiles (how many dice show each number).
+  \item
+    \emph{5 is the number of dice you roll, 6 is the number of possible
+    face values, and 1 comes from the standard
+    combinations-with-repetition formula.}
+  \item
+    Across both players, that's
+    \href{https://www.codecogs.com/eqnedit.php?latex=\%5C(252\%5E2\%20\%5Capprox\%2063\%7B\%2C\%7D500\%5C)\#0}{\includegraphics[width=1.001in,height=0.15167in]{media/media/image2.png}}
+    distinct chance-node outcomes before any bidding occurs
+  \end{itemize}
+\item
+  Our custom max-frequency adaptation:
+
+  \begin{itemize}
+  \item
+    We reduce each hand to a single integer
+    \href{https://www.codecogs.com/eqnedit.php?latex=\%5C(m\%20\%5Cin\%20\%5C\%7B1\%2C2\%2C3\%2C4\%2C5\%5C\%7D\%5C)\#0}{\includegraphics[width=1.23611in,height=0.15278in]{media/media/image3.png}}
+    (the count of the most common face). That leaves just 5
+    possibilities per player, or
+    \href{https://www.codecogs.com/eqnedit.php?latex=\%5C(5\%5E2\%20\%3D\%2025\%5C)\#0}{\includegraphics[width=0.59722in,height=0.16667in]{media/media/image4.png}}
+    combined chance outcomes. This simple adaptation makes the game much
+    more manageable and malleable.
+  \end{itemize}
+\end{itemize}
+
+In effect, max-frequency collapses the raw game tree by a factor of over
+2,500× at the chance-node level alone, even before pruning bids or
+responses. Downstream, the number of information sets across all three
+stages shrinks from on the order of \textgreater100,000 (in a
+face-specific model) to \textless≈12,000 with max-frequency abstraction.
+
+\paragraph{\texorpdfstring{\textbf{Practicality}}{Practicality}}\label{practicality}
+
+From a practical standpoint, max-frequency abstraction yields
+substantial efficiency gains without specialized hardware. By collapsing
+each hand to a single integer, the memory footprint for storing regrets
+and cumulative strategies shrinks from on the order of hundreds of
+thousands of entries (≫ 1 GB) down to just a few thousand (≪ 1 GB). This
+leaner state space also accelerates each CFR+ iteration by what seems
+roughly 30--40 \%, which in turn reduces the total number of iterations
+required to reach an average regret of ≤ 0.01 by a similar margin. On a
+MacBook Pro M2 Pro with 16 GB of RAM, running 50,000 CFR+ iterations on
+the full three-stage, 5-die max-frequency variant completes within a
+reasonable window.
+
+By abstracting, it is also easier to use interactive experimentation and
+develop UIs, as you do not have to track the faces of the dice. However,
+one of the trade-offs of this abstraction is clear: while we gain
+dramatic tractability and a straightforward policy representation, we
+forgo the ability to exploit opponents whose bluffing behavior hinges on
+specific face distributions. Nevertheless, by preserving the core
+dynamics of bluffing and calling, max-frequency abstraction strikes a
+practical balance, enabling efficient CFR+ training on consumer-grade
+hardware.
+
+\subsection{\texorpdfstring{\textbf{Key Lessons
+Learned}}{Key Lessons Learned}}\label{key-lessons-learned}
+
+\begin{itemize}
+\item
+  Equilibrium ≠ Exploitation (High Win-rate):
+
+  \begin{itemize}
+  \item
+    CFR+ converges to strategies with zero regret, but it does not
+    automatically exploit suboptimal or non-equilibrium opponents.
+    Without dedicated opponent modeling, the win rate will never be
+    particularly high.
+  \end{itemize}
+\item
+  Blueprint + Subgame Resolving:
+
+  \begin{itemize}
+  \item
+    Storing an offline ``blueprint'' equilibrium and selectively
+    resolving future decision points can adapt to opponent behavior and
+    patch the brittleness seen in the deviation demo.
+  \end{itemize}
+\item
+  Abstraction Trade-offs:
+
+  \begin{itemize}
+  \item
+    Collapsing dice permutations into multisets yields massive
+    state‐space reductions, but over-abstraction risks throwing away
+    exploitable patterns. Finding the right granularity is crucial.
+  \end{itemize}
+\item
+  CFR+ Speeds Convergence:
+
+  \begin{itemize}
+  \item
+    Clamping negative regrets to zero (using RegretMatchingPlus)
+    accelerates convergence in large info‐sets, making CFR practical on
+    a laptop for medium-sized games.
+  \end{itemize}
+\end{itemize}
+
+\subsection{\texorpdfstring{\textbf{Conclusion}}{Conclusion}}\label{conclusion}
+
+Over the course of this project, I've gained a deep appreciation for the
+unique challenges posed by imperfect-information games and the power of
+Counterfactual Regret Minimization to tackle them. I learned about a
+problem I hadn't really thought through before---imperfect
+information---and now I feel equipped to handle these scenarios a lot
+better going forward. Designing and implementing a custom three-stage
+Liar's Dice variant showed me how a simple max-frequency abstraction can
+yield dramatic efficiency gains, while also highlighting the trade-offs
+between tractability and exploitability. The biggest lesson was most
+definitely that equilibrium strategies often stumble against real human
+opponents unless you go the extra mile, like layering in live subgame
+resolving or solid opponent modeling. It's not as simple as training a
+Q-learning agent and walking away---you really have to lead it in the
+right direction. Armed with these lessons, I'm excited for the future;
+some work that can be done: refining my game design, deepening opponent
+models, and deploying a lightweight UI so that I can test against human
+players and iterate even faster.
+
+\subsection{\texorpdfstring{\textbf{References}}{References}}\label{references}
+
+\begin{itemize}
+\item
+  Brown, N., \& Sandholm, T. (2018). Superhuman AI for heads-up
+  non-limit poker: Libratus overcomes human talent. Science, 359(6374),
+  418--424.
+  \href{https://doi.org/10.1126/science.aao1733}{\ul{https://doi.org/10.1126/science.aao1733}}
+\item
+  Brown, N., \& Sandholm, T. (2019). Pluribus: The first AI to beat pros
+  in heads-up, no-limit Texas hold 'em poker. Science, 365(6456),
+  885--890.
+  \href{https://doi.org/10.1126/science.aay2400}{\ul{https://doi.org/10.1126/science.aay2400}}
+\item
+  \href{https://www.youtube.com/watch?v=2dX0lwaQRX0&ab_channel=NoamBrown}{\ul{Superhuman
+  AI for heads-up no-limit poker: Libratus beats top professionals}}
+\item
+  Kuhn, H. W. (1950). A simplified two-person poker. In H. W. Kuhn \& A.
+  W. Tucker (Eds.), Contributions to the Theory of Games I (pp.
+  97--103). Princeton University Press.
+\item
+  Neller, T. W., \& Lanctot, M. (2012). Counterfactual Regret
+  Minimization: A tutorial. Technical Report, McGill University, Canada.
+  Retrieved from
+  \href{https://www.cs.toronto.edu/~vmnih/docs/draft-chapter.pdf}{\ul{https://www.cs.toronto.edu/\textasciitilde vmnih/docs/draft-chapter.pdf}}
+\item
+  Sandholm, T. (2021). Computational Game Theory and Equilibrium Finding
+  (CMU CS 15-888 lecture notes). Carnegie Mellon University. Retrieved
+  from
+  \href{https://www.cs.cmu.edu/~sandholm/course/15-888-F21/lectures.html}{\ul{https://www.cs.cmu.edu/\textasciitilde sandholm/course/15-888-F21/lectures.html}}
+\item
+  \href{https://www.researchgate.net/publication/235737910_Measuring_the_Size_of_Large_No-Limit_Poker_Games}{\ul{https://www.researchgate.net/publication/235737910\_Measuring\_the\_Size\_of\_Large\_No-Limit\_Poker\_Games}}
+\item
+  \href{https://thegradient.pub/libratus-poker/}{\ul{https://thegradient.pub/libratus-poker/}}
+\item
+  \href{https://www.researchgate.net/publication/221605456_Effective_Short-Term_Opponent_Exploitation_in_Simplified_Poker}{\ul{https://www.researchgate.net/publication/221605456\_Effective\_Short-Term\_Opponent\_Exploitation\_in\_Simplified\_Poker}}
+\end{itemize}
+
+\end{document}
