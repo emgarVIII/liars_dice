@@ -381,6 +381,26 @@ select {
   text-align: right;
 }
 
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  margin-top: 32px;
+}
+
+.status-grid section {
+  background: var(--surface);
+  padding: 22px;
+}
+
+.status-grid h2 {
+  margin: 8px 0 12px;
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+  line-height: 1.05;
+}
+
 .paper-list {
   display: grid;
   gap: 12px;
@@ -456,6 +476,10 @@ select {
   }
 
   .method-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .status-grid {
     grid-template-columns: 1fr;
   }
 }

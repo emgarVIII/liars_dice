@@ -373,6 +373,23 @@ function resultsMarkup(): string {
         <tbody>${rows}</tbody>
       </table>
       <p class="note">Generated with seed ${state.metrics.metadata.seed}, ${state.metrics.metadata.matches_per_scenario} matches per scenario.</p>
+      <div class="status-grid">
+        <section>
+          <span class="eyebrow">Policy status</span>
+          <h2>Baseline, not solved play</h2>
+          <p>The exported claimant policy is useful as a reproducible CFR-style artifact, but it should not be read as a strong final strategy. In the checked-in benchmark it is only slightly above even against random behavior and is exploitable by simple threshold response rules.</p>
+        </section>
+        <section>
+          <span class="eyebrow">Interpretation</span>
+          <h2>Random can look competitive</h2>
+          <p>In this small one-claim abstraction, random claims can do surprisingly well against weak responders. The important research question is not whether one rollout beats random once; it is whether training converges, normalizes correctly, and becomes less exploitable under stronger evaluation.</p>
+        </section>
+        <section>
+          <span class="eyebrow">Next validation</span>
+          <h2>What would improve it</h2>
+          <p>The next pass should add exploitability tracking, stronger best-response tests, and clearer separation between claimant policy quality and responder policy quality before making any stronger claim about equilibrium-style play.</p>
+        </section>
+      </div>
     </section>
   `;
 }
