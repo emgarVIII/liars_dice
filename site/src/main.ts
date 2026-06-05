@@ -246,9 +246,9 @@ function gameMarkup(): string {
           <span>Your dice ${state.userDiceCount}</span>
         </div>
         <div class="rules-strip" aria-label="How to play">
-          <span class="eyebrow">How to play</span>
-          <p><strong>Claim:</strong> at least Q dice across both hidden hands show face F.</p>
-          <p><strong>Believe</strong> means true. <strong>Challenge</strong> means false.</p>
+          <span class="eyebrow">Research abstraction</span>
+          <p><strong>Not classic Liar's Dice:</strong> no raise loop, bid ladder, or wild-face variant.</p>
+          <p><strong>Game loop:</strong> one hidden-dice claim, then Believe or Challenge.</p>
         </div>
         <div class="table-surface">
           <div class="player-row opponent">
@@ -281,15 +281,16 @@ function gameMarkup(): string {
       </div>
       <aside class="strategy-panel">
         <div class="quick-read">
-          <span class="eyebrow">Rules</span>
-          <h2>One claim. One response.</h2>
+          <span class="eyebrow">Mode</span>
+          <h2>CFR Challenge Abstraction</h2>
+          <p>This is the simplified game model used for the research demo, not the full table game.</p>
           <ol>
             <li>Each player sees only their own dice.</li>
             <li>The claimant announces a quantity and face for the total table.</li>
             <li>The responder chooses Believe or Challenge.</li>
             <li>A correct responder makes the claimant lose a die. A wrong responder loses a die.</li>
           </ol>
-          <p>Traditional raise-and-call Liar's Dice is a planned extension.</p>
+          <p>Classic raise-and-call Liar's Dice is useful for comparison, but it is outside the validated solver shown here.</p>
         </div>
         <span class="eyebrow">Sampled CFR+ policy</span>
         <h2>Strategy view</h2>
@@ -316,12 +317,14 @@ function methodMarkup(): string {
   return `
     <section class="text-route">
       <span class="eyebrow">Method</span>
-      <h1>Self-play for hidden-information decisions</h1>
-      <p>The project uses a compact one-claim game so the mechanics are visible: a private hand, a quantity-face claim, and a responder prediction. The Python engine trains sampled CFR+ style regret matchers for the claimant and responder information sets, then exports normalized policies for the browser.</p>
+      <h1>Self-play on a deliberate abstraction</h1>
+      <p>This is not a full classic Liar's Dice solver. The project uses a compact one-claim challenge game so the hidden-information mechanics are visible: a private hand, a quantity-face claim, and a responder prediction. The Python engine trains sampled CFR+ style regret matchers for the claimant and responder information sets, then exports normalized policies for the browser.</p>
       <div class="method-grid">
         <div><strong>Information set</strong><p>A player observes their own dice and the public claim, not the opponent's dice.</p></div>
         <div><strong>Claim policy</strong><p>The claimant chooses among <code>claim_Q_F</code> actions for a private hand.</p></div>
         <div><strong>Response policy</strong><p>The responder chooses <code>believe</code> or <code>challenge</code> from their private hand and the claim.</p></div>
+        <div><strong>Omitted from classic play</strong><p>No repeated raising, bid ladder, multiplayer table rotation, or wild-face rule variant is modeled here.</p></div>
+        <div><strong>Why simplify</strong><p>The smaller game tree keeps CFR behavior explainable and makes policy validation practical for a static demo.</p></div>
         <div><strong>Export boundary</strong><p>Training stays in Python; the website loads frozen JSON artifacts.</p></div>
       </div>
     </section>
@@ -339,8 +342,8 @@ function resultsMarkup(): string {
   return `
     <section class="text-route">
       <span class="eyebrow">Results</span>
-      <h1>Robustness is not exploitation</h1>
-      <p>The current policy is a first cleaned baseline. It performs close to even against broad random behavior and loses to simple threshold response rules, which is exactly the limitation the report discusses.</p>
+      <h1>Abstraction metrics, not classic-game claims</h1>
+      <p>The current policy is a first cleaned baseline for the one-claim challenge abstraction. It performs close to even against broad random behavior and loses to simple threshold response rules, which is exactly the limitation the report discusses.</p>
       <table class="metrics-table">
         <thead><tr><th>Opponent profile</th><th>Matches</th><th>AI win rate</th></tr></thead>
         <tbody>${rows}</tbody>

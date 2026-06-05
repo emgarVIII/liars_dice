@@ -308,7 +308,7 @@ select {
   margin: 0 0 8px;
 }
 
-.strategy-panel h2,
+.strategy-panel > h2,
 .text-route h1 {
   font-size: clamp(2rem, 5vw, 4rem);
   line-height: 0.98;
