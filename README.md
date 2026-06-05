@@ -21,6 +21,7 @@ The canonical rules are in [rules.md](rules.md).
 ├── liarsdice_ai/              # Offline Python research engine
 ├── tests/                     # Standard-library unit tests
 ├── artifacts/game.json        # Canonical game metadata export
+├── site/                      # Static Vite + TypeScript website
 ├── site/public/data/          # Static website data exports
 │   ├── policy.json            # Normalized policy artifact
 │   └── metrics.json           # Benchmark metrics artifact
@@ -40,6 +41,25 @@ python3 -m liarsdice_ai.cli train --iters 80000 --seed 370 --out site/public/dat
 python3 -m liarsdice_ai.cli validate --policy site/public/data/policy.json
 python3 -m liarsdice_ai.cli simulate --policy site/public/data/policy.json --matches 2000 --seed 370 --out site/public/data/metrics.json
 ```
+
+## Static Site
+
+The website is in `site/` and is designed for GitHub Pages. It loads the exported JSON artifacts directly from `site/public/data/`.
+
+```bash
+cd site
+npm install
+npm run dev
+npm run build
+npm run build:gh
+```
+
+Routes supported by the static app:
+
+- `/` playable game demo.
+- `/method` CFR and game-solving explanation.
+- `/results` benchmark table and limitations.
+- `/papers` curated document archive links.
 
 ## Current Benchmark Snapshot
 

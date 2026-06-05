@@ -1,0 +1,16 @@
+{
+  "name": "liars-dice-cfr-lab",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && cp dist/index.html dist/404.html",
+    "build:gh": "GITHUB_PAGES=1 tsc && GITHUB_PAGES=1 vite build && cp dist/index.html dist/404.html",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16"
+  }
+}
