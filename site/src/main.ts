@@ -65,6 +65,9 @@ function normalizeRoute(pathname: string): string {
   if (base && base !== "/" && path.startsWith(base)) {
     path = path.slice(base.length) || "/";
   }
+  if (path.length > 1 && path.endsWith("/")) {
+    path = path.slice(0, -1);
+  }
   if (!["/", "/method", "/results", "/papers"].includes(path)) {
     return "/";
   }

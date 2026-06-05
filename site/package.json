@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && cp dist/index.html dist/404.html",
-    "build:gh": "GITHUB_PAGES=1 tsc && GITHUB_PAGES=1 vite build && cp dist/index.html dist/404.html",
+    "build:gh": "GITHUB_PAGES=1 tsc && GITHUB_PAGES=1 vite build && cp dist/index.html dist/404.html && mkdir -p dist/method dist/results dist/papers && cp dist/index.html dist/method/index.html && cp dist/index.html dist/results/index.html && cp dist/index.html dist/papers/index.html",
     "preview": "vite preview"
   },
   "devDependencies": {
