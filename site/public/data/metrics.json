@@ -1,0 +1,30 @@
+{
+  "metadata": {
+    "matches_per_scenario": 2000,
+    "max_face": 6,
+    "seed": 370,
+    "starting_dice": 5
+  },
+  "scenarios": {
+    "random_claim_random_response": {
+      "ai_win_rate": 0.5405,
+      "ai_wins": 1081,
+      "matches": 2000
+    },
+    "random_claim_skeptical_response": {
+      "ai_win_rate": 0.3955,
+      "ai_wins": 791,
+      "matches": 2000
+    },
+    "random_claim_threshold_response": {
+      "ai_win_rate": 0.4385,
+      "ai_wins": 877,
+      "matches": 2000
+    },
+    "truth_biased_claim_threshold_response": {
+      "ai_win_rate": 0.4375,
+      "ai_wins": 875,
+      "matches": 2000
+    }
+  }
+}

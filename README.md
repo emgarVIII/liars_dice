@@ -1,100 +1,66 @@
-# Liar’s Dice AI
+# Liar's Dice CFR Lab
 
-An end-to-end pipeline for building, training, and deploying a one-turn Liar’s Dice AI using Counterfactual Regret Minimization (CFR/CFR⁺) and a Flask-based interactive front-end.
+A publishable imperfect-information game-solving project built around a simplified one-claim Liar's Dice challenge game. The project separates the offline Python research engine from the public static website: Python generates rules metadata, trains a sampled CFR+ policy, runs benchmark simulations, and exports JSON artifacts that the browser can load directly.
 
-## Repository Structure
-```
+## Public Story
+
+This is not presented as a full traditional Liar's Dice solver. It is a compact research demo for:
+
+- imperfect-information decisioning,
+- self-play and regret minimization,
+- action abstraction,
+- equilibrium-style robustness,
+- and the gap between robust play and opponent exploitation.
+
+The canonical rules are in [rules.md](rules.md).
+
+## Repository Layout
+
+```text
 .
-├── games/
-│   └── liarsdice_5die_1bid.json       # Generated one-turn game description
-├── policies/
-│   └── liarsdice_5die_policy.json     # Trained one-turn equilibrium policy
-├── cfr_files/
-│   ├── generate_liarsdice.py          # Generates the game JSON
-│   ├── cfr_train.py                   # Runs CFR (or CFR⁺) self-play to produce policy
-│   ├── stub.py                        # Core CFR/CFR⁺ engine and helpers
-│   └── match_sim.py                   # Simulates full multi-round matches for benchmarking
-├── cfr_web/
-│   ├── static/                        # Static assets
-│   │   └── dice_man.jpg               # Example image used in UI
-│   ├── templates/
-│   │   └── index.html                 # Interactive browser UI
-│   ├── app.py                         # Flask server exposing `/action` API
-│   └── game_loop.py                   # Quick single-turn win-rate simulator
-└── README.md                          # This file
+├── liarsdice_ai/              # Offline Python research engine
+├── tests/                     # Standard-library unit tests
+├── artifacts/game.json        # Canonical game metadata export
+├── site/public/data/          # Static website data exports
+│   ├── policy.json            # Normalized policy artifact
+│   └── metrics.json           # Benchmark metrics artifact
+├── rules.md                   # Canonical simplified ruleset
+├── pyproject.toml
+└── requirements.txt
 ```
 
-## Component Overview
+## Quick Start
 
-### 1. Game Generation (`generate_liarsdice.py`)
-- **Purpose:** Build a JSON description of the one-turn Liar’s Dice game (5 dice per player, single bid).
-- **Output:** `games/liarsdice_5die_1bid.json`, containing:
-  - `decision_problem_pl1` & `decision_problem_pl2`: information-set nodes and actions
-  - `utility_pl1`: terminal payoffs weighted by chance
+The Python research path uses only the standard library.
 
-### 2. CFR Engine (`stub.py`)
-- **Key Features:**
-  - `Cfr` class: regret tables, next_strategy(), observe_utility()
-  - `RegretMatchingPlus`: CFR⁺ variant
-  - Utility computation functions for P1/P2
-  - Sequence set extractor
+```bash
+python3 -m unittest discover -s tests -v
+python3 -m liarsdice_ai.cli generate --out artifacts/game.json
+python3 -m liarsdice_ai.cli train --iters 80000 --seed 370 --out site/public/data/policy.json
+python3 -m liarsdice_ai.cli validate --policy site/public/data/policy.json
+python3 -m liarsdice_ai.cli simulate --policy site/public/data/policy.json --matches 2000 --seed 370 --out site/public/data/metrics.json
+```
 
-### 3. Training (`cfr_train.py`)
-- **Purpose:** Run CFR or CFR⁺ self-play to approximate a one-turn Nash policy for Player 1.
-- **Workflow:**
-  1. Load and normalize game JSON
-  2. Instantiate CFR engines
-  3. Iterate: sample strategies, compute utility vectors vs. opponent, update regrets
-  4. Average cumulative strategies → `policies/liarsdice_5die_policy.json`
+## Current Benchmark Snapshot
 
-### 4. Policy JSON (`policies/*.json`)
-- **Content:** For each infoset ID, a dictionary mapping actions to probabilities.
-- **Usage:** Loaded by the Flask app to sample AI actions.
+The checked-in `metrics.json` was generated with seed `370`, 2,000 matches per scenario, and five dice per player.
 
-### 5. Flask UI (`cfr_web/app.py` + `templates/index.html`)
-- **`app.py`**: Serves `/action` POST endpoint:
-  - **Player 1**: load policy, sample bid/claim based on `hand` and remaining dice counts
-  - **Player 2**: by default random accept/call (can be extended)
-- **`index.html`**: Interactive front-end that:
-  1. Rolls dice each round
-  2. Alternates claim turns between AI and user
-  3. Lets non-claimant Accept or Call BS
-  4. Resolves outcome using a 4-case rule
-  5. Tracks dice counts until someone reaches zero
+| Opponent profile | AI win rate |
+| --- | ---: |
+| Random claims, random responses | 54.05% |
+| Random claims, skeptical responses | 39.55% |
+| Random claims, threshold responses | 43.85% |
+| Truth-biased claims, threshold responses | 43.75% |
 
-### 6. Simulation (`match_sim.py`)
-- **Purpose:** Benchmark the one-turn policy over full multi-round matches.
-- **Features:**
-  - Fallback for unseen hand sizes (uniform claims)
-  - Multiple responder strategies: random50/50, call 90%, threshold-based
-  - Reports AI win rates over N matches.
+These results are intentionally not framed as superhuman play. They show the key lesson from the original research project: equilibrium-style self-play can produce robust strategies, but simple off-distribution responder behavior can still exploit a policy that lacks richer opponent modeling.
 
-## Getting Started
+## Website Architecture
 
-1. **Install dependencies**:
-   ```bash
-   pip install Flask gunicorn
-   ```
-2. **Generate game JSON**:
-   ```bash
-   python cfr_files/generate_liarsdice.py
-   ```
-3. **Train policy** (e.g., CFR⁺):
-   ```bash
-   python cfr_files/cfr_train.py --game games/liarsdice_5die_1bid.json \
-     --out-policy policies/liarsdice_5die_policy.json --iters 50000
-   ```
-4. **Run Flask UI**:
-   ```bash
-   cd cfr_web
-   python app.py
-   ```
-   Visit `http://127.0.0.1:5000/` in your browser.
+The public site is static. It will load `policy.json` and `metrics.json` directly in the browser, so it can be hosted on GitHub Pages without a Python server. Python remains the offline engine for reproducible training and evaluation.
 
-5. **Benchmark match play**:
-   ```bash
-   python cfr_files/match_sim.py
-   ```
+## Future Work
 
----
-
+- Add the static Vite + TypeScript site.
+- Convert the three course documents into a curated PDF and LaTeX archive.
+- Add a traditional raise/call Liar's Dice variant after this simplified version is stable.
+- Add richer opponent modeling and policy evaluation.
