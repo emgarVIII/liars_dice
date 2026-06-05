@@ -245,6 +245,11 @@ function gameMarkup(): string {
           <span>AI dice ${state.aiDiceCount}</span>
           <span>Your dice ${state.userDiceCount}</span>
         </div>
+        <div class="rules-strip" aria-label="How to play">
+          <span class="eyebrow">How to play</span>
+          <p><strong>Claim:</strong> at least Q dice across both hidden hands show face F.</p>
+          <p><strong>Believe</strong> means true. <strong>Challenge</strong> means false.</p>
+        </div>
         <div class="table-surface">
           <div class="player-row opponent">
             <span>AI private dice</span>
@@ -253,7 +258,7 @@ function gameMarkup(): string {
           <div class="claim-zone">
             <small>${state.aiClaims ? "AI claim" : "Your claim"}</small>
             <strong>${currentClaim}</strong>
-            <p>${state.aiClaims ? "Decide whether the AI claim is true." : "Choose a claim. The AI will believe or challenge."}</p>
+            <p>${state.aiClaims ? "Believe if the claim is true. Challenge if it is false." : "Choose a quantity and face for the total dice on the table."}</p>
           </div>
           <div class="player-row">
             <span>Your private dice</span>
@@ -275,6 +280,17 @@ function gameMarkup(): string {
         }
       </div>
       <aside class="strategy-panel">
+        <div class="quick-read">
+          <span class="eyebrow">Rules</span>
+          <h2>One claim. One response.</h2>
+          <ol>
+            <li>Each player sees only their own dice.</li>
+            <li>The claimant announces a quantity and face for the total table.</li>
+            <li>The responder chooses Believe or Challenge.</li>
+            <li>A correct responder makes the claimant lose a die. A wrong responder loses a die.</li>
+          </ol>
+          <p>Traditional raise-and-call Liar's Dice is a planned extension.</p>
+        </div>
         <span class="eyebrow">Sampled CFR+ policy</span>
         <h2>Strategy view</h2>
         <p>For the AI's current hidden hand, these are the highest-probability feasible claims in the exported policy.</p>
