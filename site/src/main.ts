@@ -419,6 +419,21 @@ function resultsMarkup(): string {
           <p>In this small one-claim abstraction, random claims can do surprisingly well against weak responders. The important research question is not whether one rollout beats random once; it is whether training converges, normalizes correctly, and becomes less exploitable under stronger evaluation.</p>
         </section>
         <section>
+          <span class="eyebrow">Research value</span>
+          <h2>Pipeline over leaderboard</h2>
+          <p>The strongest part of the project is the full pipeline: define the game, encode hidden information, train and export policies, validate payoffs, benchmark behavior, and surface the limitations in a playable demo. That is still meaningful even when the first policy is not strong.</p>
+        </section>
+        <section>
+          <span class="eyebrow">Can it improve?</span>
+          <h2>Yes, but measure the right thing</h2>
+          <p>A better solver should become less exploitable and perform better against simple best-response-style opponents. A near-50% result is not automatically bad in a symmetric zero-sum game; an equilibrium policy should be close to even against another strong equilibrium policy.</p>
+        </section>
+        <section>
+          <span class="eyebrow">Known training gap</span>
+          <h2>Dice counts matter</h2>
+          <p>The current training pass learns a compact one-round policy and reuses it as dice counts change. A stronger version should condition policies on remaining dice counts, track exploitability directly, and evaluate against explicit best responses.</p>
+        </section>
+        <section>
           <span class="eyebrow">Next validation</span>
           <h2>What would improve it</h2>
           <p>The next pass should add exploitability tracking, stronger best-response tests, and clearer separation between claimant policy quality and responder policy quality before making any stronger claim about equilibrium-style play.</p>
