@@ -18,7 +18,7 @@ The script reads the DOCX sources from `~/Downloads` by default and writes:
 
 - standalone LaTeX sources under `docs/archive/<slug>/`,
 - PDFs under `docs/archive/<slug>/`,
-- public website copies under `site/public/papers/`,
+- public website copies under `site/public/paper-assets/`,
 - `index.json` metadata for the site and archive.
 
 ## Rendering Note

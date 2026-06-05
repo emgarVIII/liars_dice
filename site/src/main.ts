@@ -340,18 +340,18 @@ function papersMarkup(): string {
       <div class="paper-list">
         <div>
           <strong>Final report</strong>
-          <a href="${baseUrl}papers/final-report.pdf">PDF</a>
-          <a href="${baseUrl}papers/final-report/final-report.tex">LaTeX</a>
+          <a href="${baseUrl}paper-assets/final-report.pdf">PDF</a>
+          <a href="${baseUrl}paper-assets/final-report/final-report.tex">LaTeX</a>
         </div>
         <div>
           <strong>Applied focus deliverable</strong>
-          <a href="${baseUrl}papers/applied-focus.pdf">PDF</a>
-          <a href="${baseUrl}papers/applied-focus/applied-focus.tex">LaTeX</a>
+          <a href="${baseUrl}paper-assets/applied-focus.pdf">PDF</a>
+          <a href="${baseUrl}paper-assets/applied-focus/applied-focus.tex">LaTeX</a>
         </div>
         <div>
           <strong>Research notebook</strong>
-          <a href="${baseUrl}papers/research-notebook.pdf">PDF</a>
-          <a href="${baseUrl}papers/research-notebook/research-notebook.tex">LaTeX</a>
+          <a href="${baseUrl}paper-assets/research-notebook.pdf">PDF</a>
+          <a href="${baseUrl}paper-assets/research-notebook/research-notebook.tex">LaTeX</a>
         </div>
       </div>
       <p class="note">The first pass preserves the original text and focuses on displayable exports. Text revisions are intentionally deferred.</p>

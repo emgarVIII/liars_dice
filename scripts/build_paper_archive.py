@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BUNDLED_SOFFICE = Path(
     "/Users/mauriciogarcia/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/soffice"
 )
+PUBLIC_PAPER_DIR = ROOT / "site" / "public" / "paper-assets"
 
 
 @dataclass(frozen=True)
@@ -46,13 +47,12 @@ def find_soffice() -> Path:
 
 
 def copy_public_pdf(source: Path, destination_name: str) -> None:
-    public_dir = ROOT / "site" / "public" / "papers"
-    public_dir.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(source, public_dir / destination_name)
+    PUBLIC_PAPER_DIR.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source, PUBLIC_PAPER_DIR / destination_name)
 
 
 def copy_public_source(paper: Paper, out_dir: Path, tex_path: Path) -> None:
-    public_dir = ROOT / "site" / "public" / "papers" / paper.slug
+    public_dir = PUBLIC_PAPER_DIR / paper.slug
     if public_dir.exists():
         shutil.rmtree(public_dir)
     public_dir.mkdir(parents=True, exist_ok=True)
@@ -113,7 +113,6 @@ def convert_to_pdf(paper: Paper, out_dir: Path) -> Path:
 
 def write_index(papers: list[Paper]) -> None:
     archive_dir = ROOT / "docs" / "archive"
-    public_dir = ROOT / "site" / "public" / "papers"
     index = [
         {
             "slug": paper.slug,
@@ -125,13 +124,15 @@ def write_index(papers: list[Paper]) -> None:
         for paper in papers
     ]
     (archive_dir / "index.json").write_text(json.dumps(index, indent=2) + "\n", encoding="utf-8")
-    public_dir.mkdir(parents=True, exist_ok=True)
-    (public_dir / "index.json").write_text(json.dumps(index, indent=2) + "\n", encoding="utf-8")
+    PUBLIC_PAPER_DIR.mkdir(parents=True, exist_ok=True)
+    (PUBLIC_PAPER_DIR / "index.json").write_text(json.dumps(index, indent=2) + "\n", encoding="utf-8")
 
 
 def build_archive(papers: list[Paper]) -> None:
     archive_dir = ROOT / "docs" / "archive"
     archive_dir.mkdir(parents=True, exist_ok=True)
+    if PUBLIC_PAPER_DIR.exists():
+        shutil.rmtree(PUBLIC_PAPER_DIR)
     for paper in papers:
         if not paper.source.exists():
             raise FileNotFoundError(f"Missing source DOCX: {paper.source}")

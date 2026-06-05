@@ -74,7 +74,7 @@ Outputs:
 - `docs/archive/final-report/`
 - `docs/archive/applied-focus/`
 - `docs/archive/research-notebook/`
-- `site/public/papers/`
+- `site/public/paper-assets/`
 
 Pandoc generates the LaTeX sources. PDFs are rendered from DOCX with the bundled LibreOffice binary because no local TeX engine is currently installed.
 
