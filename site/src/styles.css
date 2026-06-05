@@ -247,6 +247,16 @@ main {
   margin: 10px 0;
 }
 
+.claim-badge {
+  display: inline-block;
+  border: 1px solid currentColor;
+  margin-bottom: 8px;
+  padding: 5px 8px;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
 .claim-zone p,
 .strategy-panel p,
 .text-route p {
@@ -262,6 +272,16 @@ main {
   background: var(--surface);
   border: 1px solid var(--line);
   padding: 14px;
+}
+
+.decision-hint {
+  margin-right: auto;
+  font-weight: 900;
+}
+
+.recommended-action {
+  border-color: var(--teal);
+  background: var(--teal);
 }
 
 .claim-controls label {

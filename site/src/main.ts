@@ -203,6 +203,25 @@ function diceRow(hand: number[], hidden = false): string {
   return hand.map(dieMarkup).join("");
 }
 
+function claimKnowledge(claimKey: string): {
+  claim: ReturnType<typeof parseClaim>;
+  yourKnownCount: number;
+  neededFromAi: number;
+  impossible: boolean;
+  alreadyTrue: boolean;
+} {
+  const claim = parseClaim(claimKey);
+  const yourKnownCount = state.userHand.filter((die) => die === claim.face).length;
+  const neededFromAi = Math.max(0, claim.quantity - yourKnownCount);
+  return {
+    claim,
+    yourKnownCount,
+    neededFromAi,
+    impossible: neededFromAi > state.aiDiceCount,
+    alreadyTrue: neededFromAi === 0
+  };
+}
+
 function gameMarkup(): string {
   if (state.loadingError) {
     return `<section class="error-band">Data load failed: ${state.loadingError}</section>`;
@@ -220,6 +239,17 @@ function gameMarkup(): string {
     .map((face) => `<option value="${face}" ${state.selectedFace === face ? "selected" : ""}>${face}</option>`)
     .join("");
   const currentClaim = state.currentClaim ? claimLabel(state.currentClaim) : "Waiting for your claim";
+  const activeAiClaim = state.aiClaims && state.currentClaim && !state.lastLog ? claimKnowledge(state.currentClaim) : null;
+  const claimBadge = activeAiClaim?.impossible
+    ? `<span class="claim-badge warning-note">Known false from your dice</span>`
+    : activeAiClaim?.alreadyTrue
+      ? `<span class="claim-badge success-note">Known true from your dice</span>`
+      : "";
+  const responseHint = activeAiClaim?.impossible
+    ? `<span class="decision-hint warning-note">Challenge is guaranteed here.</span>`
+    : activeAiClaim?.alreadyTrue
+      ? `<span class="decision-hint success-note">Believe is guaranteed here.</span>`
+      : "";
 
   return `
     <section class="game-shell" aria-label="Playable Liar's Dice demo">
@@ -242,6 +272,7 @@ function gameMarkup(): string {
           <div class="claim-zone">
             <small>${state.aiClaims ? "AI claim" : "Your claim"}</small>
             <strong>${currentClaim}</strong>
+            ${claimBadge}
             <p>${state.aiClaims ? "Believe if the claim is true. Challenge if it is false." : "Choose a quantity and face for the total dice on the table."}</p>
           </div>
           <div class="player-row">
@@ -255,7 +286,7 @@ function gameMarkup(): string {
             : state.lastLog
               ? `<div class="decision-row"><span>${roundSummary(state.lastLog)}</span><button data-action="next-round">Next round</button></div>`
               : state.aiClaims
-                ? `<div class="decision-row"><button data-response="believe">Believe</button><button data-response="challenge">Challenge</button></div>`
+                ? `<div class="decision-row">${responseHint}<button class="${activeAiClaim?.alreadyTrue ? "recommended-action" : ""}" data-response="believe">Believe</button><button class="${activeAiClaim?.impossible ? "recommended-action" : ""}" data-response="challenge">Challenge</button></div>`
                 : `<div class="claim-controls">
                     <label>Quantity <select data-input="quantity">${quantityOptions}</select></label>
                     <label>Face <select data-input="face">${faceOptions}</select></label>
@@ -307,17 +338,20 @@ function decisionGuideMarkup(): string {
   const claimKey = state.aiClaims && state.currentClaim
     ? state.currentClaim
     : `claim_${state.selectedQuantity}_${state.selectedFace}`;
-  const claim = parseClaim(claimKey);
-  const yourKnownCount = state.userHand.filter((die) => die === claim.face).length;
-  const neededFromAi = Math.max(0, claim.quantity - yourKnownCount);
-  const impossible = neededFromAi > state.aiDiceCount;
-  const alreadyTrue = neededFromAi === 0;
+  const { claim, yourKnownCount, neededFromAi, impossible, alreadyTrue } = claimKnowledge(claimKey);
   const stateLabel = state.aiClaims ? "AI claim" : "Your selected claim";
   const verdict = alreadyTrue
-    ? "Your dice alone make this claim true."
+    ? state.aiClaims
+      ? "Your dice alone make this claim true. Believe is guaranteed here."
+      : "Your dice alone make this claim true."
     : impossible
-      ? "This claim cannot be true because the AI does not have enough hidden dice."
+      ? state.aiClaims
+        ? "Known false from your view: the AI cannot have enough hidden dice. Challenge is guaranteed here."
+        : "This would be a known-false claim from your view."
       : `The AI needs at least ${neededFromAi} of its ${state.aiDiceCount} hidden dice to show face ${claim.face}.`;
+  const policyNote = state.aiClaims && impossible
+    ? "This can happen because the AI does not see your dice before claiming, and the checked-in claimant policy is a baseline rather than solved play."
+    : "The AI still acts from the exported CFR-style policy; this guide avoids showing hidden-hand policy probabilities during play.";
 
   return `
     <span class="eyebrow">Decision guide</span>
@@ -329,7 +363,7 @@ function decisionGuideMarkup(): string {
       <div><dt>AI hidden dice</dt><dd>${state.aiDiceCount}</dd></div>
     </dl>
     <p class="${impossible ? "warning-note" : alreadyTrue ? "success-note" : ""}">${verdict}</p>
-    <p>The AI still acts from the exported CFR-style policy; this guide avoids showing hidden-hand policy probabilities during play.</p>
+    <p>${policyNote}</p>
   `;
 }
 
