@@ -286,28 +286,6 @@ select {
   align-content: center;
 }
 
-.quick-read {
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 24px;
-  padding-bottom: 18px;
-}
-
-.quick-read h2 {
-  font-size: clamp(1.55rem, 3vw, 2.25rem);
-  line-height: 1;
-  margin: 8px 0 14px;
-}
-
-.quick-read ol {
-  margin: 0 0 14px;
-  padding-left: 20px;
-}
-
-.quick-read li {
-  line-height: 1.45;
-  margin: 0 0 8px;
-}
-
 .strategy-panel > h2,
 .text-route h1 {
   font-size: clamp(2rem, 5vw, 4rem);
@@ -315,15 +293,14 @@ select {
   margin: 10px 0 18px;
 }
 
-.policy-list {
-  list-style: none;
+.decision-facts {
   padding: 0;
   margin: 24px 0;
   display: grid;
   gap: 10px;
 }
 
-.policy-list li,
+.decision-facts div,
 .log-list p {
   border-top: 1px solid var(--line);
   padding-top: 10px;
@@ -332,8 +309,37 @@ select {
   gap: 12px;
 }
 
+.decision-facts dt {
+  font-weight: 800;
+}
+
+.decision-facts dd {
+  margin: 0;
+  font-weight: 900;
+}
+
+.warning-note {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.success-note {
+  color: var(--teal);
+  font-weight: 800;
+}
+
 .log-list h3 {
   margin: 22px 0 0;
+}
+
+.mode-note {
+  border-top: 1px solid var(--line);
+  margin-top: 24px;
+  padding-top: 18px;
+}
+
+.mode-note h3 {
+  margin: 8px 0 12px;
 }
 
 .text-route {

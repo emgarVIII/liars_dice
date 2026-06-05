@@ -1,15 +1,12 @@
 import "./styles.css";
 import {
   claimLabel,
-  handKey,
   isFeasibleClaim,
-  normalizeDistribution,
   parseClaim,
   resolveRound,
   rollDice,
   sampleAiClaim,
-  sampleAiResponse,
-  topActions
+  sampleAiResponse
 } from "./game";
 import type { MetricsData, PolicyData, ResponseAction, RoundLog } from "./types";
 
@@ -206,19 +203,6 @@ function diceRow(hand: number[], hidden = false): string {
   return hand.map(dieMarkup).join("");
 }
 
-function topClaimPolicy(): string {
-  if (!state.policy || state.aiHand.length === 0) {
-    return "<p>Policy loading...</p>";
-  }
-  const distribution = state.policy.claim_policy[handKey(state.aiHand)] ?? {};
-  const feasible = Object.fromEntries(
-    Object.entries(distribution).filter(([claim]) => isFeasibleClaim(claim, state.aiDiceCount, state.userDiceCount))
-  );
-  return topActions(feasible).map(([claim, probability]) => {
-    return `<li><span>${claimLabel(claim)}</span><strong>${Math.round(probability * 100)}%</strong></li>`;
-  }).join("");
-}
-
 function gameMarkup(): string {
   if (state.loadingError) {
     return `<section class="error-band">Data load failed: ${state.loadingError}</section>`;
@@ -280,22 +264,7 @@ function gameMarkup(): string {
         }
       </div>
       <aside class="strategy-panel">
-        <div class="quick-read">
-          <span class="eyebrow">Mode</span>
-          <h2>CFR Challenge Abstraction</h2>
-          <p>This is the simplified game model used for the research demo, not the full table game.</p>
-          <ol>
-            <li>Each player sees only their own dice.</li>
-            <li>The claimant announces a quantity and face for the total table.</li>
-            <li>The responder chooses Believe or Challenge.</li>
-            <li>A correct responder makes the claimant lose a die. A wrong responder loses a die.</li>
-          </ol>
-          <p>Classic raise-and-call Liar's Dice is useful for comparison, but it is outside the validated solver shown here.</p>
-        </div>
-        <span class="eyebrow">Sampled CFR+ policy</span>
-        <h2>Strategy view</h2>
-        <p>For the AI's current hidden hand, these are the highest-probability feasible claims in the exported policy.</p>
-        <ol class="policy-list">${topClaimPolicy()}</ol>
+        ${decisionGuideMarkup()}
         <div class="log-list">
           <h3>Recent rounds</h3>
           ${
@@ -304,8 +273,63 @@ function gameMarkup(): string {
               : "<p>No completed rounds yet.</p>"
           }
         </div>
+        <div class="mode-note">
+          <span class="eyebrow">Mode</span>
+          <h3>CFR Challenge Abstraction</h3>
+          <p>This is the simplified game model used for the research demo, not the full table game.</p>
+          <p>Classic raise-and-call Liar's Dice is useful for comparison, but it is outside the validated solver shown here.</p>
+        </div>
       </aside>
     </section>
+  `;
+}
+
+function decisionGuideMarkup(): string {
+  if (!state.policy) {
+    return "";
+  }
+  if (state.aiDiceCount <= 0 || state.userDiceCount <= 0) {
+    return `
+      <span class="eyebrow">Decision guide</span>
+      <h2>Match complete</h2>
+      <p>Reset the match to roll a new hidden-information sequence.</p>
+    `;
+  }
+  if (state.lastLog) {
+    const claim = parseClaim(state.lastLog.claim);
+    const totalFaceCount = [...state.lastLog.aiDice, ...state.lastLog.userDice].filter((die) => die === claim.face).length;
+    return `
+      <span class="eyebrow">Decision guide</span>
+      <h2>Round revealed</h2>
+      <p>The claim needed ${claim.quantity} dice showing face ${claim.face}; the table had ${totalFaceCount}. The claim was ${state.lastLog.truth ? "true" : "false"}.</p>
+    `;
+  }
+  const claimKey = state.aiClaims && state.currentClaim
+    ? state.currentClaim
+    : `claim_${state.selectedQuantity}_${state.selectedFace}`;
+  const claim = parseClaim(claimKey);
+  const yourKnownCount = state.userHand.filter((die) => die === claim.face).length;
+  const neededFromAi = Math.max(0, claim.quantity - yourKnownCount);
+  const impossible = neededFromAi > state.aiDiceCount;
+  const alreadyTrue = neededFromAi === 0;
+  const stateLabel = state.aiClaims ? "AI claim" : "Your selected claim";
+  const verdict = alreadyTrue
+    ? "Your dice alone make this claim true."
+    : impossible
+      ? "This claim cannot be true because the AI does not have enough hidden dice."
+      : `The AI needs at least ${neededFromAi} of its ${state.aiDiceCount} hidden dice to show face ${claim.face}.`;
+
+  return `
+    <span class="eyebrow">Decision guide</span>
+    <h2>${state.aiClaims ? "What do you know?" : "Before you claim"}</h2>
+    <p>${stateLabel}: <strong>${claimLabel(claimKey)}</strong>.</p>
+    <dl class="decision-facts">
+      <div><dt>Your visible count</dt><dd>${yourKnownCount}</dd></div>
+      <div><dt>Needed from hidden AI dice</dt><dd>${neededFromAi}</dd></div>
+      <div><dt>AI hidden dice</dt><dd>${state.aiDiceCount}</dd></div>
+    </dl>
+    <p class="${impossible ? "warning-note" : alreadyTrue ? "success-note" : ""}">${verdict}</p>
+    <p>The AI still acts from the exported CFR-style policy; this guide avoids showing hidden-hand policy probabilities during play.</p>
   `;
 }
 
