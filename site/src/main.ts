@@ -385,6 +385,21 @@ function methodMarkup(): string {
         <div><strong>Why simplify</strong><p>The smaller game tree keeps CFR behavior explainable and makes policy validation practical for a static demo.</p></div>
         <div><strong>Export boundary</strong><p>Training stays in Python; the website loads frozen JSON artifacts.</p></div>
       </div>
+      <div class="section-block">
+        <span class="eyebrow">Terms learned and used</span>
+        <h2>Project vocabulary</h2>
+        <div class="detail-grid">
+          <section><strong>Imperfect information</strong><p>A player must act without seeing the full game state. Here, each player sees their own dice but not the opponent's dice.</p></section>
+          <section><strong>Information set</strong><p>The decision context available to a player: their private dice, the public claim, and the legal actions from that point.</p></section>
+          <section><strong>Policy or strategy</strong><p>A probability distribution over legal actions. The exported JSON stores claim and response probabilities for each modeled information set.</p></section>
+          <section><strong>Self-play</strong><p>Training by repeatedly simulating agents against versions of themselves so strategies adapt from generated experience.</p></section>
+          <section><strong>CFR / CFR+</strong><p>Counterfactual Regret Minimization updates action probabilities by tracking regret for not choosing alternative actions. CFR+ clips negative regret to stabilize learning.</p></section>
+          <section><strong>Nash equilibrium</strong><p>A strategy profile where no player can improve by changing strategy alone. This project does not prove the current policy is at equilibrium.</p></section>
+          <section><strong>Exploitability</strong><p>How much a best-response opponent can gain against a policy. Lower exploitability is stronger evidence than one win-rate table.</p></section>
+          <section><strong>Best response</strong><p>An opponent strategy chosen specifically to maximize payoff against the current policy.</p></section>
+          <section><strong>Abstraction</strong><p>A simplified version of a larger game. This project abstracts Liar's Dice into a one-claim challenge game to make learning and validation tractable.</p></section>
+        </div>
+      </div>
     </section>
   `;
 }
@@ -397,16 +412,62 @@ function resultsMarkup(): string {
     const pct = Math.round(result.ai_win_rate * 1000) / 10;
     return `<tr><td>${name.replace(/_/g, " ")}</td><td>${result.matches}</td><td>${pct}%</td></tr>`;
   }).join("");
+  const opponentDetails = [
+    {
+      name: "random claim / random response",
+      result: state.metrics.scenarios.random_claim_random_response,
+      opponent: "Opponent samples a feasible claim at random, then randomly believes or challenges.",
+      meaning: "A weak noise baseline. Winning here only shows the policy is not completely broken."
+    },
+    {
+      name: "random claim / skeptical response",
+      result: state.metrics.scenarios.random_claim_skeptical_response,
+      opponent: "Opponent claims randomly but challenges most AI claims.",
+      meaning: "Tests whether the AI overclaims. The current policy performs poorly here, so it is exploitable."
+    },
+    {
+      name: "random claim / threshold response",
+      result: state.metrics.scenarios.random_claim_threshold_response,
+      opponent: "Opponent claims randomly and challenges claims above a simple quantity threshold.",
+      meaning: "A simple rule-based skeptic. Losing here is evidence the claimant policy is not strong."
+    },
+    {
+      name: "truth-biased claim / threshold response",
+      result: state.metrics.scenarios.truth_biased_claim_threshold_response,
+      opponent: "Opponent tends to claim faces from its own hand and uses the threshold response rule.",
+      meaning: "A slightly more structured baseline. The AI still does not beat it consistently."
+    }
+  ];
+  const opponentCards = opponentDetails.map((detail) => {
+    const pct = Math.round(detail.result.ai_win_rate * 1000) / 10;
+    return `
+      <section>
+        <strong>${detail.name}</strong>
+        <p>${detail.opponent}</p>
+        <p><span class="metric">${pct}% AI win rate.</span> ${detail.meaning}</p>
+      </section>
+    `;
+  }).join("");
   return `
     <section class="text-route">
       <span class="eyebrow">Results</span>
       <h1>Abstraction metrics, not classic-game claims</h1>
       <p>The current policy is a first cleaned baseline for the one-claim challenge abstraction. It performs close to even against broad random behavior and loses to simple threshold response rules, which is exactly the limitation the report discusses.</p>
+      <div class="explain-panel">
+        <span class="eyebrow">Equilibrium status</span>
+        <h2>Not proven at equilibrium</h2>
+        <p>These percentages are empirical win rates against benchmark opponents, not proof of Nash equilibrium. A policy near 50% can be good if it is playing another strong equilibrium policy, but this table mostly tests simple random and rule-based opponents. The current policy should be read as a baseline artifact, not solved play.</p>
+      </div>
       <table class="metrics-table">
         <thead><tr><th>Opponent profile</th><th>Matches</th><th>AI win rate</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
       <p class="note">Generated with seed ${state.metrics.metadata.seed}, ${state.metrics.metadata.matches_per_scenario} matches per scenario.</p>
+      <div class="section-block">
+        <span class="eyebrow">Opponents</span>
+        <h2>What the win rates are against</h2>
+        <div class="detail-grid">${opponentCards}</div>
+      </div>
       <div class="status-grid">
         <section>
           <span class="eyebrow">Policy status</span>
