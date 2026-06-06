@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "final-report",
+    "title": "Multi-Agent Learning and Imperfect Information Games",
+    "role": "Polished public final report",
+    "pdf": "final-report.pdf",
+    "latex": "final-report/final-report.tex"
+  },
+  {
+    "slug": "applied-focus",
+    "title": "Applied Focus: Imperfect-Information AI Systems",
+    "role": "Polished public applied-focus paper",
+    "pdf": "applied-focus.pdf",
+    "latex": "applied-focus/applied-focus.tex"
+  },
+  {
+    "slug": "research-notebook",
+    "title": "Research Notebook: Multi-Agent Learning and Liar's Dice",
+    "role": "Polished public research notebook",
+    "pdf": "research-notebook.pdf",
+    "latex": "research-notebook/research-notebook.tex"
+  }
+]

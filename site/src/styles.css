@@ -43,6 +43,18 @@ button {
   transition: transform 160ms ease, background 160ms ease, color 160ms ease;
 }
 
+.secondary-button {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.secondary-button:hover {
+  color: var(--accent);
+  background: var(--surface);
+  border-color: var(--accent);
+}
+
 a {
   color: var(--ink);
   text-decoration-color: var(--accent);
@@ -170,6 +182,13 @@ main {
   line-height: 1.55;
 }
 
+.intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
 .profile-links {
   display: flex;
   flex-wrap: wrap;
@@ -200,6 +219,30 @@ main {
   padding: 8px 10px;
 }
 
+.research-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.research-pillars div {
+  background: rgba(255, 254, 250, 0.94);
+  padding: 18px;
+}
+
+.research-pillars strong {
+  display: block;
+  margin: 8px 0;
+  font-size: 1.08rem;
+}
+
+.research-pillars p {
+  margin: 0;
+  line-height: 1.55;
+}
+
 .rules-strip {
   display: flex;
   align-items: center;
@@ -213,6 +256,48 @@ main {
 
 .rules-strip p {
   margin: 0;
+}
+
+.abstraction-panel {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.25fr);
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.abstraction-panel > div {
+  background: rgba(255, 254, 250, 0.94);
+  padding: 18px;
+}
+
+.abstraction-panel h2 {
+  margin: 8px 0 10px;
+  font-size: clamp(1.45rem, 2.5vw, 2.2rem);
+  line-height: 1.05;
+}
+
+.abstraction-panel p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line) !important;
+  padding: 0 !important;
+}
+
+.comparison-grid section {
+  background: var(--surface);
+  padding: 18px;
+}
+
+.comparison-grid strong {
+  display: block;
+  margin-bottom: 8px;
 }
 
 .table-surface {
@@ -402,6 +487,20 @@ select {
   line-height: 1.6;
 }
 
+.scope-banner {
+  display: grid;
+  gap: 6px;
+  max-width: 780px;
+  margin: 0 0 24px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 16px;
+}
+
+.scope-banner strong {
+  color: var(--accent);
+}
+
 .classic-board {
   display: grid;
   gap: 18px;
@@ -497,6 +596,38 @@ select {
   font-weight: 900;
 }
 
+.case-study-flow {
+  display: grid;
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+  margin-top: 30px;
+}
+
+.case-study-flow section {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 18px;
+  background: var(--surface);
+  padding: 20px;
+}
+
+.case-study-flow span {
+  color: var(--accent);
+  font-weight: 900;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.case-study-flow strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.case-study-flow p {
+  margin: 0;
+}
+
 .section-block {
   margin-top: 42px;
 }
@@ -520,6 +651,25 @@ select {
   margin: 8px 0 10px;
   font-size: clamp(2rem, 5vw, 4rem);
   line-height: 0.95;
+}
+
+.plain-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+  margin-top: 28px;
+}
+
+.plain-metric-grid section {
+  background: var(--surface);
+  padding: 22px;
+}
+
+.plain-metric-grid strong {
+  display: block;
+  margin-bottom: 10px;
 }
 
 .section-block > h2,
@@ -601,20 +751,43 @@ select {
 
 .paper-list {
   display: grid;
-  gap: 12px;
-  max-width: 520px;
+  gap: 14px;
   margin-top: 28px;
 }
 
-.paper-list div {
+.paper-card {
   display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: center;
-  gap: 10px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(180px, 0.65fr) minmax(180px, 0.65fr);
+  gap: 14px;
   color: var(--ink);
   border: 1px solid var(--line);
   background: var(--surface);
-  padding: 16px;
+  padding: 18px;
+}
+
+.paper-card p {
+  margin: 8px 0 0;
+}
+
+.paper-download-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 8px;
+  border-left: 1px solid var(--line);
+  padding-left: 14px;
+}
+
+.paper-download-group span {
+  grid-column: 1 / -1;
+  color: #5f594d;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.featured-download span {
+  color: var(--teal);
 }
 
 .paper-list a {
@@ -622,7 +795,8 @@ select {
   text-decoration: none;
   font-weight: 800;
   border: 1px solid var(--line);
-  padding: 8px 9px;
+  padding: 9px;
+  text-align: center;
 }
 
 .paper-list a:hover {
@@ -690,8 +864,22 @@ select {
   }
 
   .project-intro,
+  .research-pillars,
+  .abstraction-panel,
   .result-hero {
     grid-template-columns: 1fr;
+  }
+
+  .comparison-grid,
+  .plain-metric-grid,
+  .paper-card {
+    grid-template-columns: 1fr;
+  }
+
+  .paper-download-group {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 14px 0 0;
   }
 
   .status-grid {
@@ -705,6 +893,7 @@ select {
   }
 
   .profile-links,
+  .intro-actions,
   .claim-controls,
   .decision-row {
     align-items: stretch;
@@ -719,6 +908,7 @@ select {
 
   .nav-link,
   .profile-links a,
+  .intro-actions button,
   .claim-controls button,
   .decision-row button {
     width: 100%;
@@ -744,6 +934,11 @@ select {
 
   .die {
     width: 38px;
+  }
+
+  .case-study-flow section {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
 

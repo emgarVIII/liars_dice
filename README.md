@@ -6,7 +6,7 @@ AI/ML portfolio project by Mauricio Garcia Villanueva.
 - LinkedIn: https://www.linkedin.com/in/emgar/
 - GitHub: https://github.com/emgarVIII
 
-This project turns a university research prototype into a public imperfect-information game-solving artifact. It combines an offline Python research engine, sampled CFR+ style self-play, benchmark and best-response-style evaluation, a static TypeScript demo, and a curated paper archive.
+This project turns a university research prototype into a public imperfect-information game-solving artifact. It combines an offline Python research engine, sampled CFR+ style self-play, benchmark and best-response-style evaluation, a static TypeScript demo, original course papers, and polished public paper editions.
 
 ## What It Shows
 
@@ -17,7 +17,7 @@ This project turns a university research prototype into a public imperfect-infor
 - Explaining limitations honestly instead of claiming a solved Nash equilibrium.
 - Shipping the demo as a static GitHub Pages site with no backend.
 
-The main playable mode is a simplified one-claim challenge abstraction. The `/classic` route is a playable raise/challenge comparison using a heuristic AI, not a CFR-solved classic Liar's Dice agent.
+The main playable mode is a simplified one-claim challenge abstraction. The `/classic` route is a playable raise/challenge comparison using a heuristic AI, not a CFR-trained agent for the classic game.
 
 ## Current Results
 
@@ -41,7 +41,8 @@ Important caveat: exact one-round best-response pressure is still high. The proj
 ├── artifacts/game.json        # Canonical game metadata export
 ├── site/                      # Static Vite + TypeScript website
 ├── site/public/data/          # Policy and metrics artifacts loaded by the browser
-├── docs/archive/              # PDFs and LaTeX exports for the paper archive
+├── docs/archive/              # Original course-paper PDFs and LaTeX exports
+├── docs/polished/             # Public paper editions plus generated PDFs/LaTeX
 ├── rules.md                   # Simplified and classic comparison rules
 ├── PORTFOLIO.md               # Resume bullets, LinkedIn draft, interview notes
 └── pyproject.toml
@@ -88,13 +89,14 @@ Routes:
 
 ## Paper Archive
 
-The three university course documents are preserved as displayable PDFs and LaTeX sources.
+The three university course documents are preserved as original course artifacts. The site also exposes polished public editions that preserve the voice and trajectory while cleaning structure, formatting, and claim discipline.
 
 ```bash
 python3 scripts/build_paper_archive.py
+python3 scripts/build_polished_papers.py
 ```
 
-The archive is intentionally labeled as original course material. The website, tests, and exported metrics are the source of truth for the current public portfolio version.
+The archive is intentionally labeled as original course material. The polished editions are the recommended public downloads for recruiters and technical reviewers. The website, tests, and exported metrics are the source of truth for the current public portfolio version.
 
 ## Engineering Framing
 
