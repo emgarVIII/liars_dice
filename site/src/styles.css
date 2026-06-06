@@ -757,7 +757,7 @@ select {
 
 .paper-card {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(180px, 0.65fr) minmax(180px, 0.65fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.65fr);
   gap: 14px;
   color: var(--ink);
   border: 1px solid var(--line);

@@ -6,7 +6,7 @@ AI/ML portfolio project by Mauricio Garcia Villanueva.
 - LinkedIn: https://www.linkedin.com/in/emgar/
 - GitHub: https://github.com/emgarVIII
 
-This project turns a university research prototype into a public imperfect-information game-solving artifact. It combines an offline Python research engine, sampled CFR+ self-play, benchmark and best-response-style evaluation, a static TypeScript demo, original course papers, and polished public paper editions.
+This project turns a university research prototype into a public imperfect-information game-solving artifact. It combines an offline Python research engine, sampled CFR+ self-play, benchmark and best-response-style evaluation, a static TypeScript demo, and the original course-paper archive.
 
 ## What It Shows
 
@@ -42,7 +42,6 @@ Important caveat: exact one-round best-response pressure is still high. The proj
 ├── site/                      # Static Vite + TypeScript website
 ├── site/public/data/          # Policy and metrics artifacts loaded by the browser
 ├── docs/archive/              # Original course-paper PDFs and LaTeX exports
-├── docs/polished/             # Public paper editions plus generated PDFs/LaTeX
 ├── rules.md                   # Simplified and classic comparison rules
 ├── PORTFOLIO.md               # Resume bullets, LinkedIn draft, interview notes
 └── pyproject.toml
@@ -89,14 +88,13 @@ Routes:
 
 ## Paper Archive
 
-The three university course documents are preserved as original course artifacts. The site also exposes polished public editions that preserve the voice and trajectory while cleaning structure, formatting, and claim discipline.
+The three university course documents are preserved as original course artifacts. They are the source of truth for the original research structure, math, figures, implementation details, and project trajectory.
 
 ```bash
 python3 scripts/build_paper_archive.py
-python3 scripts/build_polished_papers.py
 ```
 
-The archive is intentionally labeled as original course material. The polished editions are the recommended public downloads for recruiters and technical reviewers. The website, tests, and exported metrics are the source of truth for the current public portfolio version.
+Public revised editions are paused until they can be rebuilt from the original DOCX files with the structure, math, figures, and formatting preserved. The website, tests, and exported metrics are the source of truth for the current public portfolio version.
 
 ## Engineering Framing
 

@@ -938,37 +938,31 @@ function papersMarkup(): string {
   return `
     <section class="text-route">
       <span class="eyebrow">Papers</span>
-      <h1>Research papers and polished public editions</h1>
-      <p>The archive keeps the original university deliverables intact for history. The polished public editions clean up structure, formatting, and claims so they match the validated portfolio demo.</p>
+      <h1>Research papers</h1>
+      <p>The archive keeps the original university deliverables intact. These are the primary paper downloads while the public revised editions are rebuilt from the original DOCX files.</p>
       <div class="explain-panel">
         <span class="eyebrow">How to read these</span>
-        <h2>Originals preserved, public editions cleaned</h2>
-        <p>The original papers are kept as course-document history. The public editions preserve my voice and trajectory while correcting overclaims around equilibrium, exploitability, and full classic Liar's Dice. For the current portfolio version, the website, README, tests, and metrics are the source of truth.</p>
+        <h2>Originals are the source of truth</h2>
+        <p>The previous polished drafts were too compressed, so they are no longer linked here. A stronger public revision should preserve the original structure, math, figures, and implementation detail, then make careful local edits for clarity and claim discipline. For the current portfolio version, the website, README, tests, and metrics are the source of truth.</p>
       </div>
       <div class="paper-list">
         ${paperCardMarkup(
           "Final report",
-          "Primary public paper. Best single download for a recruiter or technical reviewer.",
+          "Primary course paper and best source for the original research structure, math, and implementation detail.",
           "paper-assets/final-report.pdf",
-          "paper-assets/final-report/final-report.tex",
-          "paper-assets/polished/final-report.pdf",
-          "paper-assets/polished/final-report/final-report.tex"
+          "paper-assets/final-report/final-report.tex"
         )}
         ${paperCardMarkup(
           "Applied focus deliverable",
           "Supporting background on imperfect-information games, multi-agent learning, and game-solving systems.",
           "paper-assets/applied-focus.pdf",
-          "paper-assets/applied-focus/applied-focus.tex",
-          "paper-assets/polished/applied-focus.pdf",
-          "paper-assets/polished/applied-focus/applied-focus.tex"
+          "paper-assets/applied-focus/applied-focus.tex"
         )}
         ${paperCardMarkup(
           "Research notebook",
-          "Cleaned planning log that shows how the research question narrowed into the public demo.",
+          "Planning and research notes that show how the project direction developed.",
           "paper-assets/research-notebook.pdf",
-          "paper-assets/research-notebook/research-notebook.tex",
-          "paper-assets/polished/research-notebook.pdf",
-          "paper-assets/polished/research-notebook/research-notebook.tex"
+          "paper-assets/research-notebook/research-notebook.tex"
         )}
       </div>
       <div class="archive-footer">
@@ -983,9 +977,7 @@ function paperCardMarkup(
   title: string,
   description: string,
   originalPdf: string,
-  originalLatex: string,
-  polishedPdf: string,
-  polishedLatex: string
+  originalLatex: string
 ): string {
   return `
     <section class="paper-card">
@@ -997,11 +989,6 @@ function paperCardMarkup(
         <span>Original course artifact</span>
         <a href="${baseUrl}${originalPdf}">PDF</a>
         <a href="${baseUrl}${originalLatex}">LaTeX</a>
-      </div>
-      <div class="paper-download-group featured-download">
-        <span>Polished public edition</span>
-        <a href="${baseUrl}${polishedPdf}">PDF</a>
-        <a href="${baseUrl}${polishedLatex}">LaTeX</a>
       </div>
     </section>
   `;

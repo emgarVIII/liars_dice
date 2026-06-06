@@ -2,7 +2,7 @@
 
 This archive contains display-ready versions of the three course documents that supported the Liar's Dice CFR project.
 
-These documents are preserved as original course artifacts. Polished public editions live in `docs/polished` and are exposed on the website beside the originals. The live website, README, tests, and exported metrics are the source of truth for the current public portfolio version and use more conservative wording around equilibrium claims.
+These documents are preserved as original course artifacts. Public revised editions are paused until they can be rebuilt from the original DOCX files while preserving the original structure, math, figures, and formatting. The live website, README, tests, and exported metrics are the source of truth for the current public portfolio version and use more conservative wording around equilibrium claims.
 
 ## Public Ordering
 
