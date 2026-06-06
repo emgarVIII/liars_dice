@@ -1,7 +1,7 @@
 [project]
 name = "liarsdice-ai"
 version = "0.1.0"
-description = "An imperfect-information Liar's Dice research demo with CFR-style training, evaluation, and static portfolio site."
+description = "An imperfect-information Liar's Dice research demo with sampled CFR+ training, evaluation, and static portfolio site."
 requires-python = ">=3.9"
 dependencies = []
 

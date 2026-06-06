@@ -13,9 +13,9 @@ This project started as a university research project about multi-agent learning
 
 The public version of the project is intentionally honest about scope. It is not a full solver for classic Liar's Dice. Instead, it is a simplified one-claim challenge abstraction. One player makes a claim about the total dice on the table, and the other player chooses whether to believe or challenge that claim. That smaller game still captures the central learning problem: each player must act with incomplete state information, because their opponent's dice are hidden.
 
-The final artifact is an end-to-end research engineering demo. Python code trains a CFR-style policy offline, exports normalized policy JSON and metrics JSON, and a TypeScript website loads those artifacts as a static GitHub Pages demo. The result is a playable interface, a benchmark suite, best-response-style diagnostics, and a paper archive.
+The final artifact is an end-to-end research engineering demo. Python code trains a sampled CFR+ policy offline, exports normalized policy JSON and metrics JSON, and a TypeScript website loads those artifacts as a static GitHub Pages demo. The result is a playable interface, a benchmark suite, best-response-style diagnostics, and a paper archive.
 
-The main lesson was not that the AI is solved or perfect. The strongest lesson was that evaluation matters. A count-aware policy improved benchmark average win rate from 45.3 percent to 73.0 percent across seeded opponent profiles, but best-response pressure still showed exploitable behavior. That tension is the core story of the project: train the policy, measure the improvement, then state the limitation instead of hiding it.
+The main lesson was not that the AI is solved or perfect. The strongest lesson was that evaluation matters. A policy that conditions on remaining dice counts and private dice improved benchmark average win rate from 45.3 percent to 73.0 percent across seeded opponent profiles, but best-response pressure still showed exploitable behavior. That tension is the core story of the project: train the policy, measure the improvement, then state the limitation instead of hiding it.
 
 ## Research Question
 
@@ -53,7 +53,7 @@ If the claim is true and the responder believes it, the claimant succeeds. If th
 
 This abstraction removes the bid ladder, repeated raising, multiplayer turn order, and wild-face variants. That tradeoff is deliberate. It keeps the part I wanted to study, hidden information and adversarial response selection, while removing enough complexity to make the project reproducible on a local machine.
 
-The website labels this clearly because it is easy to confuse the demo with classic Liar's Dice. The classic route exists for comparison, but it uses a heuristic AI and is not the source of the CFR-style policy or benchmark claims.
+The website labels this clearly because it is easy to confuse the demo with classic Liar's Dice. The classic route exists for comparison, but it uses a heuristic AI and is not the source of the sampled CFR+ policy or benchmark claims.
 
 ## Information Sets and Policies
 
@@ -68,7 +68,7 @@ In this project, an information set includes:
 
 The policy is a probability distribution over legal actions for each information set. The claimant policy assigns probabilities to possible claims. The responder policy assigns probabilities to `believe` and `challenge`.
 
-An early baseline used a weaker policy key that was too dependent on the private hand alone. The published policy is count-aware. It conditions on both public dice counts and private dice, which matters because a claim that is reasonable with ten total dice can be impossible or reckless later in the match.
+An early baseline used a weaker policy key that was too dependent on the private hand alone. The published policy is remaining-dice-aware. It conditions on both public dice counts and private dice, which matters because a claim that is reasonable with ten total dice can be impossible or reckless later in the match.
 
 ## Training Pipeline
 
@@ -78,19 +78,19 @@ The pipeline is:
 
 1. Define the simplified rules and legal actions.
 2. Generate sampled game states.
-3. Train CFR-style claim and response policies through self-play.
+3. Train sampled CFR+ claim and response policies through self-play.
 4. Normalize and export the policy as JSON.
 5. Run deterministic benchmark simulations.
 6. Export metrics as JSON.
 7. Load those frozen artifacts in the TypeScript website.
 
-CFR-style training is useful here because it updates strategies by tracking regret. In simple terms, the algorithm repeatedly asks: if I had chosen another legal action in this information set, would I have done better? Actions with positive regret receive more probability over time. CFR+ style regret clipping helps stabilize learning by keeping negative regret from dragging future updates.
+Sampled CFR+ training is useful here because it updates strategies by tracking regret. In simple terms, the algorithm repeatedly asks: if I had chosen another legal action in this information set, would I have done better? Actions with positive regret receive more probability over time. CFR+ regret clipping helps stabilize learning by keeping negative regret from dragging future updates.
 
-I use the phrase CFR-style carefully. The current project is an applied, simplified implementation around a tractable abstraction. It is inspired by the game-solving methods used in larger imperfect-information systems, but the current artifact does not prove a full Nash equilibrium for Liar's Dice.
+I describe the implementation as sampled CFR+ carefully. The current project is an applied, simplified implementation around a tractable abstraction. It is inspired by the game-solving methods used in larger imperfect-information systems, but the current artifact does not prove a full Nash equilibrium for Liar's Dice.
 
 ## Evaluation
 
-The most important public improvement was adding evaluation instead of only showing a policy. The selected count-aware policy was trained for 200,000 sampled CFR+ style iterations and compared against the earlier baseline.
+The most important public improvement was adding evaluation instead of only showing a policy. The selected remaining-dice-aware policy was trained for 200,000 sampled CFR+ iterations and compared against the earlier baseline.
 
 The benchmark suite includes:
 
@@ -125,7 +125,7 @@ The project does not prove that the policy is a Nash equilibrium.
 
 It does not solve full classic Liar's Dice.
 
-It does not show that CFR-style learning alone is enough to exploit every weak opponent.
+It does not show that sampled CFR+ learning alone is enough to exploit every weak opponent.
 
 It does not remove the need for stronger exploitability minimization, broader game trees, or more formal convergence analysis.
 

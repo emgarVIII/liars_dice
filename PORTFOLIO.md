@@ -10,8 +10,8 @@ LinkedIn: https://www.linkedin.com/in/emgar/
 
 Use one to three, depending on space.
 
-- Built an end-to-end imperfect-information game-solving lab for a simplified Liar's Dice variant, combining Python CFR-style self-play, deterministic evaluation, TypeScript visualization, and GitHub Pages deployment.
-- Implemented a count-aware sampled CFR+ policy pipeline that exports normalized JSON artifacts for a static browser demo, improving benchmark average win rate from 45.3% to 73.0% across seeded opponent profiles.
+- Built an end-to-end imperfect-information game-solving lab for a simplified Liar's Dice variant, combining Python sampled CFR+ self-play, deterministic evaluation, TypeScript visualization, and GitHub Pages deployment.
+- Implemented a sampled CFR+ policy pipeline that conditions on remaining dice counts and private dice, exports normalized JSON artifacts for a static browser demo, and improves benchmark average win rate from 45.3% to 73.0% across seeded opponent profiles.
 - Added best-response-style diagnostics to stress test policy robustness, surfacing exploitability tradeoffs rather than overstating equilibrium claims.
 - Designed a playable educational interface that contrasts a validated one-claim CFR abstraction with a separate classic raise/challenge Liar's Dice comparison mode.
 - Curated original university research papers into a public archive while aligning the live demo, README, tests, and metrics around verified claims.
@@ -20,12 +20,12 @@ Use one to three, depending on space.
 
 I turned one of my university research projects into a public portfolio artifact:
 
-Liar's Dice CFR Lab, an imperfect-information game-solving demo built around self-play, CFR-style regret minimization, benchmark evaluation, and a playable TypeScript site.
+Liar's Dice CFR Lab, an imperfect-information game-solving demo built around self-play, sampled CFR+ regret minimization, benchmark evaluation, and a playable TypeScript site.
 
 What I focused on:
 
 - modeling hidden information through private dice and public claims,
-- training count-aware policies offline in Python,
+- training sampled CFR+ policies offline in Python,
 - exporting static policy and metrics JSON for GitHub Pages,
 - adding benchmark and best-response-style evaluation,
 - making the demo educational without overstating the results.
@@ -40,7 +40,7 @@ Code: https://github.com/emgarVIII/liars_dice
 - The project is about imperfect-information decisioning: each player sees private dice and must act under uncertainty.
 - I intentionally separated Python research code from the static website. Python trains and evaluates, the browser only loads frozen artifacts.
 - The current policy is not claimed to be Nash equilibrium. I added exact one-round best-response diagnostics to avoid overselling.
-- The count-aware policy improves benchmark play because it no longer reuses a fixed five-dice policy as dice counts change.
+- The remaining-dice-aware policy improves benchmark play because it no longer reuses a fixed five-dice policy as dice counts change.
 - The classic mode is included for education and comparison. It is heuristic, not CFR-solved.
 - The project maps well to AI/ML and quant-style thinking because it combines hidden state, adversarial incentives, probabilistic policies, and stress testing.
 

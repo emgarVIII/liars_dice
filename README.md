@@ -6,12 +6,12 @@ AI/ML portfolio project by Mauricio Garcia Villanueva.
 - LinkedIn: https://www.linkedin.com/in/emgar/
 - GitHub: https://github.com/emgarVIII
 
-This project turns a university research prototype into a public imperfect-information game-solving artifact. It combines an offline Python research engine, sampled CFR+ style self-play, benchmark and best-response-style evaluation, a static TypeScript demo, original course papers, and polished public paper editions.
+This project turns a university research prototype into a public imperfect-information game-solving artifact. It combines an offline Python research engine, sampled CFR+ self-play, benchmark and best-response-style evaluation, a static TypeScript demo, original course papers, and polished public paper editions.
 
 ## What It Shows
 
 - Modeling hidden information through private dice and public claims.
-- Training count-aware policies with sampled CFR+ style regret matching.
+- Training sampled CFR+ policies that condition on remaining dice counts and private dice.
 - Exporting reproducible `policy.json` and `metrics.json` artifacts.
 - Evaluating policies against fixed benchmark opponents and exact one-round best-response diagnostics.
 - Explaining limitations honestly instead of claiming a solved Nash equilibrium.
@@ -21,7 +21,7 @@ The main playable mode is a simplified one-claim challenge abstraction. The `/cl
 
 ## Current Results
 
-The published policy was trained for 200,000 sampled CFR+ iterations with public dice-count context included in the information-set key.
+The published policy was trained for 200,000 sampled CFR+ iterations. Its information-set key includes public remaining dice counts plus the player's private dice, so the policy can change as the match state changes.
 
 | Opponent profile | AI win rate |
 | --- | ---: |

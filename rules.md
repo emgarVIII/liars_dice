@@ -2,10 +2,10 @@
 
 This repository contains two related games:
 
-1. A simplified one-claim challenge abstraction used by the CFR-style research pipeline.
+1. A simplified one-claim challenge abstraction used by the sampled CFR+ research pipeline.
 2. A playable classic raise/challenge comparison mode used for education and scope clarity.
 
-Only the simplified one-claim challenge abstraction is tied to the exported CFR-style policy.
+Only the simplified one-claim challenge abstraction is tied to the exported sampled CFR+ policy.
 
 ## Simplified CFR Challenge Game
 
@@ -32,12 +32,12 @@ This creates a compact binary hidden-information decision problem. The claimant 
 
 ### Policy Scope
 
-The current public policy is count-aware:
+The current public policy is remaining-dice-aware. In plain terms, it uses the public dice counts and the player's private dice instead of making decisions from private dice alone:
 
 - Claim information set: claimant dice count, responder dice count, claimant private hand.
 - Response information set: responder dice count, claimant dice count, responder private hand, public claim.
 
-The policy is trained offline with sampled CFR+ style regret matching and exported to `site/public/data/policy.json`.
+The policy is trained offline with sampled CFR+ regret matching and exported to `site/public/data/policy.json`.
 
 ## Classic Raise/Challenge Comparison
 

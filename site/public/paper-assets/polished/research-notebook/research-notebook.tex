@@ -84,7 +84,7 @@ The main arc is:
 \item
   Start with imperfect-information games and multi-agent learning.
 \item
-  Study poker AI and CFR-style algorithms.
+  Study poker AI and CFR algorithms.
 \item
   Try to apply those ideas to Liar's Dice.
 \item
@@ -133,7 +133,7 @@ The second concept was Nash equilibrium. A Nash equilibrium is a stable
 set of strategies where no player can improve by changing strategy
 alone. I originally treated equilibrium as a stronger and more automatic
 claim than I should have. The public version of the project is more
-careful. It talks about CFR-style training and best-response
+careful. It talks about sampled CFR+ training and best-response
 diagnostics, but it does not claim that the published policy is proven
 to be at equilibrium.
 
@@ -211,10 +211,10 @@ An early weakness was that the policy did not condition strongly enough
 on changing dice counts. A strategy that makes sense at five dice each
 may not make sense later in the match when one side has fewer dice.
 
-The updated public policy is count-aware. Its keys include public dice
-counts and private hands. That improved benchmark performance because
-the policy could adapt to match state instead of reusing a fixed
-starting-state strategy.
+The updated public policy is remaining-dice-aware. Its keys include
+public dice counts and private hands. That improved benchmark
+performance because the policy could adapt to match state instead of
+reusing a fixed starting-state strategy.
 
 This was an important engineering lesson: the representation of state is
 not just a detail. It directly controls what the policy can learn.

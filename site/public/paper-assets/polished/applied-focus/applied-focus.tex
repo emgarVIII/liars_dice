@@ -130,7 +130,7 @@ designing a decision system inside an adversarial environment.
 
 Nash equilibrium is a strategy profile where no player can improve by
 unilaterally changing strategy. It is a central concept in game theory,
-but it is also easy to overclaim. A project can use CFR-style methods
+but it is also easy to overclaim. A project can use sampled CFR+ methods
 without proving that the final policy is a Nash equilibrium.
 
 Minimax reasoning is another core idea. In zero-sum settings, each
@@ -146,7 +146,7 @@ alternative actions that could have been taken at the same information
 set. Over time, regret minimization can produce strong average
 strategies in the right settings.
 
-The public demo uses CFR-style training on a simplified game
+The public demo uses sampled CFR+ training on a simplified game
 abstraction. That wording is intentional. The current artifact
 demonstrates the pipeline and measured behavior, but it does not claim a
 formal equilibrium proof.
@@ -232,9 +232,10 @@ visible.
 Lesson}\label{evaluation-as-the-main-applied-lesson}
 
 The strongest part of the public project is the evaluation story. The
-updated count-aware policy improved benchmark average win rate from 45.3
-percent to 73.0 percent across seeded opponent profiles. That is useful
-evidence that the policy became better against the benchmark suite.
+updated policy conditions on remaining dice counts and private dice,
+improving benchmark average win rate from 45.3 percent to 73.0 percent
+across seeded opponent profiles. That is useful evidence that the policy
+became better against the benchmark suite.
 
 But benchmark success is not the same as robustness. The
 best-response-style diagnostic still found exploitable pressure,
@@ -252,9 +253,9 @@ The right way to describe the project is:
 
 This is an end-to-end imperfect-information game-solving lab built
 around a simplified Liar's Dice challenge game. It includes Python
-CFR-style self-play, policy export, deterministic evaluation, a playable
-TypeScript demo, a classic rules comparison, and a curated paper
-archive.
+sampled CFR+ self-play, policy export, deterministic evaluation, a
+playable TypeScript demo, a classic rules comparison, and a curated
+paper archive.
 
 The wrong way to describe it would be to present it as a classic-game
 solver.
@@ -274,7 +275,7 @@ under hidden state.
 Multi-agent learning is useful because the opponent is part of the
 environment.
 
-CFR-style training is useful because regret minimization gives a
+Sampled CFR+ training is useful because regret minimization gives a
 principled way to update policies over repeated self-play.
 
 Evaluation is necessary because benchmark win rates can hide

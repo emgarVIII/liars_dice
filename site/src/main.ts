@@ -415,8 +415,8 @@ function profileLinksMarkup(): string {
 
 function projectIntroMarkup(): string {
   const policySchema = state.policy?.metadata.key_schema === "public_dice_counts_and_private_hand_v2"
-    ? "count-aware CFR-style policy"
-    : "baseline CFR-style policy";
+    ? "sampled CFR+ policy that conditions on remaining dice counts and private dice"
+    : "baseline sampled CFR+ policy";
   return `
     <section class="project-intro" aria-label="Portfolio project summary">
       <div>
@@ -452,7 +452,7 @@ function researchPillarsMarkup(): string {
       <div>
         <span class="eyebrow">What I built</span>
         <strong>Train, export, evaluate, deploy</strong>
-        <p>The Python pipeline trains CFR-style policies and benchmarks them. The browser loads frozen JSON artifacts for a reproducible static demo.</p>
+        <p>The Python pipeline trains sampled CFR+ policies and benchmarks them. The browser loads frozen JSON artifacts for a reproducible static demo.</p>
       </div>
       <div>
         <span class="eyebrow">Why it matters</span>
@@ -474,7 +474,7 @@ function abstractionComparisonMarkup(): string {
       <div class="comparison-grid">
         <section>
           <strong>Main demo</strong>
-          <p>One claim, one response, hidden dice, CFR-style policy, benchmark results, and best-response diagnostics.</p>
+          <p>One claim, one response, hidden dice, sampled CFR+ policy, benchmark results, and best-response diagnostics.</p>
         </section>
         <section>
           <strong>Classic comparison</strong>
@@ -612,7 +612,7 @@ function classicMarkup(): string {
       <div class="classic-main">
         <span class="eyebrow">Playable comparison, not the research solver</span>
         <h1>Classic raise and challenge mode</h1>
-        <p>This route shows the familiar bid ladder: players keep raising until someone challenges. It exists to make the abstraction easier to understand. The AI here is heuristic, so the CFR-style training and benchmark claims from the main demo do not apply to this mode.</p>
+        <p>This route shows the familiar bid ladder: players keep raising until someone challenges. It exists to make the abstraction easier to understand. The AI here is heuristic, so the sampled CFR+ training and benchmark claims from the main demo do not apply to this mode.</p>
         <div class="scope-banner">
           <strong>Educational comparison only.</strong>
           <span>Main research mode: one claim, one response, hidden dice. Classic mode: repeated raises until a challenge.</span>
@@ -710,7 +710,7 @@ function decisionGuideMarkup(): string {
       : `The AI needs at least ${neededFromAi} of its ${state.aiDiceCount} hidden dice to show face ${claim.face}.`;
   const policyNote = state.aiClaims && impossible
     ? "This can happen because the AI does not see your dice before claiming, and the checked-in claimant policy is a baseline rather than solved play."
-    : "The AI still acts from the exported CFR-style policy; this guide avoids showing hidden-hand policy probabilities during play.";
+    : "The AI still acts from the exported sampled CFR+ policy; this guide avoids showing hidden-hand policy probabilities during play.";
 
   return `
     <span class="eyebrow">Decision guide</span>
@@ -739,11 +739,11 @@ function methodMarkup(): string {
     <section class="text-route">
       <span class="eyebrow">Method</span>
       <h1>From course research to public AI/ML case study</h1>
-      <p>This project is a compact imperfect-information lab. The engineering work was to turn an open-ended Liar's Dice research idea into a tractable game model, train CFR-style policies offline, evaluate the results, and publish the demo as static artifacts anyone can inspect.</p>
+      <p>This project is a compact imperfect-information lab. The engineering work was to turn an open-ended Liar's Dice research idea into a tractable game model, train sampled CFR+ policies offline, evaluate the results, and publish the demo as static artifacts anyone can inspect.</p>
       <div class="pipeline-strip" aria-label="Project pipeline">
         <span>Define rules</span>
         <span>Encode information sets</span>
-        <span>Train CFR+ style self-play</span>
+        <span>Train sampled CFR+</span>
         <span>Policy JSON</span>
         <span>Benchmark metrics</span>
         <span>Static TypeScript demo</span>
@@ -755,11 +755,11 @@ function methodMarkup(): string {
         </section>
         <section>
           <span>02</span>
-          <div><strong>Abstraction</strong><p>I narrowed the game to one total-table claim and one response. That preserved hidden information and bluff/call decisions while keeping the game tree practical for local CFR-style training.</p></div>
+          <div><strong>Abstraction</strong><p>I narrowed the game to one total-table claim and one response. That preserved hidden information and bluff/call decisions while keeping the game tree practical for local sampled CFR+ training.</p></div>
         </section>
         <section>
           <span>03</span>
-          <div><strong>Training</strong><p>The Python code samples game states, updates regret-matching policies, and exports count-aware claim and response probabilities keyed by public dice counts and private hands.</p></div>
+          <div><strong>Training</strong><p>The Python code samples dice counts and private hands, evaluates feasible claims, updates regret-matching policies, clips negative regret like CFR+, and exports average claim and response strategies.</p></div>
         </section>
         <section>
           <span>04</span>
@@ -768,11 +768,21 @@ function methodMarkup(): string {
       </div>
       <div class="method-grid">
         <div><strong>Information set</strong><p>A player observes their own dice, public dice counts, and public claims, but not the opponent's hidden dice.</p></div>
-        <div><strong>Count-aware policy</strong><p>The published policy conditions on remaining dice counts plus private hand, fixing a limitation in the first baseline.</p></div>
+        <div><strong>Remaining-dice-aware policy</strong><p>The published policy uses the public dice counts and the player's private dice. That fixes an early baseline that reused similar decisions even after the match state changed.</p></div>
         <div><strong>Claim policy</strong><p>The claimant chooses among legal <code>claim_Q_F</code> actions for the current public count context.</p></div>
         <div><strong>Response policy</strong><p>The responder chooses <code>believe</code> or <code>challenge</code> from private dice, public counts, and the claim.</p></div>
         <div><strong>Classic features omitted</strong><p>No repeated raising, bid ladder, multiplayer rotation, or wild-face rule is modeled in the trained policy.</p></div>
         <div><strong>Static deployment boundary</strong><p>Python trains and evaluates offline. The browser only loads frozen policy and metrics JSON.</p></div>
+      </div>
+      <div class="section-block">
+        <span class="eyebrow">Common questions</span>
+        <h2>How to read the AI</h2>
+        <div class="detail-grid">
+          <section><strong>Is it supposed to beat me consistently?</strong><p>Not every round. Liar's Dice has randomness and hidden information, so even good play loses hands. The goal is stronger long-run decision quality against named benchmark opponents, not a guarantee that the AI beats every human in a short session.</p></section>
+          <section><strong>What does remaining-dice-aware mean?</strong><p>The policy changes when the public dice counts change. A claim that makes sense with ten dice on the table can be reckless when only four dice remain.</p></section>
+          <section><strong>How was it trained?</strong><p>Offline Python self-play repeatedly samples game states, compares each legal action against alternatives in the same information set, updates regrets, and averages the strategies into the exported policy JSON.</p></section>
+          <section><strong>Does it need deeper training?</strong><p>More iterations can make the sampled policy smoother, but more training alone is not the main next step. The bigger improvement is training directly against best-response pressure and extending the solver to the classic raise/challenge game.</p></section>
+        </div>
       </div>
       <div class="section-block">
         <span class="eyebrow">Terms learned and used</span>
@@ -823,7 +833,7 @@ function resultsMarkup(): string {
     <section class="text-route">
       <span class="eyebrow">Results</span>
       <h1>What the AI learned, and what it still fails at</h1>
-      <p>The published policy conditions on public remaining dice counts and was trained for ${state.metrics.metadata.policy_iterations?.toLocaleString() ?? "200,000"} sampled CFR+ style iterations. The headline result is stronger benchmark play, but the important engineering result is more honest: best-response diagnostics still find exploitable pressure.</p>
+      <p>The published policy uses public remaining dice counts and private dice, then trains for ${state.metrics.metadata.policy_iterations?.toLocaleString() ?? "200,000"} sampled CFR+ iterations. The headline result is stronger benchmark play, but the important engineering result is more honest: best-response diagnostics still find exploitable pressure.</p>
       <div class="result-hero">
         <section>
           <span class="eyebrow">Benchmark average</span>
@@ -832,8 +842,8 @@ function resultsMarkup(): string {
         </section>
         <section>
           <span class="eyebrow">Policy upgrade</span>
-          <strong>${delta ? `+${percent(delta.average_benchmark_win_rate)}` : "Count-aware"}</strong>
-          <p>Lift comes from conditioning on public dice counts instead of reusing one fixed five-dice policy.</p>
+          <strong>${delta ? `+${percent(delta.average_benchmark_win_rate)}` : "Dice-count aware"}</strong>
+          <p>Lift comes from using the remaining dice counts instead of reusing one fixed five-dice policy.</p>
         </section>
         <section>
           <span class="eyebrow">Robustness warning</span>
@@ -843,6 +853,7 @@ function resultsMarkup(): string {
       </div>
       <div class="plain-metric-grid" aria-label="Plain English metric explanations">
         <section><strong>What 73% means</strong><p>Across four fixed opponent profiles, the AI won about seven out of ten seeded matches. Those opponents are useful tests, but they are not guaranteed optimal adversaries.</p></section>
+        <section><strong>Should it beat you?</strong><p>It should make better long-run decisions than simple baseline opponents, but it is not meant to win every human session. Short matches are noisy, and a targeted player can still exploit weaknesses.</p></section>
         <section><strong>What it is against</strong><p>The benchmark suite includes random claims, skeptical responses, threshold responses, and truth-biased claims. Each profile stresses a different weakness.</p></section>
         <section><strong>What it does not prove</strong><p>It does not prove Nash equilibrium, full classic Liar's Dice competence, or low exploitability against every possible opponent.</p></section>
       </div>
@@ -891,7 +902,7 @@ function resultsMarkup(): string {
         <section>
           <span class="eyebrow">Policy status</span>
           <h2>Stronger, not solved</h2>
-          <p>The count-aware policy is much stronger against the benchmark suite, but the best-response diagnostic prevents overclaiming. This is a resume-worthy engineering result because the limitation is measured, not hidden.</p>
+          <p>The remaining-dice-aware policy is much stronger against the benchmark suite, but the best-response diagnostic prevents overclaiming. This is a resume-worthy engineering result because the limitation is measured, not hidden.</p>
         </section>
         <section>
           <span class="eyebrow">AI/ML value</span>

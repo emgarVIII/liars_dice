@@ -35,13 +35,13 @@ That self-play framing is one reason the project maps well to AI/ML interviews. 
 
 ## Game-Solving Concepts
 
-Nash equilibrium is a strategy profile where no player can improve by unilaterally changing strategy. It is a central concept in game theory, but it is also easy to overclaim. A project can use CFR-style methods without proving that the final policy is a Nash equilibrium.
+Nash equilibrium is a strategy profile where no player can improve by unilaterally changing strategy. It is a central concept in game theory, but it is also easy to overclaim. A project can use sampled CFR+ methods without proving that the final policy is a Nash equilibrium.
 
 Minimax reasoning is another core idea. In zero-sum settings, each player can think in terms of maximizing their own payoff while the opponent tries to minimize it. That framing is powerful, but many practical games and multi-agent systems are more complicated than a clean two-player zero-sum example.
 
 Counterfactual Regret Minimization is one of the most important algorithmic ideas for extensive-form imperfect-information games. CFR repeatedly updates a policy by comparing chosen actions against alternative actions that could have been taken at the same information set. Over time, regret minimization can produce strong average strategies in the right settings.
 
-The public demo uses CFR-style training on a simplified game abstraction. That wording is intentional. The current artifact demonstrates the pipeline and measured behavior, but it does not claim a formal equilibrium proof.
+The public demo uses sampled CFR+ training on a simplified game abstraction. That wording is intentional. The current artifact demonstrates the pipeline and measured behavior, but it does not claim a formal equilibrium proof.
 
 ## Why Poker AI Matters
 
@@ -81,7 +81,7 @@ That is why I think the project fits AI/ML and quant-style conversations. It dem
 
 ## Evaluation as the Main Applied Lesson
 
-The strongest part of the public project is the evaluation story. The updated count-aware policy improved benchmark average win rate from 45.3 percent to 73.0 percent across seeded opponent profiles. That is useful evidence that the policy became better against the benchmark suite.
+The strongest part of the public project is the evaluation story. The updated policy conditions on remaining dice counts and private dice, improving benchmark average win rate from 45.3 percent to 73.0 percent across seeded opponent profiles. That is useful evidence that the policy became better against the benchmark suite.
 
 But benchmark success is not the same as robustness. The best-response-style diagnostic still found exploitable pressure, especially on the claimant side. That matters because in adversarial systems, a weak opponent profile can make a policy look better than it really is.
 
@@ -91,7 +91,7 @@ The public results page makes this distinction explicit. It explains what the wi
 
 The right way to describe the project is:
 
-This is an end-to-end imperfect-information game-solving lab built around a simplified Liar's Dice challenge game. It includes Python CFR-style self-play, policy export, deterministic evaluation, a playable TypeScript demo, a classic rules comparison, and a curated paper archive.
+This is an end-to-end imperfect-information game-solving lab built around a simplified Liar's Dice challenge game. It includes Python sampled CFR+ self-play, policy export, deterministic evaluation, a playable TypeScript demo, a classic rules comparison, and a curated paper archive.
 
 The wrong way to describe it would be to present it as a classic-game solver.
 
@@ -105,7 +105,7 @@ Imperfect-information games are useful because they force agents to act under hi
 
 Multi-agent learning is useful because the opponent is part of the environment.
 
-CFR-style training is useful because regret minimization gives a principled way to update policies over repeated self-play.
+Sampled CFR+ training is useful because regret minimization gives a principled way to update policies over repeated self-play.
 
 Evaluation is necessary because benchmark win rates can hide exploitability.
 

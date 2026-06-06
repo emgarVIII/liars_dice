@@ -13,7 +13,7 @@ This notebook is a cleaned public version of the planning notes behind the proje
 The main arc is:
 
 1. Start with imperfect-information games and multi-agent learning.
-2. Study poker AI and CFR-style algorithms.
+2. Study poker AI and CFR algorithms.
 3. Try to apply those ideas to Liar's Dice.
 4. Realize that full classic Liar's Dice is too large for a clean first solver.
 5. Narrow the project into a one-claim challenge abstraction.
@@ -34,7 +34,7 @@ Liar's Dice stood out because it is easy to understand and still strategically r
 
 The first concept was the information set. In a perfect-information game, the player can see the full board. In an imperfect-information game, the player sees only part of the state. The policy must therefore be based on what the player knows, not on the true full state.
 
-The second concept was Nash equilibrium. A Nash equilibrium is a stable set of strategies where no player can improve by changing strategy alone. I originally treated equilibrium as a stronger and more automatic claim than I should have. The public version of the project is more careful. It talks about CFR-style training and best-response diagnostics, but it does not claim that the published policy is proven to be at equilibrium.
+The second concept was Nash equilibrium. A Nash equilibrium is a stable set of strategies where no player can improve by changing strategy alone. I originally treated equilibrium as a stronger and more automatic claim than I should have. The public version of the project is more careful. It talks about sampled CFR+ training and best-response diagnostics, but it does not claim that the published policy is proven to be at equilibrium.
 
 The third concept was CFR. Counterfactual Regret Minimization repeatedly updates action probabilities by asking which actions would have performed better at an information set. CFR+ modifies that process by clipping negative regret, which can improve convergence behavior in practice.
 
@@ -76,7 +76,7 @@ This split ended up being one of the best architectural decisions. It means GitH
 
 An early weakness was that the policy did not condition strongly enough on changing dice counts. A strategy that makes sense at five dice each may not make sense later in the match when one side has fewer dice.
 
-The updated public policy is count-aware. Its keys include public dice counts and private hands. That improved benchmark performance because the policy could adapt to match state instead of reusing a fixed starting-state strategy.
+The updated public policy is remaining-dice-aware. Its keys include public dice counts and private hands. That improved benchmark performance because the policy could adapt to match state instead of reusing a fixed starting-state strategy.
 
 This was an important engineering lesson: the representation of state is not just a detail. It directly controls what the policy can learn.
 
