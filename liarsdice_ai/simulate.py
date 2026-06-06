@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from random import Random
 from typing import Any, Callable, Mapping
 
-from .rules import DEFAULT_MAX_FACE, DEFAULT_NUM_DICE, Claim, Response, all_claim_keys, hand_key, is_claim_feasible, parse_claim, resolve_round, roll_hand
+from .rules import DEFAULT_MAX_FACE, DEFAULT_NUM_DICE, Claim, Response, all_claim_keys, claim_info_key, hand_key, is_claim_feasible, parse_claim, resolve_round, response_info_key, roll_hand
 from .strategy import normalize_distribution, weighted_choice
 
 Responder = Callable[[tuple[int, ...], str, Random], Response]
@@ -17,6 +17,30 @@ class SimulationConfig:
     seed: int = 370
     starting_dice: int = DEFAULT_NUM_DICE
     max_face: int = DEFAULT_MAX_FACE
+
+
+SCENARIO_DETAILS: dict[str, dict[str, str]] = {
+    "random_claim_random_response": {
+        "label": "Random claims, random responses",
+        "opponent": "Opponent samples a legal claim uniformly and randomly believes or challenges.",
+        "meaning": "A weak noise baseline that checks basic policy wiring."
+    },
+    "random_claim_skeptical_response": {
+        "label": "Random claims, skeptical responses",
+        "opponent": "Opponent samples legal claims uniformly and challenges most AI claims.",
+        "meaning": "Pressure test for overclaiming by the AI claimant policy."
+    },
+    "random_claim_threshold_response": {
+        "label": "Random claims, threshold responses",
+        "opponent": "Opponent samples legal claims uniformly and challenges claims above a fixed quantity threshold.",
+        "meaning": "Simple rule-based skepticism that often exposes weak claim selection."
+    },
+    "truth_biased_claim_threshold_response": {
+        "label": "Truth-biased claims, threshold responses",
+        "opponent": "Opponent tends to claim a face from its own hand and uses the threshold response rule.",
+        "meaning": "A more structured baseline with private-information-aware claims."
+    },
+}
 
 
 def feasible_claim_distribution(distribution: Mapping[str, float], claimant_dice: int, responder_dice: int) -> dict[str, float]:
@@ -36,8 +60,9 @@ def feasible_claim_distribution(distribution: Mapping[str, float], claimant_dice
 
 
 def sample_ai_claim(policy: Mapping[str, Any], hand: tuple[int, ...], claimant_dice: int, responder_dice: int, rng: Random) -> str:
-    key = hand_key(hand)
-    base = policy.get("claim_policy", {}).get(key)
+    base = policy.get("claim_policy", {}).get(claim_info_key(claimant_dice, responder_dice, hand))
+    if not base:
+        base = policy.get("claim_policy", {}).get(hand_key(hand))
     if not base:
         base = {
             claim: 1.0
@@ -47,9 +72,20 @@ def sample_ai_claim(policy: Mapping[str, Any], hand: tuple[int, ...], claimant_d
     return weighted_choice(feasible_claim_distribution(base, claimant_dice, responder_dice), rng)
 
 
-def sample_ai_response(policy: Mapping[str, Any], hand: tuple[int, ...], claim: str, rng: Random) -> Response:
-    key = f"{hand_key(hand)}|{claim}"
-    base = policy.get("response_policy", {}).get(key, {"believe": 0.5, "challenge": 0.5})
+def sample_ai_response(
+    policy: Mapping[str, Any],
+    hand: tuple[int, ...],
+    claim: str,
+    rng: Random,
+    responder_dice: int | None = None,
+    claimant_dice: int | None = None,
+) -> Response:
+    response_policy = policy.get("response_policy", {})
+    base = None
+    if responder_dice is not None and claimant_dice is not None:
+        base = response_policy.get(response_info_key(responder_dice, claimant_dice, hand, claim))
+    if not base:
+        base = response_policy.get(f"{hand_key(hand)}|{claim}", {"believe": 0.5, "challenge": 0.5})
     return weighted_choice(base, rng)  # type: ignore[return-value]
 
 
@@ -107,7 +143,7 @@ def play_match(
                 opponent_dice -= 1
         else:
             claim = opponent_claim(opponent_hand, opponent_dice, ai_dice, rng)
-            response = sample_ai_response(policy, ai_hand, claim, rng)
+            response = sample_ai_response(policy, ai_hand, claim, rng, responder_dice=ai_dice, claimant_dice=opponent_dice)
             result = resolve_round(opponent_hand, ai_hand, claim, response)
             if result.loser == "claimant":
                 opponent_dice -= 1
@@ -140,6 +176,7 @@ def run_benchmarks(policy: Mapping[str, Any], config: SimulationConfig) -> dict[
                 max_face=config.max_face,
             )
         results[name] = {
+            **SCENARIO_DETAILS[name],
             "matches": config.matches,
             "ai_wins": wins,
             "ai_win_rate": wins / config.matches,

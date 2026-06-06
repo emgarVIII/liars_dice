@@ -39,6 +39,14 @@ def hand_key(hand: Iterable[int]) -> str:
     return ",".join(str(face) for face in normalize_hand(hand))
 
 
+def claim_info_key(claimant_dice: int, responder_dice: int, hand: Iterable[int]) -> str:
+    return f"{claimant_dice}:{responder_dice}:{hand_key(hand)}"
+
+
+def response_info_key(responder_dice: int, claimant_dice: int, hand: Iterable[int], claim: Claim | str) -> str:
+    return f"{responder_dice}:{claimant_dice}:{hand_key(hand)}|{parse_claim(claim).key()}"
+
+
 def parse_hand_key(key: str) -> tuple[int, ...]:
     if not key:
         return ()

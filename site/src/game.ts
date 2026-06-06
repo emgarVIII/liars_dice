@@ -8,6 +8,14 @@ export function handKey(hand: number[]): string {
   return [...hand].sort((a, b) => a - b).join(",");
 }
 
+export function claimInfoKey(claimantDice: number, responderDice: number, hand: number[]): string {
+  return `${claimantDice}:${responderDice}:${handKey(hand)}`;
+}
+
+export function responseInfoKey(responderDice: number, claimantDice: number, hand: number[], claim: string): string {
+  return `${responderDice}:${claimantDice}:${handKey(hand)}|${claim}`;
+}
+
 export function parseClaim(key: string): Claim {
   const parts = key.split("_");
   if (parts.length !== 3 || parts[0] !== "claim") {
@@ -61,7 +69,7 @@ export function topActions(distribution: Record<string, number>, limit = 5): Arr
 }
 
 export function sampleAiClaim(policy: PolicyData, hand: number[], claimantDice: number, responderDice: number): string {
-  const base = policy.claim_policy[handKey(hand)] ?? {};
+  const base = policy.claim_policy[claimInfoKey(claimantDice, responderDice, hand)] ?? policy.claim_policy[handKey(hand)] ?? {};
   const feasible = Object.fromEntries(
     Object.entries(base).filter(([claim]) => isFeasibleClaim(claim, claimantDice, responderDice))
   );
@@ -76,9 +84,16 @@ export function sampleAiClaim(policy: PolicyData, hand: number[], claimantDice: 
   return weightedChoice(fallback);
 }
 
-export function sampleAiResponse(policy: PolicyData, hand: number[], claim: string): ResponseAction {
-  const key = `${handKey(hand)}|${claim}`;
-  const base = policy.response_policy[key] ?? { believe: 0.5, challenge: 0.5 };
+export function sampleAiResponse(
+  policy: PolicyData,
+  hand: number[],
+  claim: string,
+  responderDice: number,
+  claimantDice: number
+): ResponseAction {
+  const base = policy.response_policy[responseInfoKey(responderDice, claimantDice, hand, claim)]
+    ?? policy.response_policy[`${handKey(hand)}|${claim}`]
+    ?? { believe: 0.5, challenge: 0.5 };
   return weightedChoice(base) as ResponseAction;
 }
 

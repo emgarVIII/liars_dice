@@ -43,9 +43,28 @@ button {
   transition: transform 160ms ease, background 160ms ease, color 160ms ease;
 }
 
+a {
+  color: var(--ink);
+  text-decoration-color: var(--accent);
+  text-underline-offset: 4px;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
 button:hover {
   transform: translateY(-1px);
   background: var(--accent);
+}
+
+button:disabled,
+button:disabled:hover {
+  cursor: not-allowed;
+  transform: none;
+  border-color: var(--line);
+  background: #ded8cb;
+  color: #746d60;
 }
 
 .site-header {
@@ -127,6 +146,58 @@ main {
   border: 1px solid var(--line);
   background: var(--surface);
   padding: 8px 12px;
+}
+
+.project-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 22px;
+  align-items: end;
+  border: 1px solid var(--line);
+  background: rgba(255, 254, 250, 0.94);
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.project-intro h1 {
+  margin: 8px 0 12px;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 0.98;
+}
+
+.project-intro p {
+  max-width: 760px;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.profile-links a {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 8px 10px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.proof-strip {
+  display: grid;
+  gap: 8px;
+  min-width: 190px;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.proof-strip span {
+  border: 1px solid var(--line);
+  background: #f7f4ec;
+  padding: 8px 10px;
 }
 
 .rules-strip {
@@ -306,6 +377,36 @@ select {
   align-content: center;
 }
 
+.classic-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+  min-height: calc(100svh - 75px);
+}
+
+.classic-main {
+  padding: clamp(28px, 5vw, 72px);
+  display: grid;
+  align-content: start;
+}
+
+.classic-main > h1 {
+  margin: 10px 0 16px;
+  max-width: 780px;
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  line-height: 0.96;
+}
+
+.classic-main > p {
+  max-width: 760px;
+  margin: 0 0 28px;
+  line-height: 1.6;
+}
+
+.classic-board {
+  display: grid;
+  gap: 18px;
+}
+
 .strategy-panel > h2,
 .text-route h1 {
   font-size: clamp(2rem, 5vw, 4rem);
@@ -382,8 +483,43 @@ select {
   padding: 24px;
 }
 
+.pipeline-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.pipeline-strip span {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 9px 11px;
+  font-weight: 900;
+}
+
 .section-block {
   margin-top: 42px;
+}
+
+.result-hero {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+  margin-top: 30px;
+}
+
+.result-hero section {
+  background: var(--surface);
+  padding: 24px;
+}
+
+.result-hero strong {
+  display: block;
+  margin: 8px 0 10px;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.95;
 }
 
 .section-block > h2,
@@ -435,6 +571,7 @@ select {
   text-align: left;
   border-bottom: 1px solid var(--line);
   padding: 14px;
+  overflow-wrap: anywhere;
 }
 
 .metrics-table th:last-child,
@@ -484,6 +621,8 @@ select {
   color: var(--ink);
   text-decoration: none;
   font-weight: 800;
+  border: 1px solid var(--line);
+  padding: 8px 9px;
 }
 
 .paper-list a:hover {
@@ -493,6 +632,12 @@ select {
 
 .note {
   color: #5f594d;
+}
+
+.archive-footer {
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
 }
 
 .loading-band,
@@ -518,6 +663,10 @@ select {
     grid-template-columns: 1fr;
   }
 
+  .classic-shell {
+    grid-template-columns: 1fr;
+  }
+
   .strategy-panel {
     border-left: 0;
     border-top: 1px solid var(--line);
@@ -540,8 +689,61 @@ select {
     grid-template-columns: 1fr;
   }
 
+  .project-intro,
+  .result-hero {
+    grid-template-columns: 1fr;
+  }
+
   .status-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header {
+    padding: 16px;
+  }
+
+  .profile-links,
+  .claim-controls,
+  .decision-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .nav-link,
+  .profile-links a,
+  .claim-controls button,
+  .decision-row button {
+    width: 100%;
+  }
+
+  .game-board,
+  .classic-main,
+  .strategy-panel {
+    padding: 18px;
+  }
+
+  .table-surface {
+    padding: 14px;
+  }
+
+  .table-surface::before {
+    inset: 26px;
+  }
+
+  .claim-zone {
+    padding: 20px 14px;
+  }
+
+  .die {
+    width: 38px;
   }
 }
 

@@ -61,10 +61,12 @@
     "claim_10_5",
     "claim_10_6"
   ],
+  "classic_comparison": "Classic raise/challenge mode is a playable heuristic comparison, not a CFR-solved policy.",
   "description": "A claimant makes one quantity-face claim. The responder predicts true or false. Correct responder predictions make the claimant lose one die.",
   "game": "simplified_one_claim_liars_dice",
   "max_face": 6,
   "num_dice": 5,
+  "policy_scope": "Count-aware sampled CFR+ style policy for the simplified one-claim challenge abstraction.",
   "responses": [
     "believe",
     "challenge"

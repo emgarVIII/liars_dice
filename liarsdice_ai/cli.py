@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from .rules import DEFAULT_MAX_FACE, DEFAULT_NUM_DICE, all_claim_keys
+from .evaluate import EvaluationConfig, full_evaluation
 from .simulate import SimulationConfig, run_benchmarks
 from .strategy import normalize_distribution
 from .train import TrainingConfig, train_policy
@@ -28,6 +29,8 @@ def generate_game(args: argparse.Namespace) -> None:
         "max_face": args.max_face,
         "responses": ["believe", "challenge"],
         "claim_actions": all_claim_keys(num_dice=args.num_dice, max_face=args.max_face),
+        "policy_scope": "Count-aware sampled CFR+ style policy for the simplified one-claim challenge abstraction.",
+        "classic_comparison": "Classic raise/challenge mode is a playable heuristic comparison, not a CFR-solved policy.",
         "description": "A claimant makes one quantity-face claim. The responder predicts true or false. Correct responder predictions make the claimant lose one die.",
     }
     write_json(Path(args.out), payload)
@@ -55,6 +58,29 @@ def simulate(args: argparse.Namespace) -> None:
             starting_dice=args.num_dice,
             max_face=args.max_face,
         ),
+    )
+    write_json(Path(args.out), metrics)
+
+
+def evaluate(args: argparse.Namespace) -> None:
+    policy = read_json(Path(args.policy))
+    baseline_policy = read_json(Path(args.baseline_policy)) if args.baseline_policy else None
+    checkpoints = tuple(
+        int(value.strip())
+        for value in args.convergence_iters.split(",")
+        if value.strip()
+    )
+    metrics = full_evaluation(
+        policy,
+        EvaluationConfig(
+            matches=args.matches,
+            seed=args.seed,
+            num_dice=args.num_dice,
+            max_face=args.max_face,
+            convergence_matches=args.convergence_matches,
+            convergence_checkpoints=checkpoints,
+        ),
+        baseline_policy=baseline_policy,
     )
     write_json(Path(args.out), metrics)
 
@@ -107,6 +133,18 @@ def build_parser() -> argparse.ArgumentParser:
     simulate_cmd.add_argument("--num-dice", type=int, default=DEFAULT_NUM_DICE)
     simulate_cmd.add_argument("--max-face", type=int, default=DEFAULT_MAX_FACE)
     simulate_cmd.set_defaults(func=simulate)
+
+    evaluate_cmd = sub.add_parser("evaluate", help="Run portfolio-grade policy evaluation metrics")
+    evaluate_cmd.add_argument("--policy", default="site/public/data/policy.json")
+    evaluate_cmd.add_argument("--baseline-policy", default="")
+    evaluate_cmd.add_argument("--out", default="site/public/data/metrics.json")
+    evaluate_cmd.add_argument("--matches", type=int, default=2_000)
+    evaluate_cmd.add_argument("--seed", type=int, default=370)
+    evaluate_cmd.add_argument("--num-dice", type=int, default=DEFAULT_NUM_DICE)
+    evaluate_cmd.add_argument("--max-face", type=int, default=DEFAULT_MAX_FACE)
+    evaluate_cmd.add_argument("--convergence-matches", type=int, default=400)
+    evaluate_cmd.add_argument("--convergence-iters", default="500,2000,10000,80000")
+    evaluate_cmd.set_defaults(func=evaluate)
 
     validate_cmd = sub.add_parser("validate", help="Validate exported policy distributions")
     validate_cmd.add_argument("--policy", default="site/public/data/policy.json")

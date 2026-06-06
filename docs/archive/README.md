@@ -2,6 +2,8 @@
 
 This archive contains display-ready versions of the three course documents that supported the Liar's Dice CFR project.
 
+These documents are preserved as original course artifacts. The live website, README, tests, and exported metrics are the source of truth for the current public portfolio version and use more conservative wording around equilibrium claims.
+
 ## Public Ordering
 
 1. `final-report`: primary project report.

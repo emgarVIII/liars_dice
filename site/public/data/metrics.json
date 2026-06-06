@@ -1,30 +1,142 @@
 {
+  "comparison": {
+    "baseline": {
+      "average_benchmark_win_rate": 0.453,
+      "best_response_pressure": 0.278814,
+      "key_schema": "legacy_private_hand_only",
+      "policy_iterations": 80000
+    },
+    "delta": {
+      "average_benchmark_win_rate": 0.277375,
+      "best_response_pressure": 0.211886
+    },
+    "selected": {
+      "average_benchmark_win_rate": 0.730375,
+      "best_response_pressure": 0.4907,
+      "key_schema": "public_dice_counts_and_private_hand_v2",
+      "policy_iterations": 200000
+    }
+  },
+  "convergence": {
+    "checkpoints": [
+      {
+        "average_benchmark_win_rate": 0.36625,
+        "iterations": 500,
+        "scenario_win_rates": {
+          "random_claim_random_response": 0.5175,
+          "random_claim_skeptical_response": 0.315,
+          "random_claim_threshold_response": 0.3425,
+          "truth_biased_claim_threshold_response": 0.29
+        }
+      },
+      {
+        "average_benchmark_win_rate": 0.54375,
+        "iterations": 5000,
+        "scenario_win_rates": {
+          "random_claim_random_response": 0.7075,
+          "random_claim_skeptical_response": 0.5625,
+          "random_claim_threshold_response": 0.485,
+          "truth_biased_claim_threshold_response": 0.42
+        }
+      },
+      {
+        "average_benchmark_win_rate": 0.660625,
+        "iterations": 20000,
+        "scenario_win_rates": {
+          "random_claim_random_response": 0.7625,
+          "random_claim_skeptical_response": 0.71,
+          "random_claim_threshold_response": 0.6175,
+          "truth_biased_claim_threshold_response": 0.5525
+        }
+      },
+      {
+        "average_benchmark_win_rate": 0.706875,
+        "iterations": 80000,
+        "scenario_win_rates": {
+          "random_claim_random_response": 0.765,
+          "random_claim_skeptical_response": 0.78,
+          "random_claim_threshold_response": 0.7025,
+          "truth_biased_claim_threshold_response": 0.58
+        }
+      }
+    ],
+    "interpretation": "Training checkpoints are deterministic snapshots for comparison, not a formal convergence proof.",
+    "matches_per_checkpoint": 400
+  },
+  "evaluation": {
+    "one_round_best_response": {
+      "ai_claimant_value_vs_bayes_best_responder": -0.4907,
+      "ai_responder_value_vs_best_claimant": 0.026692,
+      "best_claimant_value_vs_ai_response": -0.026692,
+      "best_responder_accuracy_vs_ai_claims": 0.74535,
+      "best_response_pressure": 0.4907,
+      "common_best_response_claims": [
+        {
+          "claim": "claim_2_6",
+          "private_hands": 31
+        },
+        {
+          "claim": "claim_2_1",
+          "private_hands": 27
+        },
+        {
+          "claim": "claim_2_3",
+          "private_hands": 23
+        },
+        {
+          "claim": "claim_2_5",
+          "private_hands": 19
+        },
+        {
+          "claim": "claim_2_4",
+          "private_hands": 15
+        }
+      ],
+      "interpretation": "Lower best-response pressure is better. This is stronger evidence than raw win rate, but it is still an abstraction-specific diagnostic, not a proof of Nash equilibrium.",
+      "scope": "exact one-round public-count 5v5 abstraction"
+    }
+  },
   "metadata": {
+    "evaluation": "portfolio_evaluation_v1",
     "matches_per_scenario": 2000,
     "max_face": 6,
+    "policy_iterations": 200000,
+    "policy_version": "public_dice_counts_and_private_hand_v2",
     "seed": 370,
     "starting_dice": 5
   },
   "scenarios": {
     "random_claim_random_response": {
-      "ai_win_rate": 0.5405,
-      "ai_wins": 1081,
-      "matches": 2000
+      "ai_win_rate": 0.7825,
+      "ai_wins": 1565,
+      "label": "Random claims, random responses",
+      "matches": 2000,
+      "meaning": "A weak noise baseline that checks basic policy wiring.",
+      "opponent": "Opponent samples a legal claim uniformly and randomly believes or challenges."
     },
     "random_claim_skeptical_response": {
-      "ai_win_rate": 0.3955,
-      "ai_wins": 791,
-      "matches": 2000
+      "ai_win_rate": 0.804,
+      "ai_wins": 1608,
+      "label": "Random claims, skeptical responses",
+      "matches": 2000,
+      "meaning": "Pressure test for overclaiming by the AI claimant policy.",
+      "opponent": "Opponent samples legal claims uniformly and challenges most AI claims."
     },
     "random_claim_threshold_response": {
-      "ai_win_rate": 0.4385,
-      "ai_wins": 877,
-      "matches": 2000
+      "ai_win_rate": 0.749,
+      "ai_wins": 1498,
+      "label": "Random claims, threshold responses",
+      "matches": 2000,
+      "meaning": "Simple rule-based skepticism that often exposes weak claim selection.",
+      "opponent": "Opponent samples legal claims uniformly and challenges claims above a fixed quantity threshold."
     },
     "truth_biased_claim_threshold_response": {
-      "ai_win_rate": 0.4375,
-      "ai_wins": 875,
-      "matches": 2000
+      "ai_win_rate": 0.586,
+      "ai_wins": 1172,
+      "label": "Truth-biased claims, threshold responses",
+      "matches": 2000,
+      "meaning": "A more structured baseline with private-information-aware claims.",
+      "opponent": "Opponent tends to claim a face from its own hand and uses the threshold response rule."
     }
   }
 }

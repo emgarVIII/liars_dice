@@ -1,103 +1,108 @@
 # Liar's Dice CFR Lab
 
-A publishable imperfect-information game-solving project built around a simplified one-claim Liar's Dice challenge game. The project separates the offline Python research engine from the public static website: Python generates rules metadata, trains a sampled CFR+ policy, runs benchmark simulations, and exports JSON artifacts that the browser can load directly.
+AI/ML portfolio project by Mauricio Garcia Villanueva.
 
-## Public Story
+- Live demo: https://emgarviii.github.io/liars_dice/
+- LinkedIn: https://www.linkedin.com/in/emgar/
+- GitHub: https://github.com/emgarVIII
 
-This is not presented as a full traditional Liar's Dice solver. It is a compact research demo for:
+This project turns a university research prototype into a public imperfect-information game-solving artifact. It combines an offline Python research engine, sampled CFR+ style self-play, benchmark and best-response-style evaluation, a static TypeScript demo, and a curated paper archive.
 
-- imperfect-information decisioning,
-- self-play and regret minimization,
-- action abstraction,
-- equilibrium-style robustness,
-- and the gap between robust play and opponent exploitation.
+## What It Shows
 
-The canonical rules are in [rules.md](rules.md).
+- Modeling hidden information through private dice and public claims.
+- Training count-aware policies with sampled CFR+ style regret matching.
+- Exporting reproducible `policy.json` and `metrics.json` artifacts.
+- Evaluating policies against fixed benchmark opponents and exact one-round best-response diagnostics.
+- Explaining limitations honestly instead of claiming a solved Nash equilibrium.
+- Shipping the demo as a static GitHub Pages site with no backend.
+
+The main playable mode is a simplified one-claim challenge abstraction. The `/classic` route is a playable raise/challenge comparison using a heuristic AI, not a CFR-solved classic Liar's Dice agent.
+
+## Current Results
+
+The published policy was trained for 200,000 sampled CFR+ iterations with public dice-count context included in the information-set key.
+
+| Opponent profile | AI win rate |
+| --- | ---: |
+| Random claims, random responses | 78.25% |
+| Random claims, skeptical responses | 80.40% |
+| Random claims, threshold responses | 74.90% |
+| Truth-biased claims, threshold responses | 58.60% |
+
+Important caveat: exact one-round best-response pressure is still high. The project should be read as a research engineering and evaluation artifact, not as proof of equilibrium play.
 
 ## Repository Layout
 
 ```text
 .
 ├── liarsdice_ai/              # Offline Python research engine
-├── tests/                     # Standard-library unit tests
+├── tests/                     # Unit tests for rules, classic mode, training, evaluation
 ├── artifacts/game.json        # Canonical game metadata export
 ├── site/                      # Static Vite + TypeScript website
-├── site/public/data/          # Static website data exports
-│   ├── policy.json            # Normalized policy artifact
-│   └── metrics.json           # Benchmark metrics artifact
-├── rules.md                   # Canonical simplified ruleset
-├── pyproject.toml
-└── requirements.txt
+├── site/public/data/          # Policy and metrics artifacts loaded by the browser
+├── docs/archive/              # PDFs and LaTeX exports for the paper archive
+├── rules.md                   # Simplified and classic comparison rules
+├── PORTFOLIO.md               # Resume bullets, LinkedIn draft, interview notes
+└── pyproject.toml
 ```
 
-## Quick Start
+## Quick Validation
 
 The Python research path uses only the standard library.
 
 ```bash
 python3 -m unittest discover -s tests -v
-python3 -m liarsdice_ai.cli generate --out artifacts/game.json
-python3 -m liarsdice_ai.cli train --iters 80000 --seed 370 --out site/public/data/policy.json
 python3 -m liarsdice_ai.cli validate --policy site/public/data/policy.json
-python3 -m liarsdice_ai.cli simulate --policy site/public/data/policy.json --matches 2000 --seed 370 --out site/public/data/metrics.json
 ```
 
-## Static Site
+## Reproduce Artifacts
 
-The website is in `site/` and is designed for GitHub Pages. It loads the exported JSON artifacts directly from `site/public/data/`.
+Generate game metadata, train a policy, validate it, and run portfolio-grade evaluation:
+
+```bash
+python3 -m liarsdice_ai.cli generate --out artifacts/game.json
+python3 -m liarsdice_ai.cli train --iters 200000 --seed 370 --out site/public/data/policy.json
+python3 -m liarsdice_ai.cli validate --policy site/public/data/policy.json
+python3 -m liarsdice_ai.cli evaluate --policy site/public/data/policy.json --matches 2000 --seed 370 --convergence-matches 400 --convergence-iters 500,5000,20000,80000 --out site/public/data/metrics.json
+```
+
+The full training and evaluation pass is intentionally offline. It is heavier than the web app because it computes policy artifacts and diagnostic metrics before deployment.
+
+## Static Site
 
 ```bash
 cd site
 npm install
 npm run dev
-npm run build
 npm run build:gh
 ```
 
-Routes supported by the static app:
+Routes:
 
-- `/` playable game demo.
-- `/method` CFR and game-solving explanation.
-- `/results` benchmark table and limitations.
-- `/papers` curated document archive links.
+- `/`: playable simplified CFR challenge demo.
+- `/classic`: playable classic raise/challenge comparison with heuristic AI.
+- `/method`: method, vocabulary, and pipeline.
+- `/results`: benchmark results, best-response diagnostic, and limitations.
+- `/papers`: curated PDF and LaTeX archive.
 
 ## Paper Archive
 
-The three DOCX course documents are exported as displayable PDFs and standalone LaTeX sources:
+The three university course documents are preserved as displayable PDFs and LaTeX sources.
 
 ```bash
 python3 scripts/build_paper_archive.py
 ```
 
-Outputs:
+The archive is intentionally labeled as original course material. The website, tests, and exported metrics are the source of truth for the current public portfolio version.
 
-- `docs/archive/final-report/`
-- `docs/archive/applied-focus/`
-- `docs/archive/research-notebook/`
-- `site/public/paper-assets/`
+## Engineering Framing
 
-Pandoc generates the LaTeX sources. PDFs are rendered from DOCX with the bundled LibreOffice binary because no local TeX engine is currently installed.
+This project is most relevant to AI/ML and quant/FinTech roles because it demonstrates:
 
-## Current Benchmark Snapshot
-
-The checked-in `metrics.json` was generated with seed `370`, 2,000 matches per scenario, and five dice per player.
-
-| Opponent profile | AI win rate |
-| --- | ---: |
-| Random claims, random responses | 54.05% |
-| Random claims, skeptical responses | 39.55% |
-| Random claims, threshold responses | 43.85% |
-| Truth-biased claims, threshold responses | 43.75% |
-
-These results are intentionally not framed as superhuman play. They show the key lesson from the original research project: equilibrium-style self-play can produce robust strategies, but simple off-distribution responder behavior can still exploit a policy that lacks richer opponent modeling.
-
-## Website Architecture
-
-The public site is static. It will load `policy.json` and `metrics.json` directly in the browser, so it can be hosted on GitHub Pages without a Python server. Python remains the offline engine for reproducible training and evaluation.
-
-## Future Work
-
-- Add the static Vite + TypeScript site.
-- Convert the three course documents into a curated PDF and LaTeX archive.
-- Add a traditional raise/call Liar's Dice variant after this simplified version is stable.
-- Add richer opponent modeling and policy evaluation.
+- hidden-state decisioning,
+- adversarial evaluation,
+- probabilistic policies,
+- reproducible offline experiments,
+- static deployment of model artifacts,
+- and honest measurement of model limitations.
