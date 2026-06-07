@@ -686,6 +686,22 @@ select {
   padding: 24px;
 }
 
+.code-sample {
+  margin: 18px 0;
+  border: 1px solid var(--line);
+  background: #191713;
+  color: #fffefa;
+  overflow-x: auto;
+}
+
+.code-sample pre {
+  margin: 0;
+  padding: 18px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
 .detail-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -757,7 +773,7 @@ select {
 
 .paper-card {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(220px, 0.65fr);
+  grid-template-columns: minmax(0, 1.3fr) minmax(180px, 0.55fr) minmax(220px, 0.75fr);
   gap: 14px;
   color: var(--ink);
   border: 1px solid var(--line);
@@ -802,6 +818,16 @@ select {
 .paper-list a:hover {
   color: var(--accent);
   border-color: var(--accent);
+}
+
+.standalone-download {
+  display: inline-block;
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 10px 12px;
+  font-weight: 800;
+  text-decoration: none;
 }
 
 .note {
@@ -939,6 +965,11 @@ select {
   .case-study-flow section {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+
+  .code-sample pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
   }
 }
 

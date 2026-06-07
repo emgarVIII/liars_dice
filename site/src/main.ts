@@ -612,10 +612,10 @@ function classicMarkup(): string {
       <div class="classic-main">
         <span class="eyebrow">Playable comparison, not the research solver</span>
         <h1>Classic raise and challenge mode</h1>
-        <p>This route shows the familiar bid ladder: players keep raising until someone challenges. It exists to make the abstraction easier to understand. The AI here is heuristic, so the sampled CFR+ training and benchmark claims from the main demo do not apply to this mode.</p>
+        <p>This route shows the familiar bid ladder: players keep raising until someone challenges. It exists to make the abstraction easier to understand. The AI here is rule-based and educational, so the sampled CFR+ training and benchmark claims from the main demo do not apply to this mode.</p>
         <div class="scope-banner">
-          <strong>Educational comparison only.</strong>
-          <span>Main research mode: one claim, one response, hidden dice. Classic mode: repeated raises until a challenge.</span>
+          <strong>Classic rules comparison.</strong>
+          <span>Legal bids must fit the total dice, raises must increase the bid, and a challenge reveals both hands.</span>
         </div>
         <div class="classic-board">
           <div class="round-strip">
@@ -653,13 +653,13 @@ function classicMarkup(): string {
         </div>
       </div>
       <aside class="strategy-panel">
-        <span class="eyebrow">Scope guard</span>
-        <h2>Not the evaluated policy</h2>
-        <p>The main research policy targets the one-claim challenge abstraction. This classic route is intentionally separate so the site can be honest about what was trained and what is just a comparison interface.</p>
+        <span class="eyebrow">Classic comparison</span>
+        <h2>How this mode differs</h2>
+        <p>The main research policy targets the one-claim challenge abstraction. This classic route keeps the familiar raise loop visible so it is easier to see what the research model simplified.</p>
         <dl class="decision-facts">
           <div><dt>Classic loop</dt><dd>Raise, raise, challenge</dd></div>
           <div><dt>AI type</dt><dd>Heuristic</dd></div>
-          <div><dt>CFR claim</dt><dd>Not applied here</dd></div>
+          <div><dt>Training claim</dt><dd>Main mode only</dd></div>
         </dl>
         <div class="log-list">
           <h3>Classic history</h3>
@@ -738,8 +738,8 @@ function methodMarkup(): string {
   return `
     <section class="text-route">
       <span class="eyebrow">Method</span>
-      <h1>From course research to public AI/ML case study</h1>
-      <p>This project is a compact imperfect-information lab. The engineering work was to turn an open-ended Liar's Dice research idea into a tractable game model, train sampled CFR+ policies offline, evaluate the results, and publish the demo as static artifacts anyone can inspect.</p>
+      <h1>From supervised research to public AI/ML case study</h1>
+      <p>This began as open-ended supervised research under Dr. Tian at UT Austin. The engineering work was to turn an imperfect-information Liar's Dice research idea into a tractable game model, train sampled CFR+ policies offline, evaluate the results, and publish the demo as static artifacts anyone can inspect.</p>
       <div class="pipeline-strip" aria-label="Project pipeline">
         <span>Define rules</span>
         <span>Encode information sets</span>
@@ -751,7 +751,7 @@ function methodMarkup(): string {
       <div class="case-study-flow">
         <section>
           <span>01</span>
-          <div><strong>Problem</strong><p>Classic Liar's Dice is an imperfect-information bluffing game with hidden dice and strategic claims. The full raise loop is interesting, but too large for a clean first public solver.</p></div>
+          <div><strong>Problem</strong><p>Classic Liar's Dice is an imperfect-information bluffing game with hidden dice and strategic claims. The full raise loop is interesting, but it creates a much larger game tree.</p></div>
         </section>
         <section>
           <span>02</span>
@@ -771,8 +771,31 @@ function methodMarkup(): string {
         <div><strong>Remaining-dice-aware policy</strong><p>The published policy uses the public dice counts and the player's private dice. That fixes an early baseline that reused similar decisions even after the match state changed.</p></div>
         <div><strong>Claim policy</strong><p>The claimant chooses among legal <code>claim_Q_F</code> actions for the current public count context.</p></div>
         <div><strong>Response policy</strong><p>The responder chooses <code>believe</code> or <code>challenge</code> from private dice, public counts, and the claim.</p></div>
-        <div><strong>Classic features omitted</strong><p>No repeated raising, bid ladder, multiplayer rotation, or wild-face rule is modeled in the trained policy.</p></div>
+        <div><strong>Why simplify?</strong><p>The trained policy omits the raise ladder, multiplayer rotation, and wild-face variants to keep the first solver small enough to train, inspect, evaluate, and explain honestly.</p></div>
         <div><strong>Static deployment boundary</strong><p>Python trains and evaluates offline. The browser only loads frozen policy and metrics JSON.</p></div>
+      </div>
+      <div class="section-block">
+        <span class="eyebrow">Policy artifact</span>
+        <h2>What is the policy?</h2>
+        <p>A policy is the AI's strategy table. For each information set, it stores a probability distribution over legal actions. In this project there are two exported policy tables: one for making claims and one for responding to claims.</p>
+        <div class="code-sample" aria-label="Policy JSON example">
+          <pre><code>{
+  "claim_policy": {
+    "5:5:2,2,4,5,6": {
+      "claim_2_6": 0.35,
+      "claim_2_2": 0.23,
+      "claim_2_4": 0.11
+    }
+  },
+  "response_policy": {
+    "5:5:1,3,4,4,6|claim_3_4": {
+      "believe": 0.41,
+      "challenge": 0.59
+    }
+  }
+}</code></pre>
+        </div>
+        <p>The key <code>5:5:2,2,4,5,6</code> means claimant dice count, responder dice count, and the player's private hand. The values are not labels or scores. They are action probabilities sampled by the browser.</p>
       </div>
       <div class="section-block">
         <span class="eyebrow">Common questions</span>
@@ -793,7 +816,9 @@ function methodMarkup(): string {
           <section><strong>Policy or strategy</strong><p>A probability distribution over legal actions. The exported JSON stores claim and response probabilities for each modeled information set.</p></section>
           <section><strong>Self-play</strong><p>Training by repeatedly simulating agents against versions of themselves so strategies adapt from generated experience.</p></section>
           <section><strong>CFR / CFR+</strong><p>Counterfactual Regret Minimization updates action probabilities by tracking regret for not choosing alternative actions. CFR+ clips negative regret to stabilize learning.</p></section>
-          <section><strong>Nash equilibrium</strong><p>A strategy profile where no player can improve by changing strategy alone. This project does not prove the current policy is at equilibrium.</p></section>
+          <section><strong>Monte Carlo sampling</strong><p>Estimating a large process by sampling many possible states instead of exhaustively enumerating every path.</p></section>
+          <section><strong>MCCFR</strong><p>Monte Carlo Counterfactual Regret Minimization. It uses sampled traversals to approximate CFR updates when full game-tree traversal is too expensive.</p></section>
+          <section><strong>Nash equilibrium</strong><p>A strategy profile where no player can improve by changing strategy alone. Achieving it would mean showing the policy has no profitable unilateral deviation within the modeled game.</p></section>
           <section><strong>Exploitability</strong><p>How much a best-response opponent can gain against a policy. Lower exploitability is stronger evidence than one win-rate table.</p></section>
           <section><strong>Best response</strong><p>An opponent strategy chosen specifically to maximize payoff against the current policy.</p></section>
           <section><strong>Abstraction</strong><p>A simplified version of a larger game. This project abstracts Liar's Dice into a one-claim challenge game to make learning and validation tractable.</p></section>
@@ -838,12 +863,12 @@ function resultsMarkup(): string {
         <section>
           <span class="eyebrow">Benchmark average</span>
           <strong>${selected ? percent(selected.average_benchmark_win_rate) : "73.0%"}</strong>
-          <p>${baseline ? `The old baseline averaged ${percent(baseline.average_benchmark_win_rate)}.` : "Average across seeded benchmark opponents."} This is a benchmark score, not proof of optimal play.</p>
+          <p>Average AI win rate across four fixed benchmark opponents. ${baseline ? `The earlier private-hand-only baseline averaged ${percent(baseline.average_benchmark_win_rate)}.` : "This is a benchmark score, not proof of optimal play."}</p>
         </section>
         <section>
           <span class="eyebrow">Policy upgrade</span>
           <strong>${delta ? `+${percent(delta.average_benchmark_win_rate)}` : "Dice-count aware"}</strong>
-          <p>Lift comes from using the remaining dice counts instead of reusing one fixed five-dice policy.</p>
+          <p>Improvement compared with the earlier policy key that mostly reused one starting-state strategy instead of adapting to remaining dice counts.</p>
         </section>
         <section>
           <span class="eyebrow">Robustness warning</span>
@@ -854,13 +879,14 @@ function resultsMarkup(): string {
       <div class="plain-metric-grid" aria-label="Plain English metric explanations">
         <section><strong>What 73% means</strong><p>Across four fixed opponent profiles, the AI won about seven out of ten seeded matches. Those opponents are useful tests, but they are not guaranteed optimal adversaries.</p></section>
         <section><strong>Should it beat you?</strong><p>It should make better long-run decisions than simple baseline opponents, but it is not meant to win every human session. Short matches are noisy, and a targeted player can still exploit weaknesses.</p></section>
+        <section><strong>What the baseline was</strong><p>The old baseline indexed policy decisions mostly by private hand. The selected policy also includes public dice counts, so it can behave differently at 5v5, 4v3, or 2v1 dice.</p></section>
         <section><strong>What it is against</strong><p>The benchmark suite includes random claims, skeptical responses, threshold responses, and truth-biased claims. Each profile stresses a different weakness.</p></section>
         <section><strong>What it does not prove</strong><p>It does not prove Nash equilibrium, full classic Liar's Dice competence, or low exploitability against every possible opponent.</p></section>
       </div>
       <div class="explain-panel">
         <span class="eyebrow">Equilibrium status</span>
         <h2>Not proven at equilibrium</h2>
-        <p>These percentages are empirical win rates against named benchmark opponents. The one-round best-response check is a stronger diagnostic and still finds exploitable pressure. That is the point of the public story: model evaluation matters as much as headline performance.</p>
+        <p>To claim Nash equilibrium, I would need evidence that no player can improve by switching to a better unilateral strategy within the modeled game. These percentages are empirical win rates against named benchmark opponents. The one-round best-response check is a stronger diagnostic and still finds exploitable pressure.</p>
       </div>
       <table class="metrics-table">
         <thead><tr><th>Opponent profile</th><th>Matches</th><th>AI win rate</th></tr></thead>
@@ -907,12 +933,12 @@ function resultsMarkup(): string {
         <section>
           <span class="eyebrow">AI/ML value</span>
           <h2>Evaluation over vibes</h2>
-          <p>The project now shows the loop hiring teams care about: train a model, benchmark it, add adversarial diagnostics, and explain where it fails.</p>
+          <p>The project separates a playable demo from measured evidence: train a model, benchmark it, add adversarial diagnostics, and explain where it fails.</p>
         </section>
         <section>
-          <span class="eyebrow">Quant angle</span>
-          <h2>Hidden information</h2>
-          <p>The same framing appears in trading and risk problems: incomplete state, adversarial incentives, noisy observations, and policies that need stress tests.</p>
+          <span class="eyebrow">Hidden-state decisioning</span>
+          <h2>Uncertainty matters</h2>
+          <p>The core pattern is incomplete state, adversarial incentives, noisy observations, and policies that need stress tests before their performance claims are trusted.</p>
         </section>
         <section>
           <span class="eyebrow">Next improvement</span>
@@ -925,9 +951,9 @@ function resultsMarkup(): string {
           <p>Python produces the policy and metrics offline. The browser loads frozen JSON artifacts, so GitHub Pages can host the full public demo.</p>
         </section>
         <section>
-          <span class="eyebrow">Recruiter takeaway</span>
-          <h2>End-to-end artifact</h2>
-          <p>The project includes rules modeling, training, evaluation, tests, static deployment, paper archive, and a playable explanation layer.</p>
+          <span class="eyebrow">Project artifact</span>
+          <h2>End-to-end system</h2>
+          <p>The project includes rules modeling, training, evaluation, tests, static deployment, a paper archive, and a playable explanation layer.</p>
         </section>
       </div>
     </section>
@@ -938,32 +964,47 @@ function papersMarkup(): string {
   return `
     <section class="text-route">
       <span class="eyebrow">Papers</span>
-      <h1>Research papers</h1>
-      <p>The archive keeps the original university deliverables intact. These are the primary paper downloads while the public revised editions are rebuilt from the original DOCX files.</p>
+      <h1>Research papers and public editions</h1>
+      <p>The archive keeps the original research documents intact and adds conservative public editions rebuilt from the original DOCX files.</p>
       <div class="explain-panel">
         <span class="eyebrow">How to read these</span>
-        <h2>Originals are the source of truth</h2>
-        <p>The previous polished drafts were too compressed, so they are no longer linked here. A stronger public revision should preserve the original structure, math, figures, and implementation detail, then make careful local edits for clarity and claim discipline. For the current portfolio version, the website, README, tests, and metrics are the source of truth.</p>
+        <h2>Originals preserved, public editions cleaned</h2>
+        <p>The original research artifacts preserve the project history. The public editions keep the original information intact, improve document formatting, and make only conservative cleanup edits. For the current portfolio version, the website, README, tests, and metrics are the source of truth.</p>
       </div>
       <div class="paper-list">
         ${paperCardMarkup(
           "Final report",
-          "Primary course paper and best source for the original research structure, math, and implementation detail.",
+          "Primary research report and best source for the original structure, math, and implementation detail.",
           "paper-assets/final-report.pdf",
-          "paper-assets/final-report/final-report.tex"
+          "paper-assets/final-report/final-report.tex",
+          "paper-assets/polished/final-report.pdf",
+          "paper-assets/polished/final-report/final-report.docx",
+          "paper-assets/polished/final-report/final-report.tex"
         )}
         ${paperCardMarkup(
           "Applied focus deliverable",
           "Supporting background on imperfect-information games, multi-agent learning, and game-solving systems.",
           "paper-assets/applied-focus.pdf",
-          "paper-assets/applied-focus/applied-focus.tex"
+          "paper-assets/applied-focus/applied-focus.tex",
+          "paper-assets/polished/applied-focus.pdf",
+          "paper-assets/polished/applied-focus/applied-focus.docx",
+          "paper-assets/polished/applied-focus/applied-focus.tex"
         )}
         ${paperCardMarkup(
           "Research notebook",
           "Planning and research notes that show how the project direction developed.",
           "paper-assets/research-notebook.pdf",
-          "paper-assets/research-notebook/research-notebook.tex"
+          "paper-assets/research-notebook/research-notebook.tex",
+          "paper-assets/polished/research-notebook.pdf",
+          "paper-assets/polished/research-notebook/research-notebook.docx",
+          "paper-assets/polished/research-notebook/research-notebook.tex"
         )}
+      </div>
+      <div class="explain-panel">
+        <span class="eyebrow">Review notes</span>
+        <h2>Identified defects and cleanup targets</h2>
+        <p>I also kept a short review note listing the formatting defects and improvement targets found during the document pass.</p>
+        <a class="standalone-download" href="${baseUrl}paper-assets/polished/review-notes.md">Open review notes</a>
       </div>
       <div class="archive-footer">
         <p class="note">Maintained by Mauricio Garcia Villanueva.</p>
@@ -977,7 +1018,10 @@ function paperCardMarkup(
   title: string,
   description: string,
   originalPdf: string,
-  originalLatex: string
+  originalLatex: string,
+  polishedPdf: string,
+  polishedDocx: string,
+  polishedLatex: string
 ): string {
   return `
     <section class="paper-card">
@@ -986,9 +1030,15 @@ function paperCardMarkup(
         <p>${description}</p>
       </div>
       <div class="paper-download-group">
-        <span>Original course artifact</span>
+        <span>Original research artifact</span>
         <a href="${baseUrl}${originalPdf}">PDF</a>
         <a href="${baseUrl}${originalLatex}">LaTeX</a>
+      </div>
+      <div class="paper-download-group featured-download">
+        <span>Conservative public edition</span>
+        <a href="${baseUrl}${polishedPdf}">PDF</a>
+        <a href="${baseUrl}${polishedDocx}">DOCX</a>
+        <a href="${baseUrl}${polishedLatex}">LaTeX</a>
       </div>
     </section>
   `;

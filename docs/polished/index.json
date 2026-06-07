@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "final-report",
+    "title": "Multi-Agent Learning and Imperfect Information Games: Final Report",
+    "role": "Primary final report",
+    "pdf": "final-report.pdf",
+    "docx": "final-report/final-report.docx",
+    "latex": "final-report/final-report.tex"
+  },
+  {
+    "slug": "applied-focus",
+    "title": "Applied Multi-Agent Learning and Imperfect Information Games",
+    "role": "Applied focus deliverable",
+    "pdf": "applied-focus.pdf",
+    "docx": "applied-focus/applied-focus.docx",
+    "latex": "applied-focus/applied-focus.tex"
+  },
+  {
+    "slug": "research-notebook",
+    "title": "Research Notebook: Multi-Agent Learning and Liar's Dice",
+    "role": "Cleaned research notebook",
+    "pdf": "research-notebook.pdf",
+    "docx": "research-notebook/research-notebook.docx",
+    "latex": "research-notebook/research-notebook.tex"
+  }
+]

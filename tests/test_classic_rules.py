@@ -33,6 +33,20 @@ class ClassicRuleTests(unittest.TestCase):
         self.assertEqual(result.total_face_count, 2)
         self.assertEqual(result.loser, "bidder")
 
+    def test_user_history_examples_are_legal_false_ai_bids(self) -> None:
+        examples = [
+            ((2, 3, 5, 6), (1, 2, 4, 6), "claim_4_2", 2),
+            ((1, 4, 5, 6), (2, 3, 4, 4), "claim_4_4", 3),
+            ((1, 4, 5), (2, 3, 4), "claim_3_4", 2),
+        ]
+        for ai_hand, user_hand, bid, total_face_count in examples:
+            with self.subTest(bid=bid):
+                self.assertTrue(is_legal_raise(None, bid, total_dice=len(ai_hand) + len(user_hand)))
+                result = resolve_challenge(ai_hand, user_hand, bid)
+                self.assertFalse(result.truth)
+                self.assertEqual(result.total_face_count, total_face_count)
+                self.assertEqual(result.loser, "bidder")
+
 
 if __name__ == "__main__":
     unittest.main()
