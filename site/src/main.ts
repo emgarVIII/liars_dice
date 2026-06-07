@@ -992,7 +992,7 @@ function papersMarkup(): string {
     <section class="text-route">
       <span class="eyebrow">Papers</span>
       <h1>Research papers and public editions</h1>
-      <p>The archive keeps the original research documents intact and adds polished public editions rebuilt from the original DOCX files.</p>
+      <p>The archive keeps the original research documents intact and adds polished public editions rebuilt from the original source documents.</p>
       <div class="explain-panel">
         <span class="eyebrow">How to read these</span>
         <h2>Originals preserved, public editions cleaned</h2>
@@ -1005,7 +1005,6 @@ function papersMarkup(): string {
           "paper-assets/final-report.pdf",
           "paper-assets/final-report/final-report.tex",
           "paper-assets/polished/final-report.pdf",
-          "paper-assets/polished/final-report/final-report.docx",
           "paper-assets/polished/final-report/final-report.tex"
         )}
         ${paperCardMarkup(
@@ -1014,7 +1013,6 @@ function papersMarkup(): string {
           "paper-assets/applied-focus.pdf",
           "paper-assets/applied-focus/applied-focus.tex",
           "paper-assets/polished/applied-focus.pdf",
-          "paper-assets/polished/applied-focus/applied-focus.docx",
           "paper-assets/polished/applied-focus/applied-focus.tex"
         )}
         ${paperCardMarkup(
@@ -1023,7 +1021,6 @@ function papersMarkup(): string {
           "paper-assets/research-notebook.pdf",
           "paper-assets/research-notebook/research-notebook.tex",
           "paper-assets/polished/research-notebook.pdf",
-          "paper-assets/polished/research-notebook/research-notebook.docx",
           "paper-assets/polished/research-notebook/research-notebook.tex"
         )}
       </div>
@@ -1041,7 +1038,6 @@ function paperCardMarkup(
   originalPdf: string,
   originalLatex: string,
   polishedPdf: string,
-  polishedDocx: string,
   polishedLatex: string
 ): string {
   return `
@@ -1058,7 +1054,6 @@ function paperCardMarkup(
       <div class="paper-download-group featured-download">
         <span>Polished Public Edition</span>
         <a href="${baseUrl}${polishedPdf}">PDF</a>
-        <a href="${baseUrl}${polishedDocx}">DOCX</a>
         <a href="${baseUrl}${polishedLatex}">LaTeX</a>
       </div>
     </section>

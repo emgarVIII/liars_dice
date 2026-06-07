@@ -353,7 +353,6 @@ def build() -> None:
 
         public_slug_dir = PUBLIC_DIR / paper.slug
         public_slug_dir.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(docx_path, public_slug_dir / f"{paper.slug}.docx")
         shutil.copy2(tex_path, public_slug_dir / f"{paper.slug}.tex")
         media_dir = out_dir / "media"
         if media_dir.exists():
@@ -366,7 +365,6 @@ def build() -> None:
                 "title": paper.title,
                 "role": paper.role,
                 "pdf": f"{paper.slug}.pdf",
-                "docx": f"{paper.slug}/{paper.slug}.docx",
                 "latex": f"{paper.slug}/{paper.slug}.tex",
             }
         )
