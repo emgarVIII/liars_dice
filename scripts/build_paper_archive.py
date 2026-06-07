@@ -178,7 +178,7 @@ def main() -> None:
         Paper(
             slug="research-notebook",
             title="CS370 Multiagent Learning and Computational Game Solving Notes and Planning",
-            role="Research notebook and planning archive",
+            role="Research notes and planning archive",
             source=args.notes_docx,
         ),
     ]

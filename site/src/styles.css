@@ -243,6 +243,48 @@ main {
   line-height: 1.55;
 }
 
+.learning-panel {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.learning-panel > div {
+  background: rgba(255, 254, 250, 0.94);
+  padding: 18px;
+}
+
+.learning-panel h2 {
+  margin: 8px 0 10px;
+  font-size: clamp(1.45rem, 2.5vw, 2.1rem);
+  line-height: 1.05;
+}
+
+.learning-panel p {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.learning-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line) !important;
+  padding: 0 !important;
+}
+
+.learning-grid section {
+  background: var(--surface);
+  padding: 18px;
+}
+
+.learning-grid strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
 .rules-strip {
   display: flex;
   align-items: center;
@@ -891,12 +933,14 @@ select {
 
   .project-intro,
   .research-pillars,
+  .learning-panel,
   .abstraction-panel,
   .result-hero {
     grid-template-columns: 1fr;
   }
 
   .comparison-grid,
+  .learning-grid,
   .plain-metric-grid,
   .paper-card {
     grid-template-columns: 1fr;

@@ -418,9 +418,9 @@ function projectIntroMarkup(): string {
     ? "sampled CFR+ policy that conditions on remaining dice counts and private dice"
     : "baseline sampled CFR+ policy";
   return `
-    <section class="project-intro" aria-label="Portfolio project summary">
+    <section class="project-intro" aria-label="Project summary">
       <div>
-        <span class="eyebrow">AI/ML research engineering portfolio</span>
+        <span class="eyebrow">AI/ML research project</span>
         <h1>Liar's Dice CFR Lab</h1>
         <p><strong>Imperfect-information, multi-agent decision making in a playable demo.</strong> I modeled a simplified Liar's Dice challenge game, trained a ${policySchema} offline in Python, exported policy and metrics JSON, and built this static TypeScript site so the research can be inspected without a backend.</p>
         ${profileLinksMarkup()}
@@ -458,6 +458,32 @@ function researchPillarsMarkup(): string {
         <span class="eyebrow">Why it matters</span>
         <strong>Decisioning under uncertainty</strong>
         <p>The same pattern shows up in AI, risk, and quant-style systems: hidden state, adversarial incentives, probabilistic policies, and stress testing.</p>
+      </div>
+    </section>
+  `;
+}
+
+function learningApplicabilityMarkup(): string {
+  return `
+    <section class="learning-panel" aria-label="What I learned and why it applies">
+      <div>
+        <span class="eyebrow">What I learned</span>
+        <h2>Model the uncertainty, then test the policy</h2>
+        <p>The project made the core lesson concrete: hidden information changes what good decisions look like. A policy can look strong against simple opponents and still fail when a targeted adversary pushes on its weak spots.</p>
+      </div>
+      <div class="learning-grid">
+        <section>
+          <strong>Abstraction is an engineering choice</strong>
+          <p>I simplified classic Liar's Dice into a one-claim challenge game so the solver could be trained, inspected, and evaluated without pretending the full game was solved.</p>
+        </section>
+        <section>
+          <strong>Policies need evidence</strong>
+          <p>Win rates are useful, but they are not enough. Benchmarks, best-response checks, and clear limitations make the result more trustworthy.</p>
+        </section>
+        <section>
+          <strong>The pattern generalizes</strong>
+          <p>The same structure appears in AI systems, markets, risk models, and adversarial decision tools: partial observations, incentives, uncertainty, and stress testing.</p>
+        </section>
       </div>
     </section>
   `;
@@ -559,6 +585,7 @@ function gameMarkup(): string {
                   </div>`
         }
         ${researchPillarsMarkup()}
+        ${learningApplicabilityMarkup()}
         ${abstractionComparisonMarkup()}
       </div>
       <aside class="strategy-panel">
@@ -965,11 +992,11 @@ function papersMarkup(): string {
     <section class="text-route">
       <span class="eyebrow">Papers</span>
       <h1>Research papers and public editions</h1>
-      <p>The archive keeps the original research documents intact and adds conservative public editions rebuilt from the original DOCX files.</p>
+      <p>The archive keeps the original research documents intact and adds polished public editions rebuilt from the original DOCX files.</p>
       <div class="explain-panel">
         <span class="eyebrow">How to read these</span>
         <h2>Originals preserved, public editions cleaned</h2>
-        <p>The original research artifacts preserve the project history. The public editions keep the original information intact, improve document formatting, and make only conservative cleanup edits. For the current portfolio version, the website, README, tests, and metrics are the source of truth.</p>
+        <p>The original research artifacts preserve the project history. The polished editions keep the original information intact, improve document formatting, and make only light cleanup edits. For the current public version, the website, README, tests, and metrics are the source of truth.</p>
       </div>
       <div class="paper-list">
         ${paperCardMarkup(
@@ -991,20 +1018,14 @@ function papersMarkup(): string {
           "paper-assets/polished/applied-focus/applied-focus.tex"
         )}
         ${paperCardMarkup(
-          "Research notebook",
-          "Planning and research notes that show how the project direction developed.",
+          "Research notes",
+          "Informal scratch notes and planning logs. Included for completeness, not needed to understand the project.",
           "paper-assets/research-notebook.pdf",
           "paper-assets/research-notebook/research-notebook.tex",
           "paper-assets/polished/research-notebook.pdf",
           "paper-assets/polished/research-notebook/research-notebook.docx",
           "paper-assets/polished/research-notebook/research-notebook.tex"
         )}
-      </div>
-      <div class="explain-panel">
-        <span class="eyebrow">Review notes</span>
-        <h2>Identified defects and cleanup targets</h2>
-        <p>I also kept a short review note listing the formatting defects and improvement targets found during the document pass.</p>
-        <a class="standalone-download" href="${baseUrl}paper-assets/polished/review-notes.md">Open review notes</a>
       </div>
       <div class="archive-footer">
         <p class="note">Maintained by Mauricio Garcia Villanueva.</p>
@@ -1035,7 +1056,7 @@ function paperCardMarkup(
         <a href="${baseUrl}${originalLatex}">LaTeX</a>
       </div>
       <div class="paper-download-group featured-download">
-        <span>Conservative public edition</span>
+        <span>Polished Public Edition</span>
         <a href="${baseUrl}${polishedPdf}">PDF</a>
         <a href="${baseUrl}${polishedDocx}">DOCX</a>
         <a href="${baseUrl}${polishedLatex}">LaTeX</a>

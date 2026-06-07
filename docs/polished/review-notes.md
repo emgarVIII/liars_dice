@@ -18,10 +18,10 @@ These notes track defects and improvement targets identified while preparing pub
 - The bibliography spills into a mostly empty final page in the original render. The polished edition improves page economy without removing sources.
 - A later content pass should check source formatting consistency and tighten transitions, but this pass avoids substantive rewriting.
 
-## Research Notebook
+## Research Notes
 
-- The original notebook contains tab divider pages and section breaks that create mostly blank pages.
+- The original notes document contains tab divider pages and section breaks that create mostly blank pages.
 - Informal placeholders were present: "ASK ABOUT THIS" and "To fill." These were replaced with cleaner planning-note language.
 - The abbreviation "envt" was expanded to "environment."
 - Generic tab labels were renamed into descriptive research-log headings.
-- The polished edition removes disruptive section breaks, applies consistent heading styles, and keeps the notebook as a research log rather than rewriting it as a formal paper.
+- The polished edition removes disruptive section breaks, applies consistent heading styles, and keeps the notes as a research log rather than rewriting them as a formal paper.

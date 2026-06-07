@@ -52,8 +52,8 @@ PAPERS = [
     ),
     Paper(
         slug="research-notebook",
-        title="Research Notebook: Multi-Agent Learning and Liar's Dice",
-        role="Cleaned research notebook",
+        title="Research Notes: Multi-Agent Learning and Liar's Dice",
+        role="Polished research notes",
         source=DOWNLOADS / "CS370_ Multiagent Learning & Computational Game Solving Notes & Planning.docx",
         mode="notebook",
     ),
@@ -314,16 +314,14 @@ These notes track defects and improvement targets identified while preparing pub
 - The bibliography spills into a mostly empty final page in the original render. The polished edition improves page economy without removing sources.
 - A later content pass should check source formatting consistency and tighten transitions, but this pass avoids substantive rewriting.
 
-## Research Notebook
+## Research Notes
 
-- The original notebook contains tab divider pages and section breaks that create mostly blank pages.
+- The original notes document contains tab divider pages and section breaks that create mostly blank pages.
 - Informal placeholders were present: "ASK ABOUT THIS" and "To fill." These were replaced with cleaner planning-note language.
 - The abbreviation "envt" was expanded to "environment."
-- The polished edition removes disruptive section breaks, applies consistent heading styles, and keeps the notebook as a research log rather than rewriting it as a formal paper.
+- The polished edition removes disruptive section breaks, applies consistent heading styles, and keeps the notes as a research log rather than rewriting them as a formal paper.
 """
     (POLISHED_DIR / "review-notes.md").write_text(notes, encoding="utf-8")
-    PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(POLISHED_DIR / "review-notes.md", PUBLIC_DIR / "review-notes.md")
 
 
 def build() -> None:

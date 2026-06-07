@@ -17,8 +17,8 @@
   },
   {
     "slug": "research-notebook",
-    "title": "Research Notebook: Multi-Agent Learning and Liar's Dice",
-    "role": "Cleaned research notebook",
+    "title": "Research Notes: Multi-Agent Learning and Liar's Dice",
+    "role": "Polished research notes",
     "pdf": "research-notebook.pdf",
     "docx": "research-notebook/research-notebook.docx",
     "latex": "research-notebook/research-notebook.tex"

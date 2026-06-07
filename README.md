@@ -6,7 +6,7 @@ AI/ML portfolio project by Mauricio Garcia Villanueva.
 - LinkedIn: https://www.linkedin.com/in/emgar/
 - GitHub: https://github.com/emgarVIII
 
-This project turns a supervised university research prototype into a public imperfect-information game-solving artifact. It combines an offline Python research engine, sampled CFR+ self-play, benchmark and best-response-style evaluation, a static TypeScript demo, the original research-paper archive, and conservative public paper editions.
+This project turns a supervised university research prototype into a public imperfect-information game-solving artifact. It combines an offline Python research engine, sampled CFR+ self-play, benchmark and best-response-style evaluation, a static TypeScript demo, the original research-paper archive, and polished public paper editions.
 
 ## What It Shows
 
@@ -42,7 +42,7 @@ Important caveat: exact one-round best-response pressure is still high. The proj
 ├── site/                      # Static Vite + TypeScript website
 ├── site/public/data/          # Policy and metrics artifacts loaded by the browser
 ├── docs/archive/              # Original research-paper PDFs and LaTeX exports
-├── docs/polished/             # Conservative public paper editions and review notes
+├── docs/polished/             # Polished public paper editions and internal review notes
 ├── rules.md                   # Simplified and classic comparison rules
 ├── PORTFOLIO.md               # Resume bullets, LinkedIn draft, interview notes
 └── pyproject.toml
@@ -89,14 +89,14 @@ Routes:
 
 ## Paper Archive
 
-The three university research documents are preserved as original research artifacts. They are the source of truth for the original research structure, math, figures, implementation details, and project trajectory. Conservative public editions are generated from the original DOCX files without rewriting the papers.
+The three university research documents are preserved as original research artifacts. They are the source of truth for the original research structure, math, figures, implementation details, and project trajectory. Polished public editions are generated from the original DOCX files without rewriting the papers.
 
 ```bash
 python3 scripts/build_paper_archive.py
 python3 scripts/build_public_paper_editions.py
 ```
 
-The polished final report and applied focus editions preserve the original text and improve formatting. The notebook edition removes disruptive blank-tab pages and cleans informal placeholders. The website, tests, and exported metrics are the source of truth for the current public portfolio version.
+The polished final report and applied focus editions preserve the original text and improve formatting. The research notes edition removes disruptive blank-tab pages and cleans informal placeholders. The website, tests, and exported metrics are the source of truth for the current public version.
 
 ## Engineering Framing
 
