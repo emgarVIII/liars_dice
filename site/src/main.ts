@@ -761,6 +761,11 @@ function percent(value: number): string {
   return `${Math.round(value * 1000) / 10}%`;
 }
 
+function percentagePoints(value: number): string {
+  const rounded = Math.round(value * 1000) / 10;
+  return `${rounded >= 0 ? "+" : ""}${rounded} pts`;
+}
+
 function methodMarkup(): string {
   return `
     <section class="text-route">
@@ -893,9 +898,9 @@ function resultsMarkup(): string {
           <p>Average AI win rate across four fixed benchmark opponents. ${baseline ? `The earlier private-hand-only baseline averaged ${percent(baseline.average_benchmark_win_rate)}.` : "This is a benchmark score, not proof of optimal play."}</p>
         </section>
         <section>
-          <span class="eyebrow">Policy upgrade</span>
-          <strong>${delta ? `+${percent(delta.average_benchmark_win_rate)}` : "Dice-count aware"}</strong>
-          <p>Improvement compared with the earlier policy key that mostly reused one starting-state strategy instead of adapting to remaining dice counts.</p>
+          <span class="eyebrow">Old AI vs current AI</span>
+          <strong>${delta ? percentagePoints(delta.average_benchmark_win_rate) : "Count-aware"}</strong>
+          <p>Same test opponents, two versions of the AI. The old version mostly looked at its own dice. The current version also uses how many dice each player has left.</p>
         </section>
         <section>
           <span class="eyebrow">Robustness warning</span>
@@ -906,7 +911,7 @@ function resultsMarkup(): string {
       <div class="plain-metric-grid" aria-label="Plain English metric explanations">
         <section><strong>What 73% means</strong><p>Across four fixed opponent profiles, the AI won about seven out of ten seeded matches. Those opponents are useful tests, but they are not guaranteed optimal adversaries.</p></section>
         <section><strong>Should it beat you?</strong><p>It should make better long-run decisions than simple baseline opponents, but it is not meant to win every human session. Short matches are noisy, and a targeted player can still exploit weaknesses.</p></section>
-        <section><strong>What the baseline was</strong><p>The old baseline indexed policy decisions mostly by private hand. The selected policy also includes public dice counts, so it can behave differently at 5v5, 4v3, or 2v1 dice.</p></section>
+        <section><strong>What the baseline was</strong><p>The baseline was an earlier version of the AI. It mostly looked at its own dice, so it did not adapt enough as players lost dice. The current policy also sees whether the match is at 5v5, 4v3, 2v1, and so on.</p></section>
         <section><strong>What it is against</strong><p>The benchmark suite includes random claims, skeptical responses, threshold responses, and truth-biased claims. Each profile stresses a different weakness.</p></section>
         <section><strong>What it does not prove</strong><p>It does not prove Nash equilibrium, full classic Liar's Dice competence, or low exploitability against every possible opponent.</p></section>
       </div>
