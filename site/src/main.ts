@@ -422,7 +422,7 @@ function projectIntroMarkup(): string {
       <div>
         <span class="eyebrow">AI/ML research project</span>
         <h1>Liar's Dice CFR Lab</h1>
-        <p><strong>Imperfect-information, multi-agent decision making in a playable demo.</strong> I modeled a simplified Liar's Dice challenge game, trained a ${policySchema} offline in Python, exported policy and metrics JSON, and built this static TypeScript site so the research can be inspected without a backend.</p>
+        <p><strong>Imperfect-information, multi-agent decision making in a playable demo.</strong> I modeled a simplified Liar's Dice challenge game, trained a ${policySchema} offline in Python, exported policy and metrics JSON, and built this static TypeScript site so my research can be inspected closely.</p>
         ${profileLinksMarkup()}
         <div class="intro-actions">
           <button data-route="/method">Read method</button>
